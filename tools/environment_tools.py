@@ -3,9 +3,10 @@ from agent.environment import SyntheticAppEnvironment
 ENV = SyntheticAppEnvironment()
 
 
-def reset_environment():
-    ENV.reset()
-    return ENV.state()
+def reset_environment(config=None):
+    """Reset to defaults or to a hidden benchmark scenario configuration."""
+
+    return ENV.reset(config)
 
 
 def get_build_info():

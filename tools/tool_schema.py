@@ -10,7 +10,8 @@ TOOLS = [
                     "description": "需要检索的问题或关键词"
                 }
             },
-            "required": ["query"]
+            "required": ["query"],
+            "additionalProperties": False,
         }
     },
     {
@@ -18,7 +19,8 @@ TOOLS = [
         "description": "获取当前测试环境的应用版本和平台信息。",
         "parameters": {
             "type": "object",
-            "properties": {}
+            "properties": {},
+            "additionalProperties": False,
         }
     },
     {
@@ -26,7 +28,8 @@ TOOLS = [
         "description": "查看当前页面和关键应用状态。",
         "parameters": {
             "type": "object",
-            "properties": {}
+            "properties": {},
+            "additionalProperties": False,
         }
     },
     {
@@ -37,10 +40,20 @@ TOOLS = [
             "properties": {
                 "target_page": {
                     "type": "string",
-                    "description": "目标页面"
+                    "enum": [
+                        "settings",
+                        "graphics",
+                        "dungeon_select",
+                        "multiplayer_dungeon",
+                    ],
+                    "description": (
+                        "目标页面。合法路径为 home -> settings -> graphics，"
+                        "或 home -> dungeon_select -> multiplayer_dungeon。"
+                    ),
                 }
             },
-            "required": ["target_page"]
+            "required": ["target_page"],
+            "additionalProperties": False,
         }
     },
     {
@@ -51,13 +64,25 @@ TOOLS = [
             "properties": {
                 "action": {
                     "type": "string",
-                    "description": "动作名称"
+                    "enum": [
+                        "set_graphics",
+                        "back_home",
+                        "start_multiplayer_dungeon",
+                    ],
+                    "description": (
+                        "动作名称：set_graphics 仅可在 graphics 页面执行且需"
+                        "提供 value；back_home 可返回首页；"
+                        "start_multiplayer_dungeon 仅可在 multiplayer_dungeon "
+                        "页面执行。"
+                    ),
                 },
                 "value": {
-                    "description": "可选动作参数"
+                    "enum": ["low", "standard", "high"],
+                    "description": "set_graphics 的画质档位；其他动作无需提供。",
                 }
             },
-            "required": ["action"]
+            "required": ["action"],
+            "additionalProperties": False,
         }
     },
     {
@@ -65,7 +90,8 @@ TOOLS = [
         "description": "查询当前复现流程产生的应用日志。",
         "parameters": {
             "type": "object",
-            "properties": {}
+            "properties": {},
+            "additionalProperties": False,
         }
     },
     {
@@ -79,7 +105,8 @@ TOOLS = [
                     "description": "预期状态"
                 }
             },
-            "required": ["expected"]
+            "required": ["expected"],
+            "additionalProperties": False,
         }
     }
 ]

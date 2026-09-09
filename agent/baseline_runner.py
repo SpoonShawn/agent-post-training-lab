@@ -1,11 +1,8 @@
 import json
-import torch
-
-from transformers import AutoTokenizer, AutoModelForCausalLM
 
 from tools.tool_schema import TOOLS
 from tools.executor import execute_tool_json
-from tools.environment_tools import reset_environment
+from tools.environment_tools import inspect_ui_state, reset_environment
 from agent.tool_parser import parse_tool_calls
 
 
@@ -31,13 +28,25 @@ class BaselineAgent:
         model_path,
         max_steps=12,
         max_new_tokens=512,
+        revision=None,
     ):
+        import torch
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+
         self.max_steps = max_steps
         self.max_new_tokens = max_new_tokens
+        self._torch = torch
+
+        revision_kwargs = (
+            {"revision": revision}
+            if revision is not None
+            else {}
+        )
 
         self.tokenizer = AutoTokenizer.from_pretrained(
             model_path,
             trust_remote_code=True,
+            **revision_kwargs,
         )
 
         self.model = AutoModelForCausalLM.from_pretrained(
@@ -45,6 +54,7 @@ class BaselineAgent:
             dtype=torch.bfloat16,
             device_map="auto",
             trust_remote_code=True,
+            **revision_kwargs,
         )
 
         self.model.eval()
@@ -64,7 +74,7 @@ class BaselineAgent:
             for k, v in inputs.items()
         }
 
-        with torch.no_grad():
+        with self._torch.no_grad():
             output = self.model.generate(
                 **inputs,
                 max_new_tokens=self.max_new_tokens,
@@ -80,8 +90,23 @@ class BaselineAgent:
             skip_special_tokens=False,
         )
 
-    def run(self, query):
-        reset_environment()
+    def run(self, query, environment=None, max_steps=None):
+        """Run one case while keeping the original ``run(query)`` API valid.
+
+        The optional environment configuration is benchmark metadata and is
+        never included in the model messages.  It controls only the synthetic
+        app reset and deterministic fault injection used by recovery cases.
+        """
+
+        reset_environment(environment)
+
+        effective_max_steps = (
+            self.max_steps
+            if max_steps is None
+            else max_steps
+        )
+        if effective_max_steps < 1:
+            raise ValueError("max_steps 必须大于 0。")
 
         messages = [
             {
@@ -97,7 +122,7 @@ class BaselineAgent:
         trajectory = []
         final_answer = None
 
-        for step in range(self.max_steps):
+        for step in range(effective_max_steps):
             response = self.generate(messages)
 
             parsed = parse_tool_calls(response)
@@ -146,4 +171,10 @@ class BaselineAgent:
             "query": query,
             "trajectory": trajectory,
             "final_answer": final_answer,
+            "final_environment_state": inspect_ui_state(),
+            "terminated_reason": (
+                "final_answer"
+                if final_answer is not None
+                else "max_steps"
+            ),
         }
