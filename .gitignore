@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Secrets
+.env
+*.key
+*.pem
+
+# Model checkpoints
+checkpoints/
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Cache
+.cache/
+huggingface/
+
+# Training artifacts
+wandb/
+runs/
+logs/
+
+# Large datasets
+data/raw/*
+data/sft/*
+data/preference/*
+
+# Keep directory structure
+!data/raw/.gitkeep
+!data/sft/.gitkeep
+!data/preference/.gitkeep
+!data/eval/.gitkeep
