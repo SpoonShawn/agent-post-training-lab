@@ -1,0 +1,18 @@
+[
+  {
+    "incident_id": "INC-101",
+    "symptom": "进入多人副本后出现黑屏",
+    "platform": "android",
+    "version": "2.3.1",
+    "root_cause": "图形上下文恢复失败",
+    "workaround": "进入副本前将画质预设切换为标准"
+  },
+  {
+    "incident_id": "INC-102",
+    "symptom": "进入战斗后战斗 HUD 缺失",
+    "platform": "all",
+    "version": "2.2.8",
+    "root_cause": "UI 初始化竞态",
+    "workaround": "重新加载战斗场景"
+  }
+]

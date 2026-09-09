@@ -1,0 +1,14 @@
+[
+  {
+    "topic": "graphics_settings",
+    "content": "画质设置入口路径为：首页 -> 设置 -> 图形。"
+  },
+  {
+    "topic": "multiplayer_dungeon",
+    "content": "多人副本入口路径为：首页 -> 副本选择 -> 多人副本 -> 开始。"
+  },
+  {
+    "topic": "combat_test",
+    "content": "进入副本后，当 battle_hud_visible=true 时，认为战斗场景已成功加载。"
+  }
+]

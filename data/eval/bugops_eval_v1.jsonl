@@ -1,0 +1,7 @@
+{"id":"knowledge_001","category":"knowledge","query":"Android 2.3.1 版本进入多人副本后黑屏，这是不是已知问题？","expected_tools":["search_knowledge"]}
+{"id":"build_001","category":"single_tool","query":"当前测试环境是什么版本和平台？","expected_tools":["get_build_info"]}
+{"id":"state_001","category":"single_tool","query":"检查当前应用处于哪个页面，并返回关键状态。","expected_tools":["inspect_ui_state"]}
+{"id":"repro_001","category":"long_horizon","query":"尝试复现 Android 2.3.1 版本进入多人副本后黑屏的问题，并判断是否复现成功。","expected_tools":["get_build_info","search_knowledge","inspect_ui_state","navigate_ui","navigate_ui","execute_action","query_logs","verify_state"]}
+{"id":"workaround_001","category":"long_horizon","query":"根据已有知识尝试规避多人副本黑屏问题，并验证规避方案是否有效。","expected_tools":["search_knowledge","inspect_ui_state","navigate_ui","navigate_ui","execute_action","execute_action","navigate_ui","navigate_ui","execute_action","verify_state"]}
+{"id":"recovery_001","category":"recovery","query":"尝试进入当前页面无法直接访问的图形设置页。如果第一次导航失败，请根据当前状态自行恢复并最终进入图形设置页。","expected_behavior":"recover_after_invalid_navigation"}
+{"id":"no_tool_001","category":"no_tool","query":"请用一句话说明为什么软件缺陷需要明确的复现步骤。","expected_tools":[]}
