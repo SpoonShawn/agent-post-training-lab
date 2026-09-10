@@ -1,0 +1,50 @@
+{
+  "protocol_version": "2.1",
+  "status": "retrospective_diagnostic_not_model_improvement",
+  "source_sha256": "0f7d39563c3b319ed1bf38e43a1108a2288914834c79f2aa22cd7b4bc603601c",
+  "by_category": {
+    "no_tool": {
+      "cases": 30,
+      "requires_new_inference": 0,
+      "eligible": 30,
+      "execution_success": 30,
+      "answer_review_pending": 30
+    },
+    "single_tool": {
+      "cases": 60,
+      "requires_new_inference": 0,
+      "eligible": 60,
+      "execution_success": 60,
+      "answer_review_pending": 60
+    },
+    "knowledge": {
+      "cases": 60,
+      "requires_new_inference": 8,
+      "eligible": 52,
+      "execution_success": 50,
+      "answer_review_pending": 50
+    },
+    "navigation": {
+      "cases": 30,
+      "requires_new_inference": 0,
+      "eligible": 30,
+      "execution_success": 23,
+      "answer_review_pending": 23
+    },
+    "long_horizon": {
+      "cases": 120,
+      "requires_new_inference": 0,
+      "eligible": 120,
+      "execution_success": 3,
+      "answer_review_pending": 3
+    },
+    "recovery": {
+      "cases": 60,
+      "requires_new_inference": 0,
+      "eligible": 60,
+      "execution_success": 40,
+      "answer_review_pending": 40
+    }
+  },
+  "note": "Execution success excludes prose correctness. No revised task success rate until independent answer review. Changed prompts excluded; fresh inference required."
+}
