@@ -2,6 +2,8 @@
 
 面向中文 BugOps 场景的 Tool-Use Agent 后训练实验仓库。项目用完全合成的应用状态、知识库和工具，评估模型在工具选择、参数生成、长链路规划、状态跟踪和失败恢复上的能力，并为后续 LoRA SFT、DPO / GRPO 对比提供稳定基线。
 
+持续更新：[实验总报告](docs/experiment_report.md) · [阶段日志](docs/experiment_logs/README.md)。每个阶段保留目标、配置、数据、指标、结果、bad case、问题、原因、解决方案和下一步，包括失败实验与设计修订。
+
 ## Benchmark v2
 
 2026-09-10 审计发现 v2 存在指定工具过严、自然语言规则误判和部分输入缺信息的问题。原始成绩保留；新增 [2.1 审计协议](docs/protocol_v21.md) 与 `python scripts/audit_baseline_v21.py`，分离执行指标、待人工复核的回答和需要重新推理的输入。v2 已用于协议开发，后续确认性实验需要独立测试集。
