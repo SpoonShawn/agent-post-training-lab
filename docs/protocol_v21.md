@@ -28,7 +28,11 @@ v2 原始代码、360 条输入、模型输出与原始 39.4% 任务成功率保
 - 用户要求日志/证据时，必须存在真实返回，不能用回答中声称“日志显示”代替。
 - 同义表达、合理否定不扣分；不得对不同模型使用不同标准。
 
-复核记录应包含 case ID、来源文件 SHA-256、判定、证据理由、审阅者及时间。队列位于 `answer_review_queue.jsonl`，原始完整轨迹通过 ID 在源结果查阅。当前工具不自动把人工判定合并成分数，避免把待审结果冒充已审结论。
+复核记录包含 case ID、来源文件 SHA-256、逐条 case/result SHA-256、判定、证据理由、审阅者类型及时间。队列位于 `answer_review_queue.jsonl`，包含问题、最终答案、实际工具返回和最终状态，不含模型名称和旧分数；这不能保证审阅者没有看过原结果，不应自动宣称双盲或独立评审。
+
+现已支持复核导入。复制队列到独立文件（不要编辑自动生成的队列），逐条填写 `verdict`（pass/fail/uncertain）、`reason`、`reviewer`、`reviewer_type`、`reviewed_at`。`reviewer_type` 应如实写 `independent_human`、`protocol_author_human` 或 `protocol_author_ai`；工具只验证可追溯字段，不替你证明审阅者身份或独立性。保留所有哈希和证据。只提交已复核行，`pending` 模板不允许作为判定导入；`uncertain` 仍视为未解决。
+
+导入会拒绝重复 ID、未知 ID、来源或轨迹变化、错误协议和缺失署名。即使答案判为 pass，执行失败也不能成为任务成功。执行成功但未审／存疑的任务维持 `null`。整体、类别、难度、场景族的任务率不会剔除这些 `null` 后冒充完整分数；另列逻辑上下界（不是统计置信区间）。
 
 ## 运行
 
@@ -41,9 +45,76 @@ conda activate agent-post-training
 python scripts/audit_baseline_v21.py
 ```
 
-输出至 `results/audit/v21/`：`benchmark_v21.jsonl`（修订输入与协议标记）、`audit.jsonl`（逐条诊断）、`answer_review_queue.jsonl`、`summary.json`。这些文件可以确定性重建，脚本保留原始结果并校验 case 与 v2 快照一致。
+输出至 `results/audit/v21/`：`benchmark_v21.jsonl`（360 条修订输入与协议标记）、`rerun_v21.jsonl`（8 条修改输入）、`audit.jsonl`（逐条诊断）、`answer_review_queue.jsonl`（206 条待审及证据）、`summary.json`。这些文件可以确定性重建，脚本保留原始结果并校验 case 与 v2 快照一致。206 是当前未导入任何复核时的队列长度。
 
-这是独立审计入口；现有 `run_baseline.py` / `summarize_baseline.py` 仍执行 v2，不能将新输入直接交给旧汇总器并称为 2.1 最终成绩。完整 2.1 确认性实验需先完成下面的冻结步骤。
+导入旧轨迹的答案复核，无需 GPU：
+
+```bash
+python scripts/audit_baseline_v21.py \
+  --reviews results/reviews/v21_author_reviews.jsonl \
+  --output-dir results/audit/v21_reviewed
+```
+
+上述复核文件需要先实际创建和填写，仓库没有伪造的已审判定。生成目录与复核文件分离，以免重建时覆盖署名判定。
+
+## 正式推理与汇总入口
+
+`run_baseline.py` / `summarize_baseline.py` 现在按 `case.protocol_version` 自动分流。无标记走原 v2；`2.1` 走新执行判定加显式答案复核。混合协议、未知协议、结果 query 与新输入不一致均会拒绝。`requires_new_inference` 标记输入相对 v2 有变化，并不意味着新轨迹永远不可评分；新轨迹 query 一致即可评估。
+
+为兼容旧命令，默认 benchmark 仍为 v2；新实验必须显式指定下面的 v21 路径。推理输出会记录正确的协议版本，运行指纹包含新增评分代码。已有文件不允许无意覆盖，续跑要求指纹一致；不能把新代码下的运行追加到旧 v2 结果。**不要修改旧文件的版本或指纹来绕过检查。**
+
+### SuperPOD 补跑 8 条
+
+先在登录节点进入实验目录并更新、生成输入（无需 GPU）：
+
+```bash
+cd /home/zshaoaj/agent-post-training-lab
+git pull --ff-only
+conda activate agent-post-training
+python scripts/audit_baseline_v21.py
+```
+
+再申请 GPU。以下沿用本实验此前使用的账户和分区；如果集群配置变化，按管理员提供的账户/分区替换，不能在登录节点直接推理。
+
+```bash
+srun --account=mscaiesuperpod --partition=normal --gres=gpu:1 --time=02:00:00 --pty bash
+```
+
+等到资源分配成功、进入计算节点后执行：
+
+```bash
+cd /home/zshaoaj/agent-post-training-lab
+conda activate agent-post-training
+nvidia-smi
+python -u scripts/run_baseline.py \
+  --model-path /home/zshaoaj/hf_models/Qwen3-4B-Instruct-2507 \
+  --eval-path results/audit/v21/rerun_v21.jsonl \
+  --output-path results/baseline/qwen3_4b_rerun_v21.jsonl \
+  --resume
+exit
+```
+
+`exit` 释放交互式 GPU 作业。上述是补跑 8 条，不是 360 条正式测试。若要完整重跑，将 eval 路径改为 `results/audit/v21/benchmark_v21.jsonl`，输出改为新的 `results/baseline/qwen3_4b_baseline_v21.jsonl`。即便完整重跑，这套已观察过的数据仍是开发／审计集，不会重新变成独立确认集。
+
+登录节点汇总补跑并导出待审队列：
+
+```bash
+cd /home/zshaoaj/agent-post-training-lab
+conda activate agent-post-training
+python scripts/summarize_baseline.py \
+  --input-path results/baseline/qwen3_4b_rerun_v21.jsonl \
+  --review-queue results/reviews/rerun_v21_queue.jsonl
+```
+
+完成复核并另存为 `results/reviews/rerun_v21_reviews.jsonl` 后：
+
+```bash
+python scripts/summarize_baseline.py \
+  --input-path results/baseline/qwen3_4b_rerun_v21.jsonl \
+  --reviews results/reviews/rerun_v21_reviews.jsonl
+```
+
+v21 汇总始终重算执行，复核必须显式加载；它不会信任旧缓存中的通过判定。新运行队列的哈希绑定新文件，不能与旧审计的复核互用。**不要直接拼接 352 条旧记录与 8 条新记录**：它们的运行指纹和输入来源不同；目前分别报告，若需要统一成绩，优先完整重跑 360 条并复核，或另行制定、验证带来源清单的合并协议。
 
 ## 冻结与后续实验
 

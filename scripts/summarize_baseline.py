@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Summarize BugOps baseline JSONL results with Evaluator v2 metrics."""
+"""Summarize BugOps baseline JSONL using its declared evaluation protocol."""
 
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -11,7 +12,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from evaluation.evaluator import aggregate_results, evaluate_case  # noqa: E402
+from evaluation.scoring import (  # noqa: E402
+    dataset_protocol, evaluate_case, load_reviews, protocol_version, review_queue, summarize_results,
+)
 
 
 DEFAULT_INPUT = (
@@ -86,8 +89,10 @@ def load_records(path, recompute=False):
 
             evaluator_version = record.get("evaluator_version", "<legacy>")
             evaluator_versions.add(str(evaluator_version))
+            if evaluator_version != "<legacy>" and str(evaluator_version) != protocol_version(case):
+                raise ValueError(f"{path}:{line_number} Evaluator 与 case 协议不一致。")
 
-            if recompute or not record.get("metrics"):
+            if recompute or protocol_version(case) == "2.1" or not record.get("metrics"):
                 record["metrics"] = evaluate_case(case, result)
             elif not isinstance(record.get("metrics"), dict):
                 raise ValueError(
@@ -99,6 +104,7 @@ def load_records(path, recompute=False):
         raise ValueError(f"{path} 混合了不同运行指纹，拒绝汇总。")
     if len(evaluator_versions) > 1:
         raise ValueError(f"{path} 混合了不同 Evaluator 版本，拒绝汇总。")
+    dataset_protocol([record["case"] for record in records])
     return records
 
 
@@ -151,7 +157,7 @@ def print_text_summary(summary):
     overall = summary.get("overall", {})
     category_macro = summary.get("category_macro", {})
     coverage = summary.get("run_coverage", {})
-    print("=== BugOps Evaluator v2 Summary ===")
+    print(f"=== BugOps Evaluator v{summary.get('protocol_version', '2')} Summary ===")
     print(f"Cases: {overall.get('num_cases', 0)}")
     if coverage.get("selected_case_count") is not None:
         completed = coverage.get("completed_case_count", 0)
@@ -165,6 +171,12 @@ def print_text_summary(summary):
             print("WARNING: PARTIAL RESULT — 本次选定 case 尚未全部完成。")
     for key, label in DISPLAY_METRICS:
         print(f"{label}: {_format_metric(overall.get(key))}")
+    if summary.get("protocol_version") == "2.1":
+        print(f"Task execution success (not task success): {_format_metric(overall.get('task_execution_success_rate'))}")
+        print(f"Structured argument accuracy: {_format_metric(overall.get('structured_argument_accuracy'))}")
+        print(f"Task answers unresolved: {overall.get('task_unresolved_count')}")
+        print(f"Task success bounds (not CI): [{_format_metric(overall.get('task_success_lower_bound'))}, {_format_metric(overall.get('task_success_upper_bound'))}]")
+        print(summary["note"])
     if category_macro:
         print(
             "Category-macro task success: "
@@ -192,6 +204,8 @@ def print_text_summary(summary):
 
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--reviews", type=Path, help="2.1 答案复核 JSONL；校验来源和逐条证据后重算。")
+    parser.add_argument("--review-queue", type=Path, help="导出 2.1 待审答案、实际工具证据及复核模板。")
     parser.add_argument(
         "--input-path",
         type=Path,
@@ -206,15 +220,29 @@ def parse_args(argv=None):
     parser.add_argument(
         "--recompute",
         action="store_true",
-        help="忽略文件内已有 metrics，用当前 Evaluator v2 重新计算。",
+        help="按 case 协议重算；2.1 始终重算，答案复核通过 --reviews 显式加载。",
     )
     return parser.parse_args(argv)
 
 
 def main(argv=None):
     args = parse_args(argv)
-    records = load_records(args.input_path, recompute=args.recompute)
-    summary = aggregate_results(records)
+    records = load_records(args.input_path, recompute=args.recompute or bool(args.reviews))
+    if args.reviews:
+        if dataset_protocol([row["case"] for row in records]) != "2.1":
+            raise ValueError("--reviews 仅支持 2.1；旧轨迹请使用 audit_baseline_v21.py。")
+        reviews = load_reviews(args.reviews, records, hashlib.sha256(args.input_path.read_bytes()).hexdigest())
+        for row in records:
+            row["metrics"] = evaluate_case(row["case"], row["result"], reviews.get(row["case"]["id"]))
+    summary = summarize_results(records)
+    if args.review_queue:
+        if summary["protocol_version"] != "2.1":
+            raise ValueError("Review queue requires protocol 2.1")
+        if args.review_queue.resolve() in {args.input_path.resolve(), args.reviews.resolve() if args.reviews else None}:
+            raise ValueError("Review queue must not overwrite source or reviews")
+        args.review_queue.parent.mkdir(parents=True, exist_ok=True)
+        rows = review_queue(records, hashlib.sha256(args.input_path.read_bytes()).hexdigest())
+        args.review_queue.write_text("".join(json.dumps(row, ensure_ascii=False) + "\n" for row in rows), encoding="utf-8")
     summary["run_coverage"] = summarize_coverage(records)
     if args.json:
         print(json.dumps(summary, ensure_ascii=False, indent=2))

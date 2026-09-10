@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from evaluation.evaluator import evaluate_case  # noqa: E402
+from evaluation.scoring import dataset_protocol, evaluate_case  # noqa: E402
 
 
 DEFAULT_MODEL_PATH = os.environ.get(
@@ -25,7 +25,6 @@ OUTPUT_PATH = (
     / "baseline"
     / "qwen3_4b_baseline_v2.jsonl"
 )
-EVALUATOR_VERSION = "2.0"
 RUN_METADATA_VERSION = 1
 DEFAULT_MAX_STEPS = 16
 DEFAULT_MAX_NEW_TOKENS = 512
@@ -37,6 +36,8 @@ RUNTIME_FILES = (
     "data/knowledge/incident_history.json",
     "data/knowledge/ui_guide.json",
     "evaluation/evaluator.py",
+    "evaluation/protocol_v21.py",
+    "evaluation/scoring.py",
     "scripts/run_baseline.py",
     "tools/environment_tools.py",
     "tools/executor.py",
@@ -171,7 +172,7 @@ def build_run_metadata(args, cases):
         "benchmark_schema_versions": schema_versions,
         "selected_case_count": len(cases),
         "selected_case_ids_sha256": selection_digest,
-        "evaluator_version": EVALUATOR_VERSION,
+        "evaluator_version": dataset_protocol(cases),
         "runtime_sha256": runtime_sha256(),
         "runtime_versions": {
             "python": platform.python_version(),
@@ -346,7 +347,10 @@ def parse_args(argv=None):
 
 def main(argv=None):
     args = parse_args(argv)
+    if args.output_path.exists() and not args.resume:
+        raise FileExistsError("输出已存在；请指定新路径或用 --resume，禁止覆盖历史实验。")
     cases = load_cases(args.eval_path, args.limit)
+    dataset_protocol(cases)
     print("正在计算 benchmark、运行代码和模型内容指纹……")
     run_metadata = build_run_metadata(args, cases)
     if (
@@ -412,7 +416,7 @@ def main(argv=None):
             print("指标:", metrics)
 
             record = {
-                "evaluator_version": EVALUATOR_VERSION,
+                "evaluator_version": run_metadata["evaluator_version"],
                 "run_metadata": run_metadata,
                 "case": case,
                 "result": result,
