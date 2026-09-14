@@ -11,12 +11,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class LauncherTests(unittest.TestCase):
-    def launch(self, fail_baseline=False):
+    def launch(self, fail_baseline=False, script_name="superpod_train_pilot.sh"):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / "scripts").mkdir()
-            script = root / "scripts/superpod_train_pilot.sh"
-            script.write_text((ROOT / "scripts/superpod_train_pilot.sh").read_text())
+            script = root / "scripts" / script_name
+            script.write_text((ROOT / "scripts" / script_name).read_text())
             binary = root / "bin"
             binary.mkdir()
             fake = binary / "python"
@@ -53,3 +53,19 @@ class LauncherTests(unittest.TestCase):
         self.assertEqual(process.returncode, 2)
         self.assertEqual(len(calls), 3)
         self.assertFalse(any("scripts/train_sft.py" in c for c in calls))
+
+    def test_challenge_launcher_only_infers_and_parses(self):
+        process, calls = self.launch(script_name="superpod_eval_challenge_v1.sh")
+        self.assertEqual(process.returncode, 0, process.stderr)
+        self.assertEqual(len(calls), 4)
+        self.assertFalse(any("scripts/train_sft.py" in c for c in calls))
+        for args in calls[2:]:
+            self.assertNotIn("+", args)
+            parsed = parse_args(args[args.index("scripts/run_baseline.py") + 1:])
+            self.assertEqual(parsed.max_new_tokens, 512)
+            self.assertTrue(parsed.resume)
+
+    def test_challenge_base_failure_stops_sft(self):
+        process, calls = self.launch(True, "superpod_eval_challenge_v1.sh")
+        self.assertEqual(process.returncode, 2)
+        self.assertEqual(len(calls), 3)

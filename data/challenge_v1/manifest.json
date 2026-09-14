@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "status": "frozen_before_first_challenge_inference",
+  "scope": "post-training diagnostic; expression controls reuse pilot confirmation",
+  "cases": 120,
+  "dimensions": {
+    "expression": 40,
+    "structure": 40,
+    "constraints": 20,
+    "recovery": 20
+  },
+  "groups": 18,
+  "cases_sha256": "95fe900a969a7fd8f435441249bcbc19dd34515f62818434ab7ac5a0c47326b3",
+  "runtime_sha256": "33b93914a3337342951213ccbbdab8ebd42ad9c1d309a593ec356a267a78149b",
+  "generator_sha256": "a28486320c7894abe865376ea4046cb530bda6692fb1b5ec92c7a1224eaf0b0b",
+  "model_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+  "adapter_sha256": "54d09ba7ca62db64cba27299a1ff586181f92bfd65028336013234856667e85a",
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_steps_override": null
+  },
+  "oracle_execution_pass": 120
+}
