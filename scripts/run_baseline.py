@@ -38,6 +38,7 @@ RUNTIME_FILES = (
     "evaluation/evaluator.py",
     "evaluation/protocol_v21.py",
     "evaluation/protocol_v22.py",
+    "evaluation/protocol_v23.py",
     "evaluation/scoring.py",
     "scripts/run_baseline.py",
     "tools/environment_tools.py",
@@ -187,6 +188,13 @@ def build_run_metadata(args, cases):
             "default_max_steps": DEFAULT_MAX_STEPS,
         },
     }
+    adapter = getattr(args, "adapter_path", None)
+    if adapter is not None:
+        if not Path(adapter).is_dir():
+            raise ValueError("Adapter must be a local directory")
+        adapter_hash, adapter_resolved = sha256_model_path(str(adapter))
+        metadata["adapter_path"] = adapter_resolved
+        metadata["adapter_sha256"] = adapter_hash
     fingerprint_payload = json.dumps(
         metadata,
         ensure_ascii=False,
@@ -300,6 +308,7 @@ def parse_args(argv=None):
         default=EVAL_PATH,
         help="JSONL benchmark 路径。",
     )
+    parser.add_argument("--adapter-path", type=Path, default=None, help="LoRA adapter目录；省略时运行未后训练模型。")
     parser.add_argument(
         "--model-revision",
         default=None,
@@ -386,11 +395,13 @@ def main(argv=None):
     args.output_path.parent.mkdir(parents=True, exist_ok=True)
     file_mode = "a" if args.resume else "w"
 
+    adapter_kwargs = {"adapter_path": args.adapter_path} if args.adapter_path is not None else {}
     agent = BaselineAgent(
         args.model_path,
         max_steps=args.max_steps or DEFAULT_MAX_STEPS,
         max_new_tokens=args.max_new_tokens,
         revision=args.model_revision,
+        **adapter_kwargs,
     )
 
     with args.output_path.open(file_mode, encoding="utf-8") as handle:

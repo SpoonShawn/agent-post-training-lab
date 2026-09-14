@@ -1,0 +1,9 @@
+{
+  "scope": "final random tiny Qwen3 CPU adapter, not 4B",
+  "source_run": "final_tiny_run.json",
+  "adapter_reload_finite_loss": true,
+  "all_weights_finite": true,
+  "nonzero_lora_b": true,
+  "tensor_count": 14,
+  "note": "Verified by loading the saved adapter onto a fresh matching tiny Qwen3 configuration and performing a forward pass. Not a model quality score."
+}

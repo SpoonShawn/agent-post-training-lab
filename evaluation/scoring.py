@@ -7,11 +7,12 @@ from pathlib import Path
 from evaluation.evaluator import aggregate_results, evaluate_case as evaluate_v2
 from evaluation.protocol_v21 import evaluate_execution
 from evaluation.protocol_v22 import evaluate_execution as execution_v22
+from evaluation.protocol_v23 import evaluate_execution as execution_v23
 
 
 def protocol_version(case):
     version = case.get("protocol_version", "2.0")
-    if version not in {"2.0", "2.1", "2.2"}:
+    if version not in {"2.0", "2.1", "2.2", "2.3"}:
         raise ValueError(f"Unsupported protocol_version: {version}")
     return version
 
@@ -88,7 +89,8 @@ def evaluate_case(case, result, review=None):
     if result.get("query") != case.get("query"):
         raise ValueError(f"Result query differs from benchmark; fresh inference required: {case['id']}")
     metrics["legacy_task_success"] = metrics["task_success"]
-    execution = (execution_v22 if protocol_version(case) == "2.2" else evaluate_execution)(case, result)
+    execution = {"2.1": evaluate_execution, "2.2": execution_v22,
+                 "2.3": execution_v23}[protocol_version(case)](case, result)
     metrics.update(execution)
     metrics["recovery_execution_success"] = execution["recovery_success"]
     verdict = "pending" if review is None else review["verdict"]

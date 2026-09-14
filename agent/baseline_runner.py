@@ -29,6 +29,7 @@ class BaselineAgent:
         max_steps=12,
         max_new_tokens=512,
         revision=None,
+        adapter_path=None,
     ):
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -58,6 +59,10 @@ class BaselineAgent:
         )
 
         self.model.eval()
+        if adapter_path is not None:
+            from peft import PeftModel
+            self.model = PeftModel.from_pretrained(self.model, adapter_path)
+            self.model.eval()
 
     def generate(self, messages):
         inputs = self.tokenizer.apply_chat_template(
@@ -85,10 +90,17 @@ class BaselineAgent:
             inputs["input_ids"].shape[-1]:
         ]
 
-        return self.tokenizer.decode(
+        decoded = self.tokenizer.decode(
             generated,
             skip_special_tokens=False,
         )
+        # Chat templates add turn terminators themselves. Avoid duplicate EOS
+        # in subsequent prompts and keep SFT/runtime serialization consistent.
+        eos = self.tokenizer.eos_token
+        if eos:
+            while decoded.rstrip().endswith(eos):
+                decoded = decoded.rstrip()[:-len(eos)]
+        return decoded
 
     def run(self, query, environment=None, max_steps=None):
         """Run one case while keeping the original ``run(query)`` API valid.

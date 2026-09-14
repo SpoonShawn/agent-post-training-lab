@@ -4,6 +4,10 @@
 
 持续更新：[实验总报告](docs/experiment_report.md) · [阶段日志](docs/experiment_logs/README.md)。每个阶段保留目标、配置、数据、指标、结果、bad case、问题、原因、解决方案和下一步，包括失败实验与设计修订。
 
+## 当前入口：LoRA pilot v1
+
+[按这份指南开始训练](docs/training_pilot_v1.md)：公开契约2.3、320条独立配置事务训练轨迹、80验证、80确认，按完整组合隔离。120项测试及CPU随机小模型训练/保存/重载已通过；真实4B GPU检查仍需在SuperPOD执行。旧360条不进训练，本轮不训练知识检索。先进入实验目录并申请GPU，再运行scripts/superpod_train_pilot.sh；它先留存Base，再smoke、训练与评测，不能在登录节点运行。
+
 ## Benchmark v2
 
 最新（2026-09-14）：[Evaluator v2.2原理与操作](docs/protocol_v22.md)已补齐恢复题“失败后检查状态再重试”的过程要求。旧352条回顾评分188通过（53.41%），107项测试通过。仅修订评估，无新模型训练；旧2.0/2.1结果和下方历史说明保留。详见[阶段009](docs/experiment_logs/009_recovery_process_v22.md)。

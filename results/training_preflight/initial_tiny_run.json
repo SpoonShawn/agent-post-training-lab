@@ -1,0 +1,48 @@
+{
+  "status": "tiny_cpu_smoke_complete",
+  "started_at": "2026-09-14T07:50:41.148869+00:00",
+  "arguments": {
+    "model_path": "Qwen/Qwen3-4B-Instruct-2507",
+    "output_dir": "/tmp/bugops-train-check.6M65x7/smoke",
+    "max_steps": -1,
+    "max_length": 8192,
+    "tiny_cpu_smoke": true,
+    "preflight_only": false
+  },
+  "manifest_sha256": "3b5474300f35f70a21987af1e4c7b77ab02fcf489f5ae5e4f16dd26180b6c177",
+  "versions": {
+    "torch": "2.14.0",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "accelerate": "1.15.0"
+  },
+  "seed": 20260914,
+  "pilot_scope": "configuration-transaction pilot; no knowledge training; compositional group holdout, not independent external benchmark",
+  "tokenization": {
+    "train_examples": 3956,
+    "validation_examples": 944,
+    "max_tokens": 2254,
+    "train_supervised_tokens": 97356,
+    "truncated_examples": 0
+  },
+  "chat_template_sha256": "64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326",
+  "model_kind": "random_tiny_qwen3_not_4b_baseline",
+  "trainable_parameters": 8192,
+  "training_metrics": {
+    "train_runtime": 2.3364,
+    "train_samples_per_second": 0.856,
+    "train_steps_per_second": 0.856,
+    "total_flos": 207927360.0,
+    "train_loss": 11.927114009857178,
+    "epoch": 0.5
+  },
+  "evaluation_metrics": {
+    "eval_loss": 11.948322296142578,
+    "eval_runtime": 0.2117,
+    "eval_samples_per_second": 9.446,
+    "eval_steps_per_second": 9.446,
+    "epoch": 0.5
+  },
+  "adapter_path": "/tmp/bugops-train-check.6M65x7/smoke/adapter",
+  "completed_at": "2026-09-14T07:51:07.311020+00:00"
+}

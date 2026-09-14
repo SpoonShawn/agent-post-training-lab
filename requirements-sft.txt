@@ -1,0 +1,4 @@
+# Use the existing SuperPOD environment; do not replace its CUDA torch build.
+transformers==5.16.1
+peft==0.20.0
+accelerate==1.14.0

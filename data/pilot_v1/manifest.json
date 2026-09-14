@@ -1,0 +1,91 @@
+{
+  "version": "pilot_v1",
+  "protocol_version": "2.3",
+  "split_seed": "bugops-config-transactions-pilot-20260914",
+  "counts": {
+    "train": {
+      "trajectories": 320,
+      "groups": 16,
+      "assistant_turns": 3956
+    },
+    "validation": {
+      "trajectories": 80,
+      "groups": 4,
+      "assistant_turns": 944
+    },
+    "confirmation": {
+      "trajectories": 80,
+      "groups": 4,
+      "assistant_turns": 1004
+    }
+  },
+  "groups": {
+    "train": [
+      "031d13dba260",
+      "1045a8163bda",
+      "127d42cde467",
+      "16e6921f4cbb",
+      "19d450c5a60a",
+      "30fd00ef95a5",
+      "378e140b752b",
+      "39b06fd942cb",
+      "47f34028b90c",
+      "706a0c1aaf77",
+      "84648c50b57d",
+      "a50fc6248e3c",
+      "e465f9efdc60",
+      "e58a87377cfb",
+      "f1df9ff3cbfc",
+      "f8012d39116d"
+    ],
+    "validation": [
+      "3aad239f1d90",
+      "404d3508a766",
+      "4535155fb6f8",
+      "e6cf68737369"
+    ],
+    "confirmation": [
+      "4400f2f0e416",
+      "8cf2694d64a2",
+      "a2069dee34a0",
+      "be76a284dfac"
+    ]
+  },
+  "files": {
+    "data/pilot_v1/train_cases.jsonl": "e4f3758d461ead5d689d79dfff8f3c2efb766e50f87840ab7226271d39431338",
+    "data/pilot_v1/train_trajectories.jsonl": "756f436a1bd0b99abc36b71f07d0c4dfa4fe4bde1b021740b4459abc34f743b2",
+    "data/pilot_v1/validation_cases.jsonl": "e9974c211239abf49291f157f4be70bf73dd8471fa9f4aa6485602e64d01d0b9",
+    "data/pilot_v1/validation_trajectories.jsonl": "d88126290ac59da0fde5d7ef3adc5a217572017d83a25d4ad88aaca81b8b3b9c",
+    "data/pilot_v1/confirmation_cases.jsonl": "2f41e6182998af97f930f48d35c921c7a4c338860aa94533e105329f65ad62f0",
+    "data/eval/bugops_development_v23.jsonl": "7122ee54de571c1fb077d0afbe6b4a3b814527c4941be445c3528ca5d13e520a"
+  },
+  "code_sha256": {
+    "agent/baseline_runner.py": "6bc48382234e396a0852ad43b49b19aa65765ba4821d4660dba9618d3c5e31d9",
+    "agent/environment.py": "448338339fcee39764a04f8e71660e46b8e869c1df1b8122055ea7a7465a363c",
+    "agent/tool_parser.py": "2562622541229c275c93033b1bb65c3d20486b1002868c333de5325390f84257",
+    "data/knowledge/build_notes.json": "c7d4544a41df0a179a98a0f806f2ddf46e38eeed3cf5468c08d2e82c111e7e53",
+    "data/knowledge/incident_history.json": "1d2e5082591555fd0517e6fbf405a836a74bdc86f36cd0c842e7d397f0397b37",
+    "data/knowledge/ui_guide.json": "16578be30c561bc791e071e91548f20025289fac4dd9a02cf1a531d9cba86dee",
+    "evaluation/evaluator.py": "3e0fb19233c57f8445195f04fdfa7dbc69e6dd34d5554fd4f6a75c20e14d90b6",
+    "evaluation/protocol_v21.py": "b37a66d03f5f67de1657799487f28b3db82243d62452c5c2fc1bdec69c38b816",
+    "evaluation/protocol_v22.py": "410e92aef272405dfddee73787caa2c12f8fb02f0ac1c4c625d5397dbf23a2d8",
+    "evaluation/protocol_v23.py": "24cabecb90767f06cb2b9e6427d32013a1d682cf5cdb390f0afa0984f9a9b32d",
+    "evaluation/scoring.py": "c157d9231123c305b82dd56c537cac1b2c2a32d1c2c6249ef60b18b86a759664",
+    "scripts/run_baseline.py": "df91b06bf3d3d6919d9fedde10905ab3a4aa9d11960aed4c6246fbe999c27acf",
+    "tools/environment_tools.py": "25564b74c2a0bc8ab37e8250a168dc91dbe0ed3e0b5948694b1da0b753d4238b",
+    "tools/executor.py": "e08af0307cae2a2993283e732979ee3dcba9a738f94aa36181d513642fde2881",
+    "tools/knowledge_tool.py": "cb22a8f97b1cc785fedb2bfb083806116fff281b7d693c4009f25e76a886aabd",
+    "tools/tool_schema.py": "4ddf0c0bb4f82d9a2a1ea8265b31f60c2a413837a6a65c22141b52a3593bbcb9",
+    "training/pilot_data.py": "51745fb0fe198c209104631ee0af528f3271d00416c4f6bea4e3374370aeb674",
+    "training/sft.py": "0799b9929fa5a1dd09a7aa0c1c4c826c4e88121ad006832f7f549bd9008e12d4",
+    "scripts/train_sft.py": "66c6fb5afb6ad7948a715ec214421c0c5f8cc8a7a3b85052f9fa3906f84bc8b5",
+    "scripts/prepare_training_pilot.py": "482317f357620bc9c9448230b5883aa34dca6e1871f2bf12b638727a65b97ccf",
+    "scripts/verify_training_bundle.py": "30418450c12344725c71850acc9a9f5a50807a3750fbda709d3092937cdb733b",
+    "scripts/superpod_train_pilot.sh": "829dbc81540aac4955586ed66b4ad0ea87a2d5c89dc04a3f576bbcf2f5efdbab",
+    "requirements-sft.txt": "25483c9da1f053b5a40a514fb7787419fccad36b3d86e1e04a39c216e83f60bf"
+  },
+  "legacy_exact_query_overlap": 0,
+  "legacy_exact_execution_overlap": 0,
+  "scope": "configuration-transaction pilot; no knowledge training; compositional group holdout, not independent external benchmark",
+  "review_status": "all executable oracles checked; template-authored answers, not independent human review"
+}

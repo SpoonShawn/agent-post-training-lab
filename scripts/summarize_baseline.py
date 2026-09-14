@@ -92,7 +92,7 @@ def load_records(path, recompute=False):
             if evaluator_version != "<legacy>" and str(evaluator_version) != protocol_version(case):
                 raise ValueError(f"{path}:{line_number} Evaluator 与 case 协议不一致。")
 
-            if recompute or protocol_version(case) in {"2.1", "2.2"} or not record.get("metrics"):
+            if recompute or protocol_version(case) in {"2.1", "2.2", "2.3"} or not record.get("metrics"):
                 record["metrics"] = evaluate_case(case, result)
             elif not isinstance(record.get("metrics"), dict):
                 raise ValueError(
@@ -171,7 +171,7 @@ def print_text_summary(summary):
             print("WARNING: PARTIAL RESULT — 本次选定 case 尚未全部完成。")
     for key, label in DISPLAY_METRICS:
         print(f"{label}: {_format_metric(overall.get(key))}")
-    if summary.get("protocol_version") in {"2.1", "2.2"}:
+    if summary.get("protocol_version") in {"2.1", "2.2", "2.3"}:
         print(f"Task execution success (not task success): {_format_metric(overall.get('task_execution_success_rate'))}")
         print(f"Structured argument accuracy: {_format_metric(overall.get('structured_argument_accuracy'))}")
         print(f"Task answers unresolved: {overall.get('task_unresolved_count')}")
@@ -229,14 +229,14 @@ def main(argv=None):
     args = parse_args(argv)
     records = load_records(args.input_path, recompute=args.recompute or bool(args.reviews))
     if args.reviews:
-        if dataset_protocol([row["case"] for row in records]) not in {"2.1", "2.2"}:
+        if dataset_protocol([row["case"] for row in records]) not in {"2.1", "2.2", "2.3"}:
             raise ValueError("--reviews 仅支持 2.1/2.2；旧轨迹请使用 audit_baseline_v21.py。")
         reviews = load_reviews(args.reviews, records, hashlib.sha256(args.input_path.read_bytes()).hexdigest())
         for row in records:
             row["metrics"] = evaluate_case(row["case"], row["result"], reviews.get(row["case"]["id"]))
     summary = summarize_results(records)
     if args.review_queue:
-        if summary["protocol_version"] not in {"2.1", "2.2"}:
+        if summary["protocol_version"] not in {"2.1", "2.2", "2.3"}:
             raise ValueError("Review queue requires protocol 2.1 or 2.2")
         if args.review_queue.resolve() in {args.input_path.resolve(), args.reviews.resolve() if args.reviews else None}:
             raise ValueError("Review queue must not overwrite source or reviews")

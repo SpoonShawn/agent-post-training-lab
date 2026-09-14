@@ -1,0 +1,64 @@
+{
+  "status": "tiny_cpu_smoke_complete",
+  "started_at": "2026-09-14T07:55:20.011075+00:00",
+  "arguments": {
+    "model_path": "Qwen/Qwen3-4B-Instruct-2507",
+    "output_dir": "/tmp/bugops-train-check.6M65x7/final-smoke",
+    "max_steps": -1,
+    "max_length": 4096,
+    "tiny_cpu_smoke": true,
+    "preflight_only": false,
+    "resume_from_checkpoint": null,
+    "baseline_path": "/Users/shaw/.codex/.chatgpt-projects/g-p-6a7d23fb3b4c8191a9b38a15443a1103/agent-post-training-lab/results/baseline/pilot_v1_base_confirmation.jsonl"
+  },
+  "manifest_sha256": "959fd2564061631dc79d7e1e56c8c3fdd50bcdc7de818cb50b472882abac5e5e",
+  "versions": {
+    "torch": "2.14.0",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "accelerate": "1.14.0"
+  },
+  "seed": 20260914,
+  "pilot_scope": "configuration-transaction pilot; no knowledge training; compositional group holdout, not independent external benchmark",
+  "tokenization": {
+    "train_examples": 3956,
+    "validation_examples": 944,
+    "max_tokens": 2254,
+    "train_supervised_tokens": 97356,
+    "truncated_examples": 0
+  },
+  "chat_template_sha256": "64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326",
+  "model_kind": "random_tiny_qwen3_not_4b_baseline",
+  "trainable_parameters": 8192,
+  "training_config": {
+    "epochs": 1,
+    "max_steps": 2,
+    "learning_rate": 0.0001,
+    "batch_size": 1,
+    "gradient_accumulation": 1,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": "all-linear",
+    "checkpoint_selection": "last_not_best_on_confirmation",
+    "assistant_only_loss": true,
+    "packing": false
+  },
+  "training_metrics": {
+    "train_runtime": 2.6051,
+    "train_samples_per_second": 0.768,
+    "train_steps_per_second": 0.768,
+    "total_flos": 207927360.0,
+    "train_loss": 11.927114009857178,
+    "epoch": 0.5
+  },
+  "evaluation_metrics": {
+    "eval_loss": 11.948322296142578,
+    "eval_runtime": 0.224,
+    "eval_samples_per_second": 8.93,
+    "eval_steps_per_second": 8.93,
+    "epoch": 0.5
+  },
+  "adapter_path": "/tmp/bugops-train-check.6M65x7/final-smoke/adapter",
+  "completed_at": "2026-09-14T07:55:31.287313+00:00"
+}
