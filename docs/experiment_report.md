@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+最新进度（阶段016）：新增不改评分的客观证据审计，覆盖320条，Base发现35条明确数字矛盾候选、89条未解析待审；SFT160条数字匹配但不自动批准答案。136项测试通过。新泛化挑战目前仅有[构造方案草案](generalization_challenge_plan.md)，尚未生成或推理。详见[审计日志](experiment_logs/016_objective_evidence_audit.md)。
+
 最新进度（阶段015）：166条执行通过答案完成程序辅助的协议作者AI复核，SFT160通过、Base6失败（都错报零失败）。验证与确认各自任务成功Base0/80、SFT80/80；原执行成绩3/80→80/80不变。非独立人工/盲审，有限模板内结果，不证明复杂业务泛化。详见[答案复核日志](experiment_logs/015_pilot_answer_review.md)。以下阶段013/014的待审状态为当时快照。
 
 最后更新：2026-09-14。状态：pilot_v1真实Base/SFT四份推理结果和完整训练元数据已核验。验证与确认分别从Base执行3/80提升到SFT执行80/80；答案尚待复核，不发布最终任务成功率。H800完成1 epoch、495步，训练过程平均loss0.03510224、最终验证loss0.00002065187；Trainer训练阶段约27分6秒。DPO/GRPO未开始。旧352条2.2成绩仍188/352=53.41%，不与新数据混比。
@@ -35,6 +37,7 @@
 | 013 pilot真实对比 | 固定协议下比较Base/SFT | 两个split均3/80→80/80执行通过；语义与训练历史待补核 | [日志](experiment_logs/013_pilot_base_sft_comparison.md) |
 | 014 训练历史核验 | 补齐真实训练配置与曲线 | 完成1 epoch、495步；哈希和统计一致，语义仍待审 | [日志](experiment_logs/014_training_metadata_audit.md) |
 | 015 pilot答案复核 | 检查实际工具证据与最终声明 | 作者AI审166条：160通过6失败；任务两split各0/80→80/80 | [日志](experiment_logs/015_pilot_answer_review.md) |
+| 016 客观证据审计 | 检查失败次数矛盾并明确弃权 | 320条审计；不改评分，挑战方案仍为草案 | [日志](experiment_logs/016_objective_evidence_audit.md) |
 
 代码/产物节点：`287ffee` v2 实现、`c6a8005` 真实 baseline、`0fecffa` 初版审计、`4a2bf12` 正式接线。阶段 001 产物节点 `2ff581a`。
 
