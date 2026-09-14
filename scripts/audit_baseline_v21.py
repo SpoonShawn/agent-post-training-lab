@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from evaluation.protocol_v21 import revise_case
+from evaluation.protocol_v22 import revise_case as revise_v22
 from evaluation.scoring import evaluate_case, load_reviews, record_sha256, review_queue, summarize_results
 from scripts.summarize_baseline import load_records
 
@@ -18,13 +19,19 @@ from scripts.summarize_baseline import load_records
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, default=ROOT / "results/baseline/qwen3_4b_baseline_v2.jsonl")
-    parser.add_argument("--output-dir", type=Path, default=ROOT / "results/audit/v21")
+    parser.add_argument("--output-dir", type=Path)
+    parser.add_argument("--protocol", choices=["2.1", "2.2"], default="2.1")
     parser.add_argument("--reviews", type=Path, help="有来源校验的 2.1 答案复核 JSONL")
     args = parser.parse_args()
+    revision = revise_v22 if args.protocol == "2.2" else revise_case
+    args.output_dir = args.output_dir or ROOT / "results/audit" / ("v22" if args.protocol == "2.2" else "v21")
+    existing_summary = args.output_dir / "summary.json"
+    if existing_summary.exists() and json.loads(existing_summary.read_text()).get("protocol_version") != args.protocol:
+        raise ValueError("Do not overwrite a different protocol audit directory")
     records = load_records(args.input)
     source_sha = hashlib.sha256(args.input.read_bytes()).hexdigest()
     originals = [json.loads(line) for line in (ROOT / "data/eval/bugops_eval_v2.jsonl").read_text().splitlines()]
-    revised = {case["id"]: revise_case(case) for case in originals}
+    revised = {case["id"]: revision(case) for case in originals}
     reviews = load_reviews(args.reviews, records, source_sha) if args.reviews else {}
     if any(revised[case_id]["requires_new_inference"] for case_id in reviews):
         raise ValueError("Changed prompts cannot use retrospective answer reviews")
@@ -35,7 +42,7 @@ def main():
     for record in records:
         original = record["case"]
         case = revised[original["id"]]
-        if revise_case(original) != case:
+        if revision(original) != case:
             raise ValueError(f"Case differs from frozen benchmark: {case['id']}")
         eligible = not case["requires_new_inference"]
         metrics = evaluate_case(case, record["result"], reviews.get(case["id"])) if eligible else None
@@ -44,7 +51,7 @@ def main():
             review_sources.append({"case": original, "result": record["result"], "metrics": metrics})
         audit.append({
             "id": case["id"], "scenario_id": case["scenario_id"],
-            "category": case["category"], "protocol_version": "2.1",
+            "category": case["category"], "protocol_version": args.protocol,
             "retrospective_only": True, "eligible_for_rescore": eligible,
             "query": case["query"], "source_sha256": source_sha,
             "record_sha256": record_sha256(original, record["result"]),
@@ -60,7 +67,7 @@ def main():
             group["execution_success"] += int(metrics["execution_success"])
             group["answer_review_pending"] += int(metrics["task_success"] is None)
     summary = {
-        "protocol_version": "2.1", "status": "retrospective_diagnostic_not_model_improvement",
+        "protocol_version": args.protocol, "status": "retrospective_diagnostic_not_model_improvement",
         "source_sha256": source_sha,
         "source_case_count": len(records), "benchmark_case_count": len(revised),
         "source_coverage": len(records) / len(revised),
@@ -71,8 +78,12 @@ def main():
     args.output_dir.mkdir(parents=True, exist_ok=True)
     def write_jsonl(name, rows):
         (args.output_dir / name).write_text("".join(json.dumps(row, ensure_ascii=False) + "\n" for row in rows), encoding="utf-8")
-    write_jsonl("benchmark_v21.jsonl", revised.values())
-    write_jsonl("rerun_v21.jsonl", [case for case in revised.values() if case["requires_new_inference"]])
+    suffix = "v22" if args.protocol == "2.2" else "v21"
+    if args.protocol == "2.2":
+        summary["answer_review_reuse"] = "Explicit reuse of source-hash-validated 2.1 answer-only judgments on identical original case/result; execution rescored under 2.2. Not a new semantic review."
+        summary["process_failure_count"] = sum(not row["metrics"]["process_success"] for row in scored)
+    write_jsonl(f"benchmark_{suffix}.jsonl", revised.values())
+    write_jsonl(f"rerun_{suffix}.jsonl", [case for case in revised.values() if case["requires_new_inference"]])
     write_jsonl("audit.jsonl", audit)
     write_jsonl("answer_review_queue.jsonl", review_queue(review_sources, source_sha))
     (args.output_dir / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

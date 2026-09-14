@@ -6,11 +6,12 @@ from pathlib import Path
 
 from evaluation.evaluator import aggregate_results, evaluate_case as evaluate_v2
 from evaluation.protocol_v21 import evaluate_execution
+from evaluation.protocol_v22 import evaluate_execution as execution_v22
 
 
 def protocol_version(case):
     version = case.get("protocol_version", "2.0")
-    if version not in {"2.0", "2.1"}:
+    if version not in {"2.0", "2.1", "2.2"}:
         raise ValueError(f"Unsupported protocol_version: {version}")
     return version
 
@@ -33,6 +34,7 @@ def load_reviews(path, records, source_sha256):
     expected = {row["case"]["id"]: record_sha256(row["case"], row["result"])
                 for row in records}
     reviews = {}
+    versions = {row["case"]["id"]: protocol_version(row["case"]) for row in records}
     for line in Path(path).read_text(encoding="utf-8").splitlines():
         if not line.strip():
             continue
@@ -45,7 +47,7 @@ def load_reviews(path, records, source_sha256):
         if (review.get("source_sha256") != source_sha256 or
                 review.get("record_sha256") != expected[case_id]):
             raise ValueError(f"Stale review evidence: {case_id}")
-        if review.get("protocol_version") != "2.1":
+        if review.get("protocol_version") != ("2.1" if versions[case_id] == "2.0" else versions[case_id]):
             raise ValueError(f"Wrong review protocol: {case_id}")
         if review.get("verdict") not in {"pass", "fail", "uncertain"}:
             raise ValueError(f"Invalid review verdict: {case_id}")
@@ -64,7 +66,7 @@ def review_queue(records, source_sha256):
             continue
         case, result = row["case"], row["result"]
         queue.append({
-            "id": case["id"], "protocol_version": "2.1",
+            "id": case["id"], "protocol_version": ("2.1" if protocol_version(case) == "2.0" else protocol_version(case)),
             "source_sha256": source_sha256,
             "record_sha256": record_sha256(case, result),
             "query": case["query"], "answer": result.get("final_answer"),
@@ -86,7 +88,7 @@ def evaluate_case(case, result, review=None):
     if result.get("query") != case.get("query"):
         raise ValueError(f"Result query differs from benchmark; fresh inference required: {case['id']}")
     metrics["legacy_task_success"] = metrics["task_success"]
-    execution = evaluate_execution(case, result)
+    execution = (execution_v22 if protocol_version(case) == "2.2" else evaluate_execution)(case, result)
     metrics.update(execution)
     metrics["recovery_execution_success"] = execution["recovery_success"]
     verdict = "pending" if review is None else review["verdict"]

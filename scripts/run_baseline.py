@@ -37,6 +37,7 @@ RUNTIME_FILES = (
     "data/knowledge/ui_guide.json",
     "evaluation/evaluator.py",
     "evaluation/protocol_v21.py",
+    "evaluation/protocol_v22.py",
     "evaluation/scoring.py",
     "scripts/run_baseline.py",
     "tools/environment_tools.py",

@@ -6,6 +6,8 @@
 
 ## Benchmark v2
 
+最新（2026-09-14）：[Evaluator v2.2原理与操作](docs/protocol_v22.md)已补齐恢复题“失败后检查状态再重试”的过程要求。旧352条回顾评分188通过（53.41%），107项测试通过。仅修订评估，无新模型训练；旧2.0/2.1结果和下方历史说明保留。详见[阶段009](docs/experiment_logs/009_recovery_process_v22.md)。
+
 2026-09-10 审计发现 v2 存在指定工具过严、自然语言规则误判和部分输入缺信息的问题。原始成绩保留；新增 [2.1 审计协议](docs/protocol_v21.md) 与 `python scripts/audit_baseline_v21.py`，分离执行指标、待人工复核的回答和需要重新推理的输入。v2 已用于协议开发，后续确认性实验需要独立测试集。
 
 **当前 v2.1 已接入正式 runner 和 summarizer**，需显式指定 v21 数据路径；旧默认路径仍保留兼容。请优先按 [v2.1 操作指南（含 GPU 申请与补跑）](docs/protocol_v21.md) 执行。详细的错误案例、定位过程、修复取舍和未完成边界见 [实验问题复盘](docs/experiment_lessons_v21.md)。2026-09-14：[206条首轮作者AI自审](docs/experiment_logs/007_answer_review_v21.md)已完成，191通过、10失败、5存疑；8条补跑另行自审通过。仍不能把执行率当作最终任务成绩。
