@@ -1,0 +1,67 @@
+{
+  "status": "training_complete",
+  "started_at": "2026-09-14T09:34:38.438534+00:00",
+  "arguments": {
+    "model_path": "/home/zshaoaj/hf_models/Qwen3-4B-Instruct-2507",
+    "output_dir": "checkpoints/pilot_v1_lora",
+    "max_steps": -1,
+    "max_length": 4096,
+    "tiny_cpu_smoke": false,
+    "preflight_only": false,
+    "resume_from_checkpoint": null,
+    "baseline_path": "/home/zshaoaj/agent-post-training-lab/results/baseline/pilot_v1_base_confirmation.jsonl"
+  },
+  "manifest_sha256": "eab1937326ddcc74ea1bd89b3ee34981862ae6a6f06f37af10f49c8c0ddf588b",
+  "versions": {
+    "torch": "2.9.1",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "accelerate": "1.14.0"
+  },
+  "seed": 20260914,
+  "pilot_scope": "configuration-transaction pilot; no knowledge training; compositional group holdout, not independent external benchmark",
+  "tokenization": {
+    "train_examples": 3956,
+    "validation_examples": 944,
+    "max_tokens": 2254,
+    "train_supervised_tokens": 97356,
+    "truncated_examples": 0
+  },
+  "chat_template_sha256": "64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326",
+  "model_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+  "resolved_model_path": "/home/zshaoaj/hf_models/Qwen3-4B-Instruct-2507",
+  "baseline_sha256": "3874ae377d67e7aac4995eeece5111b2e8c0bd8c4e3d2037aa8b9ffeb09f77e3",
+  "gpu": "NVIDIA H800",
+  "trainable_parameters": 33030144,
+  "training_config": {
+    "epochs": 1,
+    "max_steps": -1,
+    "learning_rate": 0.0001,
+    "batch_size": 1,
+    "gradient_accumulation": 8,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": "all-linear",
+    "checkpoint_selection": "last_not_best_on_confirmation",
+    "assistant_only_loss": true,
+    "packing": false
+  },
+  "training_metrics": {
+    "train_runtime": 1626.1161,
+    "train_samples_per_second": 2.433,
+    "train_steps_per_second": 0.304,
+    "total_flos": 1.2130621009548288e+17,
+    "train_loss": 0.035102241323741075,
+    "epoch": 1.0
+  },
+  "evaluation_metrics": {
+    "eval_loss": 2.0651867089327425e-05,
+    "eval_runtime": 53.6938,
+    "eval_samples_per_second": 17.581,
+    "eval_steps_per_second": 17.581,
+    "epoch": 1.0
+  },
+  "adapter_path": "checkpoints/pilot_v1_lora/adapter",
+  "completed_at": "2026-09-14T10:02:57.850394+00:00"
+}
