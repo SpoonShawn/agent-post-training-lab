@@ -6,6 +6,8 @@
 
 ## 当前入口：LoRA pilot v1
 
+2026-09-14更新：[真实Base/SFT比较](docs/experiment_logs/013_pilot_base_sft_comparison.md)已完成，验证、确认各80条执行通过均从3提升至80。答案未全量复核，不等于最终任务成功100%；仅4个组合组/split。当前无需重跑训练，待补齐训练元数据与语义复核。下段保留准备阶段说明。
+
 [按这份指南开始训练](docs/training_pilot_v1.md)：公开契约2.3、320条独立配置事务训练轨迹、80验证、80确认，按完整组合隔离。120项测试及CPU随机小模型训练/保存/重载已通过；真实4B GPU检查仍需在SuperPOD执行。旧360条不进训练，本轮不训练知识检索。先进入实验目录并申请GPU，再运行scripts/superpod_train_pilot.sh；它先留存Base，再smoke、训练与评测，不能在登录节点运行。
 
 ## Benchmark v2

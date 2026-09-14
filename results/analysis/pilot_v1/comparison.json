@@ -1,0 +1,178 @@
+{
+  "validation_base": {
+    "cases": 80,
+    "execution_pass": 3,
+    "execution_rate": 0.0375,
+    "task_rate": null,
+    "answer_pending": 3,
+    "steps": 10.9125,
+    "unexpected_failed_calls": 210,
+    "invalid_transitions": 210,
+    "tool_f1": 0.6862038647959449,
+    "by_category": {
+      "long_horizon": {
+        "cases": 60,
+        "execution_rate": 0.05
+      },
+      "recovery": {
+        "cases": 20,
+        "execution_rate": 0.0
+      }
+    },
+    "replayed_calls": 801
+  },
+  "validation_sft": {
+    "cases": 80,
+    "execution_pass": 80,
+    "execution_rate": 1.0,
+    "task_rate": null,
+    "answer_pending": 80,
+    "steps": 11.8,
+    "unexpected_failed_calls": 0,
+    "invalid_transitions": 0,
+    "tool_f1": 1.0,
+    "by_category": {
+      "long_horizon": {
+        "cases": 60,
+        "execution_rate": 1.0
+      },
+      "recovery": {
+        "cases": 20,
+        "execution_rate": 1.0
+      }
+    },
+    "replayed_calls": 864
+  },
+  "validation": {
+    "transitions": {
+      "0->1": 77,
+      "1->1": 3
+    },
+    "groups": {
+      "e6cf68737369": {
+        "cases": 20,
+        "base_pass": 0,
+        "sft_pass": 20
+      },
+      "4535155fb6f8": {
+        "cases": 20,
+        "base_pass": 3,
+        "sft_pass": 20
+      },
+      "3aad239f1d90": {
+        "cases": 20,
+        "base_pass": 0,
+        "sft_pass": 20
+      },
+      "404d3508a766": {
+        "cases": 20,
+        "base_pass": 0,
+        "sft_pass": 20
+      }
+    },
+    "source_sha256": {
+      "base": "775e1585fdf1d1537a87b3cf5cc161e3aea5a89360f9f9bcc33817e47d09d4ce",
+      "sft": "7aa79fa9c6b8c4f415c8a6a71df116bc80e42b3bee7a0e34ea4081a4f53a79da"
+    },
+    "model_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+    "adapter_sha256": "54d09ba7ca62db64cba27299a1ff586181f92bfd65028336013234856667e85a",
+    "runtime_sha256": "33b93914a3337342951213ccbbdab8ebd42ad9c1d309a593ec356a267a78149b",
+    "generation": {
+      "do_sample": false,
+      "max_new_tokens": 512,
+      "max_steps_override": null,
+      "default_max_steps": 16
+    }
+  },
+  "confirmation_base": {
+    "cases": 80,
+    "execution_pass": 3,
+    "execution_rate": 0.0375,
+    "task_rate": null,
+    "answer_pending": 3,
+    "steps": 11.375,
+    "unexpected_failed_calls": 212,
+    "invalid_transitions": 211,
+    "tool_f1": 0.6980141662691588,
+    "by_category": {
+      "long_horizon": {
+        "cases": 60,
+        "execution_rate": 0.05
+      },
+      "recovery": {
+        "cases": 20,
+        "execution_rate": 0.0
+      }
+    },
+    "replayed_calls": 838
+  },
+  "confirmation_sft": {
+    "cases": 80,
+    "execution_pass": 80,
+    "execution_rate": 1.0,
+    "task_rate": null,
+    "answer_pending": 80,
+    "steps": 12.55,
+    "unexpected_failed_calls": 0,
+    "invalid_transitions": 0,
+    "tool_f1": 1.0,
+    "by_category": {
+      "long_horizon": {
+        "cases": 60,
+        "execution_rate": 1.0
+      },
+      "recovery": {
+        "cases": 20,
+        "execution_rate": 1.0
+      }
+    },
+    "replayed_calls": 924
+  },
+  "confirmation": {
+    "transitions": {
+      "0->1": 77,
+      "1->1": 3
+    },
+    "groups": {
+      "4400f2f0e416": {
+        "cases": 20,
+        "base_pass": 1,
+        "sft_pass": 20
+      },
+      "a2069dee34a0": {
+        "cases": 20,
+        "base_pass": 0,
+        "sft_pass": 20
+      },
+      "be76a284dfac": {
+        "cases": 20,
+        "base_pass": 0,
+        "sft_pass": 20
+      },
+      "8cf2694d64a2": {
+        "cases": 20,
+        "base_pass": 2,
+        "sft_pass": 20
+      }
+    },
+    "source_sha256": {
+      "base": "3874ae377d67e7aac4995eeece5111b2e8c0bd8c4e3d2037aa8b9ffeb09f77e3",
+      "sft": "24256bce48bf2f3f1c6b9ec76aa5e309f0456ab1c946cb38555a2513e1b53c8d"
+    },
+    "model_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+    "adapter_sha256": "54d09ba7ca62db64cba27299a1ff586181f92bfd65028336013234856667e85a",
+    "runtime_sha256": "33b93914a3337342951213ccbbdab8ebd42ad9c1d309a593ec356a267a78149b",
+    "generation": {
+      "do_sample": false,
+      "max_new_tokens": 512,
+      "max_steps_override": null,
+      "default_max_steps": 16
+    }
+  },
+  "limitations": [
+    "Execution only; no new answer verdicts assigned",
+    "Each split has only 4 composition groups; 80 rows are not independent samples",
+    "Inference adapter hash is available, but training run.json/trainer_state/weights have not been submitted",
+    "Tool replay validates recorded environment behavior, not independent proof of model generation or lack of leakage"
+  ]
+}
