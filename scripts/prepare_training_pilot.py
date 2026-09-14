@@ -61,7 +61,10 @@ def main():
         "scripts/prepare_training_pilot.py", "scripts/verify_training_bundle.py",
         "scripts/superpod_train_pilot.sh", "requirements-sft.txt"]
     code = {p: digest(ROOT / p) for p in code_paths}
-    manifest = {"version": "pilot_v1", "protocol_version": "2.3", "split_seed": SPLIT_SEED,
+    manifest = {"version": "pilot_v1", "bundle_revision": 2,
+                "revision_reason": "Launcher argument repair only; datasets, evaluator and training algorithm unchanged",
+                "previous_manifest_sha256": digest(ROOT / "results/training_preflight/manifest_before_launcher_fix.json"),
+                "protocol_version": "2.3", "split_seed": SPLIT_SEED,
                 "counts": counts, "groups": groups, "files": files, "code_sha256": code,
                 "legacy_exact_query_overlap": 0, "legacy_exact_execution_overlap": 0,
                 "scope": "configuration-transaction pilot; no knowledge training; compositional group holdout, not independent external benchmark",

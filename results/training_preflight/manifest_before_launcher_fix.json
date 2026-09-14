@@ -1,8 +1,5 @@
 {
   "version": "pilot_v1",
-  "bundle_revision": 2,
-  "revision_reason": "Launcher argument repair only; datasets, evaluator and training algorithm unchanged",
-  "previous_manifest_sha256": "959fd2564061631dc79d7e1e56c8c3fdd50bcdc7de818cb50b472882abac5e5e",
   "protocol_version": "2.3",
   "split_seed": "bugops-config-transactions-pilot-20260914",
   "counts": {
@@ -82,9 +79,9 @@
     "training/pilot_data.py": "51745fb0fe198c209104631ee0af528f3271d00416c4f6bea4e3374370aeb674",
     "training/sft.py": "0799b9929fa5a1dd09a7aa0c1c4c826c4e88121ad006832f7f549bd9008e12d4",
     "scripts/train_sft.py": "66c6fb5afb6ad7948a715ec214421c0c5f8cc8a7a3b85052f9fa3906f84bc8b5",
-    "scripts/prepare_training_pilot.py": "bdfc1811b79cfbe86207f49c79c43f919aaef95a7fc6eddd9669139525ab818b",
+    "scripts/prepare_training_pilot.py": "482317f357620bc9c9448230b5883aa34dca6e1871f2bf12b638727a65b97ccf",
     "scripts/verify_training_bundle.py": "30418450c12344725c71850acc9a9f5a50807a3750fbda709d3092937cdb733b",
-    "scripts/superpod_train_pilot.sh": "1e6ffe2d7f0cff037dc5875c2efe8ce5f7ba0d9d709811701ecbcef03e296a8b",
+    "scripts/superpod_train_pilot.sh": "829dbc81540aac4955586ed66b4ad0ea87a2d5c89dc04a3f576bbcf2f5efdbab",
     "requirements-sft.txt": "25483c9da1f053b5a40a514fb7787419fccad36b3d86e1e04a39c216e83f60bf"
   },
   "legacy_exact_query_overlap": 0,

@@ -4,6 +4,8 @@
 
 本报告随每个实验阶段更新；成功、失败、设计修改和未决事项均保留。细节与原始证据见 [阶段日志索引](experiment_logs/README.md)。历史阶段是基于仓库产物回顾补录，不将补录日期当作运行日期。
 
+最新现场更新（阶段012）：用户已分配H800，首次启动在argparse因助手脚本多余“+”参数失败，尚未加载模型。已发布启动包revision2修复及阶段提示，122项测试通过；数据/评分/训练配置不变，等待当前GPU节点重启。详见[失败日志](experiment_logs/012_launcher_failure.md)。
+
 ## 1. 目标与研究边界
 
 研究独立构造的中文 BugOps/Tool-Use Agent 是否可通过后训练提高规划、状态跟踪、参数生成、证据使用和异常恢复能力。路线为 instruction model baseline → LoRA SFT → DPO → 条件允许时 GRPO；后几项只是计划，不是已完成结果。
@@ -25,6 +27,7 @@
 | 009 恢复过程修复 | 显式失败后检查时序 | v2.2：188/352；7条新增执行失败，4条新增任务失败 | [日志](experiment_logs/009_recovery_process_v22.md) |
 | 010 任务契约清查 | 题面与隐藏条件一致性 | 360条清单、4组模拟反例；111项测试；未改成绩 | [日志](experiment_logs/010_contract_inventory.md) |
 | 011 训练准备 | 公开契约、独立数据、LoRA入口 | 320/80/80按组隔离；120测试；CPU小模型训练通过，待4B上机 | [日志](experiment_logs/011_training_readiness.md) |
+| 012 启动失败修复 | 修正Shell参数与入口测试 | H800检查成功，argparse失败；bundle revision2，122测试，待上机重试 | [日志](experiment_logs/012_launcher_failure.md) |
 
 代码/产物节点：`287ffee` v2 实现、`c6a8005` 真实 baseline、`0fecffa` 初版审计、`4a2bf12` 正式接线。阶段 001 产物节点 `2ff581a`。
 
