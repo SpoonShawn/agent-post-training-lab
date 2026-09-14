@@ -1,0 +1,21 @@
+{
+  "status": "contract_inventory_complete_protocol_not_frozen",
+  "source_sha256": "21ff94a48f40ce6ed08b31c24ffad8384f70c8b025ee0fb15fdad637d9e3e5dd",
+  "num_cases": 360,
+  "scenario_ids": 180,
+  "exact_environment_reference_signatures": 166,
+  "flagged_cases": 146,
+  "risk_counts": {
+    "build_tool_identity_required_despite_equivalent_state_tool": 30,
+    "knowledge_before_action_order_not_enforced": 90,
+    "mandatory_logs_not_explicit_in_prompt": 72,
+    "explicit_read_only_not_enforced_throughout_trace": 6,
+    "explicit_no_redundant_mutation_not_enforced": 26
+  },
+  "knowledge_records": {
+    "incident_history.json": 2,
+    "build_notes.json": 3,
+    "ui_guide.json": 3
+  },
+  "note": "Overlapping template risks, not counts of model failures. No scoring changes, no new model inference, no automatic semantic adjudication. Existing held_out metadata is historical; this is a development/audit set."
+}
