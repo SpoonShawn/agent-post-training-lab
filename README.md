@@ -6,6 +6,8 @@
 
 ## 当前入口：LoRA pilot v1
 
+最新：[阶段015答案复核](docs/experiment_logs/015_pilot_answer_review.md)完成作者AI首轮审查，验证/确认各任务成功Base0/80、SFT80/80，非独立人工评审。Base各3条执行通过答案均错报零失败；执行率不变。下一步准备新泛化挑战，不能从同模板100%推断复杂业务能力。
+
 最新：[训练记录核验](docs/experiment_logs/014_training_metadata_audit.md)已补齐，H800完成1 epoch/495步，训练阶段约27分6秒；当前待办仅答案复核等证据审查，无需重跑训练。下文各阶段状态为历史记录。
 
 2026-09-14更新：[真实Base/SFT比较](docs/experiment_logs/013_pilot_base_sft_comparison.md)已完成，验证、确认各80条执行通过均从3提升至80。答案未全量复核，不等于最终任务成功100%；仅4个组合组/split。当前无需重跑训练，待补齐训练元数据与语义复核。下段保留准备阶段说明。
