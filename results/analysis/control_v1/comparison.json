@@ -1,0 +1,225 @@
+{
+  "base": {
+    "coverage": "76/76",
+    "complete": true,
+    "arms": {
+      "original_explicit": {
+        "cases": 20,
+        "execution_pass": 7
+      },
+      "reordered_explicit": {
+        "cases": 20,
+        "execution_pass": 2
+      },
+      "reordered_checklist": {
+        "cases": 20,
+        "execution_pass": 6
+      },
+      "readonly_explicit": {
+        "cases": 8,
+        "execution_pass": 2
+      },
+      "readonly_checklist": {
+        "cases": 8,
+        "execution_pass": 6
+      }
+    },
+    "pairs": {
+      "original_explicit -> reordered_explicit": {
+        "0->0": 13,
+        "1->0": 5,
+        "1->1": 2
+      },
+      "reordered_explicit -> reordered_checklist": {
+        "0->0": 13,
+        "0->1": 5,
+        "1->1": 1,
+        "1->0": 1
+      },
+      "readonly_explicit -> readonly_checklist": {
+        "0->0": 2,
+        "0->1": 4,
+        "1->1": 2
+      }
+    },
+    "task_success_rate": null,
+    "note": "Execution only; successful answers require separate evidence-bound semantic review.",
+    "replayed_calls": 805,
+    "source_sha256": "12bc6e4f85b9b55dbeeb1ad0bfe0ae27914f05332cbe68df7500c4c3849d7039",
+    "run_metadata": {
+      "metadata_version": 1,
+      "model_path": "/home/zshaoaj/hf_models/Qwen3-4B-Instruct-2507",
+      "model_revision": null,
+      "model_resolved_path": "/home/zshaoaj/hf_models/Qwen3-4B-Instruct-2507",
+      "model_content_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+      "benchmark_sha256": "dec64412eb46f8bbfdb4f6b582d95f69a5855c47b321c85392eca58792ca71bb",
+      "benchmark_schema_versions": [
+        "2"
+      ],
+      "selected_case_count": 76,
+      "selected_case_ids_sha256": "8cd185ace812ce1c636f18bbfb23db8c72fa480d06aca51d0175e62baf46907a",
+      "evaluator_version": "2.4",
+      "runtime_sha256": "33b93914a3337342951213ccbbdab8ebd42ad9c1d309a593ec356a267a78149b",
+      "runtime_versions": {
+        "python": "3.11.16",
+        "torch": "2.9.1",
+        "transformers": "5.16.1"
+      },
+      "generation": {
+        "do_sample": false,
+        "max_new_tokens": 512,
+        "max_steps_override": null,
+        "default_max_steps": 16
+      },
+      "study": "control_v1",
+      "role": "base",
+      "extension_sha256": "4844a753e3e0cb9f91c79be9f57ac4e2ed870bac1f9f8b52ed531ff05dd09409",
+      "study_manifest_sha256": "87935fe9a20b3be175ebcb80adbd8efd6ab5d9e8524270b8e853b686fbf30979",
+      "training_library_versions": {
+        "torch": "2.9.1",
+        "transformers": "5.16.1",
+        "peft": "0.20.0",
+        "accelerate": "1.14.0"
+      },
+      "fingerprint": "7c9f2b0afadf4e99899bd322ab370d341af7343f406b5134c2fdee0321c17d16"
+    },
+    "execution_contexts": [
+      {
+        "cuda_runtime": "12.8",
+        "gpu_name": "NVIDIA H800",
+        "gpu_total_memory_bytes": 85017493504
+      }
+    ],
+    "first_case_started_at": "2026-09-15T07:32:37.872945+00:00",
+    "last_case_completed_at": "2026-09-15T07:44:30.265763+00:00",
+    "case_window_seconds": 712.392818,
+    "average_steps": 11.06578947368421,
+    "unexpected_failed_calls": 184
+  },
+  "sft": {
+    "coverage": "76/76",
+    "complete": true,
+    "arms": {
+      "original_explicit": {
+        "cases": 20,
+        "execution_pass": 20
+      },
+      "reordered_explicit": {
+        "cases": 20,
+        "execution_pass": 19
+      },
+      "reordered_checklist": {
+        "cases": 20,
+        "execution_pass": 20
+      },
+      "readonly_explicit": {
+        "cases": 8,
+        "execution_pass": 8
+      },
+      "readonly_checklist": {
+        "cases": 8,
+        "execution_pass": 4
+      }
+    },
+    "pairs": {
+      "original_explicit -> reordered_explicit": {
+        "1->1": 19,
+        "1->0": 1
+      },
+      "reordered_explicit -> reordered_checklist": {
+        "1->1": 19,
+        "0->1": 1
+      },
+      "readonly_explicit -> readonly_checklist": {
+        "1->0": 4,
+        "1->1": 4
+      }
+    },
+    "task_success_rate": null,
+    "note": "Execution only; successful answers require separate evidence-bound semantic review.",
+    "replayed_calls": 753,
+    "source_sha256": "3f52f21e19cfdb528dc7a4226ea536e4b5ec7f9055b6370ea59a93ebd9b511cb",
+    "run_metadata": {
+      "metadata_version": 1,
+      "model_path": "/home/zshaoaj/hf_models/Qwen3-4B-Instruct-2507",
+      "model_revision": null,
+      "model_resolved_path": "/home/zshaoaj/hf_models/Qwen3-4B-Instruct-2507",
+      "model_content_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+      "benchmark_sha256": "dec64412eb46f8bbfdb4f6b582d95f69a5855c47b321c85392eca58792ca71bb",
+      "benchmark_schema_versions": [
+        "2"
+      ],
+      "selected_case_count": 76,
+      "selected_case_ids_sha256": "8cd185ace812ce1c636f18bbfb23db8c72fa480d06aca51d0175e62baf46907a",
+      "evaluator_version": "2.4",
+      "runtime_sha256": "33b93914a3337342951213ccbbdab8ebd42ad9c1d309a593ec356a267a78149b",
+      "runtime_versions": {
+        "python": "3.11.16",
+        "torch": "2.9.1",
+        "transformers": "5.16.1"
+      },
+      "generation": {
+        "do_sample": false,
+        "max_new_tokens": 512,
+        "max_steps_override": null,
+        "default_max_steps": 16
+      },
+      "adapter_path": "/home/zshaoaj/agent-post-training-lab/checkpoints/pilot_v1_lora/adapter",
+      "adapter_sha256": "54d09ba7ca62db64cba27299a1ff586181f92bfd65028336013234856667e85a",
+      "study": "control_v1",
+      "role": "sft",
+      "extension_sha256": "4844a753e3e0cb9f91c79be9f57ac4e2ed870bac1f9f8b52ed531ff05dd09409",
+      "study_manifest_sha256": "87935fe9a20b3be175ebcb80adbd8efd6ab5d9e8524270b8e853b686fbf30979",
+      "training_library_versions": {
+        "torch": "2.9.1",
+        "transformers": "5.16.1",
+        "peft": "0.20.0",
+        "accelerate": "1.14.0"
+      },
+      "fingerprint": "ea91873869087bcfefcf092fcb27115fa20ce385de7038c4f253dd647e9c500d"
+    },
+    "execution_contexts": [
+      {
+        "cuda_runtime": "12.8",
+        "gpu_name": "NVIDIA H800",
+        "gpu_total_memory_bytes": 85017493504
+      }
+    ],
+    "first_case_started_at": "2026-09-15T07:44:50.461392+00:00",
+    "last_case_completed_at": "2026-09-15T07:56:39.382911+00:00",
+    "case_window_seconds": 708.921519,
+    "average_steps": 10.855263157894736,
+    "unexpected_failed_calls": 0
+  },
+  "base_to_sft_by_arm": {
+    "original_explicit": {
+      "0->1": 13,
+      "1->1": 7
+    },
+    "reordered_explicit": {
+      "0->1": 17,
+      "0->0": 1,
+      "1->1": 2
+    },
+    "reordered_checklist": {
+      "0->1": 14,
+      "1->1": 6
+    },
+    "readonly_explicit": {
+      "0->1": 6,
+      "1->1": 2
+    },
+    "readonly_checklist": {
+      "0->0": 2,
+      "1->1": 4,
+      "1->0": 2
+    }
+  },
+  "limitations": [
+    "Post-hoc diagnostic reuse: 76 rows, 28 contexts; not independent held-out evidence.",
+    "Primary paired comparisons retained; aggregate score is secondary.",
+    "No new training or retrospective change to frozen scoring.",
+    "Checklist bundle changes text length and multiple instructions; no single-clause causal attribution.",
+    "Case time window excludes model hashing/loading and scheduler time."
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "base": {
+    "overall": {
+      "cases": 76,
+      "execution_pass": 23,
+      "answer_verdicts": {
+        "fail": 13,
+        "pass": 9,
+        "uncertain": 1
+      },
+      "task_pass": 9,
+      "task_fail": 66,
+      "task_pending": 1,
+      "task_rate": null,
+      "logical_bounds": [
+        0.11842105263157894,
+        0.13157894736842105
+      ]
+    },
+    "original_explicit": {
+      "cases": 20,
+      "execution_pass": 7,
+      "answer_verdicts": {
+        "fail": 5,
+        "pass": 2
+      },
+      "task_pass": 2,
+      "task_fail": 18,
+      "task_pending": 0,
+      "task_rate": 0.1,
+      "logical_bounds": [
+        0.1,
+        0.1
+      ]
+    },
+    "reordered_explicit": {
+      "cases": 20,
+      "execution_pass": 2,
+      "answer_verdicts": {
+        "pass": 1,
+        "fail": 1
+      },
+      "task_pass": 1,
+      "task_fail": 19,
+      "task_pending": 0,
+      "task_rate": 0.05,
+      "logical_bounds": [
+        0.05,
+        0.05
+      ]
+    },
+    "reordered_checklist": {
+      "cases": 20,
+      "execution_pass": 6,
+      "answer_verdicts": {
+        "fail": 4,
+        "pass": 2
+      },
+      "task_pass": 2,
+      "task_fail": 18,
+      "task_pending": 0,
+      "task_rate": 0.1,
+      "logical_bounds": [
+        0.1,
+        0.1
+      ]
+    },
+    "readonly_explicit": {
+      "cases": 8,
+      "execution_pass": 2,
+      "answer_verdicts": {
+        "fail": 1,
+        "pass": 1
+      },
+      "task_pass": 1,
+      "task_fail": 7,
+      "task_pending": 0,
+      "task_rate": 0.125,
+      "logical_bounds": [
+        0.125,
+        0.125
+      ]
+    },
+    "readonly_checklist": {
+      "cases": 8,
+      "execution_pass": 6,
+      "answer_verdicts": {
+        "uncertain": 1,
+        "pass": 3,
+        "fail": 2
+      },
+      "task_pass": 3,
+      "task_fail": 4,
+      "task_pending": 1,
+      "task_rate": null,
+      "logical_bounds": [
+        0.375,
+        0.5
+      ]
+    }
+  },
+  "sft": {
+    "overall": {
+      "cases": 76,
+      "execution_pass": 71,
+      "answer_verdicts": {
+        "pass": 62,
+        "fail": 9
+      },
+      "task_pass": 62,
+      "task_fail": 14,
+      "task_pending": 0,
+      "task_rate": 0.8157894736842105,
+      "logical_bounds": [
+        0.8157894736842105,
+        0.8157894736842105
+      ]
+    },
+    "original_explicit": {
+      "cases": 20,
+      "execution_pass": 20,
+      "answer_verdicts": {
+        "pass": 20
+      },
+      "task_pass": 20,
+      "task_fail": 0,
+      "task_pending": 0,
+      "task_rate": 1.0,
+      "logical_bounds": [
+        1.0,
+        1.0
+      ]
+    },
+    "reordered_explicit": {
+      "cases": 20,
+      "execution_pass": 19,
+      "answer_verdicts": {
+        "pass": 19
+      },
+      "task_pass": 19,
+      "task_fail": 1,
+      "task_pending": 0,
+      "task_rate": 0.95,
+      "logical_bounds": [
+        0.95,
+        0.95
+      ]
+    },
+    "reordered_checklist": {
+      "cases": 20,
+      "execution_pass": 20,
+      "answer_verdicts": {
+        "pass": 20
+      },
+      "task_pass": 20,
+      "task_fail": 0,
+      "task_pending": 0,
+      "task_rate": 1.0,
+      "logical_bounds": [
+        1.0,
+        1.0
+      ]
+    },
+    "readonly_explicit": {
+      "cases": 8,
+      "execution_pass": 8,
+      "answer_verdicts": {
+        "fail": 7,
+        "pass": 1
+      },
+      "task_pass": 1,
+      "task_fail": 7,
+      "task_pending": 0,
+      "task_rate": 0.125,
+      "logical_bounds": [
+        0.125,
+        0.125
+      ]
+    },
+    "readonly_checklist": {
+      "cases": 8,
+      "execution_pass": 4,
+      "answer_verdicts": {
+        "pass": 2,
+        "fail": 2
+      },
+      "task_pass": 2,
+      "task_fail": 6,
+      "task_pending": 0,
+      "task_rate": 0.25,
+      "logical_bounds": [
+        0.25,
+        0.25
+      ]
+    }
+  },
+  "method": "Author-AI, non-blind and non-independent. Full answers grouped by identical text (Base23 including one missing answer, SFT18) and grounded per record. 94 execution-eligible records reviewed; 58 execution failures not semantically reviewed. One Base explanation remains uncertain; logical bounds are not confidence intervals."
+}
