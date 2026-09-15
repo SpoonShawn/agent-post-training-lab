@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+当前进度（阶段021）：新协议2.4与76题控制实验已完成本地准备，旧2.3及两套冻结包不变；76条oracle通过。真实Base/SFT各76次推理尚未运行，现在等待用户决定是否申请SuperPOD。新实验不训练、不发布模型成绩；[操作与对照解释](control_v1.md) · [阶段日志](experiment_logs/021_protocol24_control_readiness.md)。下文均保留历史快照。
+
 当前完成（阶段020）：状态观测证据检查原型已实现，定位Base8条缺观测并接受等价状态返回；未接入2.3、不改历史分数。当前任务成绩以阶段019作者AI复核5%/49.17%为准；独立评审、新协议接线与新控制实验尚未完成。见[原型与边界](experiment_logs/020_observation_audit_prototype.md)。
 
 最新进度（2026-09-15，阶段019）：100条挑战答案完成程序辅助的作者AI复核，Base6通过12失败，SFT59通过23失败；任务率分别5%和49.17%，非独立盲审。原执行18/120、82/120不变。新发现8条Base只读题未取得状态观测却被执行层放行，缺陷公开保留，尚未修改冻结协议。详见[答案复核与评估盲点](experiment_logs/019_challenge_answer_review.md)和[学习复盘](learning_review.md)。
@@ -50,6 +52,7 @@
 | 018 挑战实测 | 固定模型检查迁移边界 | 执行18/120→82/120；表达重排全部缺日志证据，答案待审 | [日志](experiment_logs/018_challenge_v1_results.md) |
 | 019 挑战答案复核 | 证据、自洽和完整性 | 作者AI任务6/120→59/120；8条只读观测盲点未改冻结分数 | [日志](experiment_logs/019_challenge_answer_review.md) |
 | 020 观测证据原型 | 区分后台真值与可见证据 | 定位8条漏检；候选审计，不改冻结2.3 | [日志](experiment_logs/020_observation_audit_prototype.md) |
+| 021 新协议与控制实验 | 前瞻观测/日志条件、提示清单对照 | 2.4独立入口、76题已准备；等待GPU决策，无新训练 | [日志](experiment_logs/021_protocol24_control_readiness.md) |
 
 代码/产物节点：`287ffee` v2 实现、`c6a8005` 真实 baseline、`0fecffa` 初版审计、`4a2bf12` 正式接线。阶段 001 产物节点 `2ff581a`。
 

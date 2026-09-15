@@ -1,0 +1,18 @@
+{
+  "recorded_at": "2026-09-15",
+  "status": "local_preflight_complete_waiting_for_user_gpu_decision",
+  "protocol_version": "2.4",
+  "cases": 76,
+  "contexts": 28,
+  "oracle_execution_pass": 76,
+  "unit_tests_passed": 176,
+  "legacy_pilot_bundle_verified": true,
+  "legacy_challenge_bundle_verified": true,
+  "control_bundle_verified": true,
+  "fake_agent_runner_roundtrip_verified": true,
+  "shell_argument_and_failure_stop_tests_passed": true,
+  "gpu_inference_performed": false,
+  "training_performed": false,
+  "model_success_rate": null,
+  "note": "CPU oracle and fake-agent checks are engineering validation, not model results."
+}

@@ -1,0 +1,43 @@
+{
+  "protocol_version": "2.4",
+  "study": "control_v1",
+  "status": "frozen_before_first_control_inference",
+  "scope": "post-hoc controls; reused contexts, no independent held-out claim",
+  "cases": 76,
+  "contexts": 28,
+  "arms": {
+    "original_explicit": 20,
+    "reordered_explicit": 20,
+    "reordered_checklist": 20,
+    "readonly_explicit": 8,
+    "readonly_checklist": 8
+  },
+  "cases_sha256": "dec64412eb46f8bbfdb4f6b582d95f69a5855c47b321c85392eca58792ca71bb",
+  "source_cases_sha256": "95fe900a969a7fd8f435441249bcbc19dd34515f62818434ab7ac5a0c47326b3",
+  "legacy_runtime_sha256": "33b93914a3337342951213ccbbdab8ebd42ad9c1d309a593ec356a267a78149b",
+  "extension_sha256": "4844a753e3e0cb9f91c79be9f57ac4e2ed870bac1f9f8b52ed531ff05dd09409",
+  "extension_files": {
+    "training/pilot_data.py": "51745fb0fe198c209104631ee0af528f3271d00416c4f6bea4e3374370aeb674",
+    "evaluation/observation_audit.py": "cd00dde39eade7b8c0a9367b3b684b19d34107cd3de4af50595480acb02e6281",
+    "evaluation/protocol_v24.py": "901e8c3b7704758a096574391039547cdd36a01b3497096d2979b91f023bd0c2",
+    "scripts/prepare_control_v1.py": "217ce42e3bcd51482814dec3d284a399f5ea67786824b16fb7783f2af3ee1b26",
+    "scripts/verify_control_v1.py": "9cb3f19c1ab01c77d73af5b5c69212a4154193becc9d7c85db8149f01b4648aa",
+    "scripts/run_control_v1.py": "dd0dd42837ff042421bf3500ddaa1e17030a545106de812df8708f8c5751f2c5",
+    "scripts/summarize_control_v1.py": "a33c9310ad150d325d1f37809fc48701d016e6319cb6b22c87d18254333a5353",
+    "scripts/superpod_eval_control_v1.sh": "5240472fd9144e482e36c0588754bfda44ee7d2a9e5943dac0985a50b52b5683"
+  },
+  "model_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+  "adapter_sha256": "54d09ba7ca62db64cba27299a1ff586181f92bfd65028336013234856667e85a",
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_steps_override": null
+  },
+  "versions": {
+    "torch": "2.9.1",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "accelerate": "1.14.0"
+  },
+  "oracle_execution_pass": 76
+}

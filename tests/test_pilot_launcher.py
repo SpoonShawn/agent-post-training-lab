@@ -24,7 +24,7 @@ class LauncherTests(unittest.TestCase):
                 "#!/usr/bin/env python3\n"
                 "import json, os, sys\n"
                 "with open(os.environ['ARGUMENT_LOG'], 'a') as f: f.write(json.dumps(sys.argv[1:])+'\\n')\n"
-                "if os.environ.get('FAIL_BASELINE') == '1' and 'scripts/run_baseline.py' in sys.argv: sys.exit(2)\n")
+                "if os.environ.get('FAIL_BASELINE') == '1' and any(x in sys.argv for x in ('scripts/run_baseline.py', 'scripts.run_control_v1')): sys.exit(2)\n")
             fake.chmod(0o755)
             log = root / "argv.jsonl"
             env = dict(os.environ, PATH=str(binary) + os.pathsep + os.environ["PATH"],
@@ -67,5 +67,22 @@ class LauncherTests(unittest.TestCase):
 
     def test_challenge_base_failure_stops_sft(self):
         process, calls = self.launch(True, "superpod_eval_challenge_v1.sh")
+        self.assertEqual(process.returncode, 2)
+        self.assertEqual(len(calls), 3)
+
+    def test_control_launch_arguments_parse_and_do_not_train(self):
+        from scripts.run_control_v1 import parse_args as control_args
+        process, calls = self.launch(script_name="superpod_eval_control_v1.sh")
+        self.assertEqual(process.returncode, 0, process.stderr)
+        self.assertEqual(len(calls), 6)
+        self.assertFalse(any("train_sft" in " ".join(c) for c in calls))
+        for args, role in zip(calls[2:4], ('base', 'sft')):
+            self.assertEqual(args[:3], ['-u', '-m', 'scripts.run_control_v1'])
+            parsed = control_args(args[3:])
+            self.assertEqual(parsed.role, role)
+            self.assertTrue(parsed.resume)
+
+    def test_control_failure_stops_sft(self):
+        process, calls = self.launch(True, "superpod_eval_control_v1.sh")
         self.assertEqual(process.returncode, 2)
         self.assertEqual(len(calls), 3)
