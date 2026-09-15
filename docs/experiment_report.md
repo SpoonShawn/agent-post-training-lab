@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+最新进度（阶段025）：32条保护推理已核验，107次受保护调用重放一致。SFT只读清单成功副作用24→0，新轨迹15次违规请求全部拦截，但严格执行仍4/8；3条耗尽预算，1条取证后错报零失败。对应16题任务仍SFT3/16，Base4通过1未决，非独立作者AI口径；不能与完整76题成绩混比。结论：系统安全改善，模型任务率未提升。见[实测与负结果](experiment_logs/025_guard_pilot_results.md)。无新训练。
+
 当前进度（阶段024）：只读执行保护与工具事实摘要已独立实现；原模型回答、违规尝试和历史指标不覆盖。152条离线事实一致性及4条首次违规拦截验证通过，不代表新模型成功。已冻结16题×两模型的32次保护反馈推理，需要用户申请GPU观察真实后续行为；不重训。见[实现与局限](experiment_logs/024_readonly_guard_and_facts.md)、[SuperPOD指令](guard_pilot.md)。
 
 最新进度（2026-09-15，阶段022/023）：控制实验Base/SFT各76条已上传并核验，1558次工具返回及152终态重放一致。五条件执行分别Base 7/20、2/20、6/20、2/8、6/8；SFT 20/20、19/20、20/20、8/8、4/8。清单让SFT只读4条退化，不能当通用修复。94条作者AI复核后，SFT任务62/76（81.58%）；Base9通过、66失败、1未决，任务率待定。非独立盲审、非新训练、非独立held-out。详见[执行对照](experiment_logs/022_control_v1_results.md)与[答案/问题复盘](experiment_logs/023_control_answer_review.md)。以下状态均为历史快照。
@@ -60,6 +62,7 @@
 | 022 控制实验实测 | 固定模型的三组配对比较 | 152题核验；清单改善部分任务，却导致SFT只读4条退化 | [日志](experiment_logs/022_control_v1_results.md) |
 | 023 控制答案复核 | 检查完整性与证据来源 | 作者AI审94条；SFT62/76任务通过，Base9通过1未决 | [日志](experiment_logs/023_control_answer_review.md) |
 | 024 工程保护 | 只读工具门禁、证据摘要 | 本地验证完成；32次新反馈推理待GPU，不改模型成绩 | [日志](experiment_logs/024_readonly_guard_and_facts.md) |
+| 025 保护实测 | 区分安全效果和模型成功 | 32题核验；副作用降为0，严格任务成功未提升 | [日志](experiment_logs/025_guard_pilot_results.md) |
 
 代码/产物节点：`287ffee` v2 实现、`c6a8005` 真实 baseline、`0fecffa` 初版审计、`4a2bf12` 正式接线。阶段 001 产物节点 `2ff581a`。
 
