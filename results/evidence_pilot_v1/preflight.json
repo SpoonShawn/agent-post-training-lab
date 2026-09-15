@@ -1,0 +1,19 @@
+{
+  "manifest_sha256": "d205d0105a73867f734779378ff89c89bbc9c028fa2d26f186a78446874ac73e",
+  "model_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+  "versions": {
+    "torch": "2.9.1",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "accelerate": "1.14.0"
+  },
+  "seed": 20260915,
+  "max_length": 4096,
+  "max_new_tokens": 512,
+  "train_examples": 192,
+  "validation_examples": 48,
+  "max_train_validation_tokens": 1321,
+  "supervised_tokens": 16218,
+  "max_eval_prompt_tokens": 1231,
+  "chat_template_sha256": "64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326"
+}
