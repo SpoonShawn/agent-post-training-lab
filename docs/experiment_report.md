@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+当前进度（阶段026）：新工具历史审计子能力数据288条（192训练/48验证/48确认，48组合组）及独立训练入口已准备；只监督最终结构化报告，失败历史不作为正向动作目标。尚未真实分词/推理/训练，需要SuperPOD完成预检和小规模新LoRA实验。不是第二版完整Agent，不修改旧成绩。见[数据、问题与边界](experiment_logs/026_evidence_subskill_readiness.md)、[运行指令](evidence_pilot_v1.md)。
+
 最新进度（阶段025）：32条保护推理已核验，107次受保护调用重放一致。SFT只读清单成功副作用24→0，新轨迹15次违规请求全部拦截，但严格执行仍4/8；3条耗尽预算，1条取证后错报零失败。对应16题任务仍SFT3/16，Base4通过1未决，非独立作者AI口径；不能与完整76题成绩混比。结论：系统安全改善，模型任务率未提升。见[实测与负结果](experiment_logs/025_guard_pilot_results.md)。无新训练。
 
 当前进度（阶段024）：只读执行保护与工具事实摘要已独立实现；原模型回答、违规尝试和历史指标不覆盖。152条离线事实一致性及4条首次违规拦截验证通过，不代表新模型成功。已冻结16题×两模型的32次保护反馈推理，需要用户申请GPU观察真实后续行为；不重训。见[实现与局限](experiment_logs/024_readonly_guard_and_facts.md)、[SuperPOD指令](guard_pilot.md)。
@@ -63,6 +65,7 @@
 | 023 控制答案复核 | 检查完整性与证据来源 | 作者AI审94条；SFT62/76任务通过，Base9通过1未决 | [日志](experiment_logs/023_control_answer_review.md) |
 | 024 工程保护 | 只读工具门禁、证据摘要 | 本地验证完成；32次新反馈推理待GPU，不改模型成绩 | [日志](experiment_logs/024_readonly_guard_and_facts.md) |
 | 025 保护实测 | 区分安全效果和模型成功 | 32题核验；副作用降为0，严格任务成功未提升 | [日志](experiment_logs/025_guard_pilot_results.md) |
+| 026 子能力训练准备 | 证据报告、权限与重试分类 | 288条按组划分；本地测试，待SuperPOD真实预检/训练 | [日志](experiment_logs/026_evidence_subskill_readiness.md) |
 
 代码/产物节点：`287ffee` v2 实现、`c6a8005` 真实 baseline、`0fecffa` 初版审计、`4a2bf12` 正式接线。阶段 001 产物节点 `2ff581a`。
 

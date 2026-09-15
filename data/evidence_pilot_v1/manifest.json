@@ -1,0 +1,124 @@
+{
+  "version": "evidence_pilot_v1",
+  "split_seed": "evidence-subskill-20260915-v1",
+  "counts": {
+    "train": {
+      "cases": 192,
+      "groups": 32,
+      "patterns": {
+        "clean": 24,
+        "transient_once": 24,
+        "transient_twice": 24,
+        "policy_once": 24,
+        "policy_twice": 24,
+        "bad_arguments": 24,
+        "negative_check": 24,
+        "mixed_policy_check": 24
+      }
+    },
+    "validation": {
+      "cases": 48,
+      "groups": 8,
+      "patterns": {
+        "clean": 6,
+        "transient_once": 6,
+        "transient_twice": 6,
+        "policy_once": 6,
+        "policy_twice": 6,
+        "bad_arguments": 6,
+        "negative_check": 6,
+        "mixed_policy_check": 6
+      }
+    },
+    "confirmation": {
+      "cases": 48,
+      "groups": 8,
+      "patterns": {
+        "clean": 6,
+        "transient_once": 6,
+        "transient_twice": 6,
+        "policy_once": 6,
+        "policy_twice": 6,
+        "bad_arguments": 6,
+        "negative_check": 6,
+        "mixed_policy_check": 6
+      }
+    }
+  },
+  "groups": {
+    "train": [
+      "0ab125e2941e",
+      "0fd4cddf6c52",
+      "14d3f860bbb0",
+      "2148d6a44d31",
+      "23093f58a0bb",
+      "26c7d19d4111",
+      "282a58279b23",
+      "2f36e259700e",
+      "35860ec00063",
+      "3f43319847f0",
+      "4000ac5c58c1",
+      "404e6b86c204",
+      "48e0af906109",
+      "4e8e90495850",
+      "4ed505512c4d",
+      "5030d21ccd47",
+      "673a91ec90ad",
+      "6e9e933918c9",
+      "70a972b7da14",
+      "71370d436e9c",
+      "86dee4192851",
+      "8e93cda4a61e",
+      "9f1517d56dfb",
+      "acdcd874ec3b",
+      "ad1879a3c3ce",
+      "bb660afcb554",
+      "bc232f491373",
+      "c79186ef3b84",
+      "d379f3e81d65",
+      "d626df89979b",
+      "e532bf721233",
+      "f45c8bd9cd6a"
+    ],
+    "validation": [
+      "0633e723e340",
+      "18ff676040a4",
+      "3ae30d2ecc62",
+      "608086b8e672",
+      "6ef294aa5ff2",
+      "9897b1748bb6",
+      "c3c22271d31d",
+      "f813f3f12831"
+    ],
+    "confirmation": [
+      "4943d53324c0",
+      "4d89da861167",
+      "5c751adfdd46",
+      "628d026d8519",
+      "a37da7cf474b",
+      "ab1100e6a675",
+      "c8142173e781",
+      "cc10a5df8eb5"
+    ]
+  },
+  "files": {
+    "train_cases.jsonl": "7dfb7724b888a3a5af628d5764b46d3de8e6946693025234371213d53067706b",
+    "train_trajectories.jsonl": "2ff2ac7880e357a6410c68a40b6469488deacb97a3ede3dcb433b8a6660c9629",
+    "validation_cases.jsonl": "6871b3e46f845463d5196bea42be3202b0c1e286576fa034d0f087a238e6b602",
+    "validation_trajectories.jsonl": "fdd48913407bb51f83601311f3deec1b90aa67e8ef3437a1d37010986a335751",
+    "confirmation_cases.jsonl": "0c7428d03b948052a7ddb445e4411808c587479756a3ca3d63d83bf1cfc14e10"
+  },
+  "code": {
+    "training/evidence_pilot.py": "2ec201dbca3d275edf3a6f88dcdefa2a77f109adfc4415712329edf74d9c3938",
+    "scripts/prepare_evidence_pilot.py": "06be5dcb84a84f31b4b99cb7dd6bef190ea3083c700c81b4c54c84fd15e8c5de",
+    "scripts/evidence_pilot_gpu.py": "592ca4b1c7411548ef56f3ed7107dbe57f4be4c6af444a12748e3c233bd36770",
+    "scripts/superpod_evidence_pilot.sh": "3d29fcd27caf403adde2698ebfe6788b23e0e0de9c1b47e0f8348731bef08c17",
+    "training/sft.py": "0799b9929fa5a1dd09a7aa0c1c4c826c4e88121ad006832f7f549bd9008e12d4",
+    "agent/guarded_runtime.py": "a2e445fe542029d194bfe576764bbe61b2df66ebecc7e365651a7d26d990e667"
+  },
+  "control_manifest_sha256": "87935fe9a20b3be175ebcb80adbd8efd6ab5d9e8524270b8e853b686fbf30979",
+  "scope": "trace-audit subskill; 48 pattern/field-combination groups, not full Agent task success",
+  "contamination": "Exact old query overlap zero; newly executed trace-audit tasks, shared tool primitives; not proof of semantic independence",
+  "training": "fresh LoRA from original Base; not continuing old adapter; 1 epoch seed20260915",
+  "confirmation_use": "freeze before any new model inference; no hyperparameter selection on confirmation"
+}
