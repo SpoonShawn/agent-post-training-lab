@@ -6,6 +6,8 @@
 
 ## 当前入口：LoRA pilot v1
 
+2026-09-15：[阶段019复核](docs/experiment_logs/019_challenge_answer_review.md)给出作者AI口径任务Base5%、SFT49.17%；执行率仍15%/68.33%。发现答案矛盾与8条只读观测漏检，阶段020提供独立审计原型，不静默改旧分。[学习复盘](docs/learning_review.md)汇总实验原理及简历可讲边界。
+
 最新实测：[阶段018挑战结果](docs/experiment_logs/018_challenge_v1_results.md)，Base执行15%、SFT68.33%；表达重排暴露日志取证时机问题，部分起点存在导航循环。100条执行通过答案待审，当前无需GPU或重训。旧pilot100%不等于广泛泛化。
 
 当前操作：[Challenge v1推理指南](docs/challenge_v1.md)。120题/18组已冻结，145项测试通过；申请GPU仅推理固定Base/SFT，不再训练。构造失败与修正见阶段017。

@@ -1,5 +1,9 @@
 # Agent Post-Training Lab：实验总报告
 
+当前完成（阶段020）：状态观测证据检查原型已实现，定位Base8条缺观测并接受等价状态返回；未接入2.3、不改历史分数。当前任务成绩以阶段019作者AI复核5%/49.17%为准；独立评审、新协议接线与新控制实验尚未完成。见[原型与边界](experiment_logs/020_observation_audit_prototype.md)。
+
+最新进度（2026-09-15，阶段019）：100条挑战答案完成程序辅助的作者AI复核，Base6通过12失败，SFT59通过23失败；任务率分别5%和49.17%，非独立盲审。原执行18/120、82/120不变。新发现8条Base只读题未取得状态观测却被执行层放行，缺陷公开保留，尚未修改冻结协议。详见[答案复核与评估盲点](experiment_logs/019_challenge_answer_review.md)和[学习复盘](learning_review.md)。
+
 最新进度（2026-09-15，阶段018）：挑战实测Base执行18/120（15%）、SFT82/120（68.33%）。SFT原文20/20、重排0/20，但重排19条终态正确，全部缺本次操作日志证据；另有真实导航与动作遗漏问题。2366次工具返回重放通过。100条执行通过答案待审，最终任务率尚未确定。未训练、未改评分，详见[挑战结果与负例](experiment_logs/018_challenge_v1_results.md)。
 
 当前进度（阶段017）：120条/18组训练后挑战集已冻结，120条oracle通过；尚无新模型结果。固定原Base/SFT各推理120题，不重训。见[GPU操作指南](challenge_v1.md)和[构造/失败日志](experiment_logs/017_challenge_v1_readiness.md)。下方各阶段进度保留为历史快照。
@@ -44,6 +48,8 @@
 | 016 客观证据审计 | 检查失败次数矛盾并明确弃权 | 320条审计；不改评分，挑战方案仍为草案 | [日志](experiment_logs/016_objective_evidence_audit.md) |
 | 017 泛化挑战准备 | 固定模型测四类扰动 | 120题/18组oracle通过，待GPU推理；无训练 | [日志](experiment_logs/017_challenge_v1_readiness.md) |
 | 018 挑战实测 | 固定模型检查迁移边界 | 执行18/120→82/120；表达重排全部缺日志证据，答案待审 | [日志](experiment_logs/018_challenge_v1_results.md) |
+| 019 挑战答案复核 | 证据、自洽和完整性 | 作者AI任务6/120→59/120；8条只读观测盲点未改冻结分数 | [日志](experiment_logs/019_challenge_answer_review.md) |
+| 020 观测证据原型 | 区分后台真值与可见证据 | 定位8条漏检；候选审计，不改冻结2.3 | [日志](experiment_logs/020_observation_audit_prototype.md) |
 
 代码/产物节点：`287ffee` v2 实现、`c6a8005` 真实 baseline、`0fecffa` 初版审计、`4a2bf12` 正式接线。阶段 001 产物节点 `2ff581a`。
 
