@@ -6,6 +6,8 @@
 
 ## 当前入口：LoRA pilot v1
 
+最新实测：[阶段018挑战结果](docs/experiment_logs/018_challenge_v1_results.md)，Base执行15%、SFT68.33%；表达重排暴露日志取证时机问题，部分起点存在导航循环。100条执行通过答案待审，当前无需GPU或重训。旧pilot100%不等于广泛泛化。
+
 当前操作：[Challenge v1推理指南](docs/challenge_v1.md)。120题/18组已冻结，145项测试通过；申请GPU仅推理固定Base/SFT，不再训练。构造失败与修正见阶段017。
 
 最新：[阶段015答案复核](docs/experiment_logs/015_pilot_answer_review.md)完成作者AI首轮审查，验证/确认各任务成功Base0/80、SFT80/80，非独立人工评审。Base各3条执行通过答案均错报零失败；执行率不变。下一步准备新泛化挑战，不能从同模板100%推断复杂业务能力。

@@ -1,0 +1,300 @@
+{
+  "base": {
+    "cases": 120,
+    "execution_pass": 18,
+    "execution_rate": 0.15,
+    "task_rate": null,
+    "answer_pending": 18,
+    "steps": 10.091666666666667,
+    "unexpected_failed_calls": 296,
+    "invalid_transitions": 277,
+    "tool_f1": 0.6651685821544481,
+    "by_category": {
+      "constraints": {
+        "cases": 20,
+        "execution_rate": 0.7
+      },
+      "expression": {
+        "cases": 40,
+        "execution_rate": 0.05
+      },
+      "recovery": {
+        "cases": 20,
+        "execution_rate": 0.0
+      },
+      "structure": {
+        "cases": 40,
+        "execution_rate": 0.05
+      }
+    },
+    "source_sha256": "162b0d8bf02d62add0358fc64c52ab513d1ebc93f4cf547e180caaf1bbb59a4a",
+    "run_metadata": {
+      "metadata_version": 1,
+      "model_path": "/home/zshaoaj/hf_models/Qwen3-4B-Instruct-2507",
+      "model_revision": null,
+      "model_resolved_path": "/home/zshaoaj/hf_models/Qwen3-4B-Instruct-2507",
+      "model_content_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+      "benchmark_sha256": "95fe900a969a7fd8f435441249bcbc19dd34515f62818434ab7ac5a0c47326b3",
+      "benchmark_schema_versions": [
+        "2"
+      ],
+      "selected_case_count": 120,
+      "selected_case_ids_sha256": "1c7247162b621344d9d7a2e3e339e489c7aae82ff97807331b16374c409b586f",
+      "evaluator_version": "2.3",
+      "runtime_sha256": "33b93914a3337342951213ccbbdab8ebd42ad9c1d309a593ec356a267a78149b",
+      "runtime_versions": {
+        "python": "3.11.16",
+        "torch": "2.9.1",
+        "transformers": "5.16.1"
+      },
+      "generation": {
+        "do_sample": false,
+        "max_new_tokens": 512,
+        "max_steps_override": null,
+        "default_max_steps": 16
+      },
+      "fingerprint": "95ff1bd537740ba4d7e1a4771e7dabd5609e0ac74700c80f7061de5d26f80fc7"
+    },
+    "replayed_calls": 1098,
+    "groups": {
+      "expression_4400f2f0e416": {
+        "cases": 10,
+        "passed": 1
+      },
+      "expression_a2069dee34a0": {
+        "cases": 10,
+        "passed": 0
+      },
+      "expression_be76a284dfac": {
+        "cases": 10,
+        "passed": 0
+      },
+      "expression_8cf2694d64a2": {
+        "cases": 10,
+        "passed": 1
+      },
+      "structure_length1_home": {
+        "cases": 5,
+        "passed": 0
+      },
+      "structure_length1_battle": {
+        "cases": 5,
+        "passed": 1
+      },
+      "structure_length2_home": {
+        "cases": 5,
+        "passed": 0
+      },
+      "structure_length2_battle": {
+        "cases": 5,
+        "passed": 0
+      },
+      "structure_length4_home": {
+        "cases": 5,
+        "passed": 1
+      },
+      "structure_length4_battle": {
+        "cases": 5,
+        "passed": 0
+      },
+      "structure_length5_home": {
+        "cases": 5,
+        "passed": 0
+      },
+      "structure_length5_battle": {
+        "cases": 5,
+        "passed": 0
+      },
+      "constraints_read_only": {
+        "cases": 10,
+        "passed": 10
+      },
+      "constraints_no_set_graphics": {
+        "cases": 10,
+        "passed": 4
+      },
+      "recovery_navigate_graphics": {
+        "cases": 5,
+        "passed": 0
+      },
+      "recovery_navigate_multiplayer_dungeon": {
+        "cases": 5,
+        "passed": 0
+      },
+      "recovery_action_back_home": {
+        "cases": 5,
+        "passed": 0
+      },
+      "recovery_action_start_multiplayer_dungeon": {
+        "cases": 5,
+        "passed": 0
+      }
+    },
+    "expression_pairs": {
+      "0->0": 18,
+      "1->0": 2
+    },
+    "rewrite_evidence": {
+      "final_state_pass": 12,
+      "process_pass": 19,
+      "contract_pass": 10,
+      "logs_requirements_pass": 0
+    }
+  },
+  "sft": {
+    "cases": 120,
+    "execution_pass": 82,
+    "execution_rate": 0.6833333333333333,
+    "task_rate": null,
+    "answer_pending": 82,
+    "steps": 11.45,
+    "unexpected_failed_calls": 210,
+    "invalid_transitions": 209,
+    "tool_f1": 0.9343022710753782,
+    "by_category": {
+      "constraints": {
+        "cases": 20,
+        "execution_rate": 1.0
+      },
+      "expression": {
+        "cases": 40,
+        "execution_rate": 0.5
+      },
+      "recovery": {
+        "cases": 20,
+        "execution_rate": 0.65
+      },
+      "structure": {
+        "cases": 40,
+        "execution_rate": 0.725
+      }
+    },
+    "source_sha256": "c56627d0bdf178ab30cfd2292edfd249ab586df494d6dbcb9c56cbbabb75fa31",
+    "run_metadata": {
+      "metadata_version": 1,
+      "model_path": "/home/zshaoaj/hf_models/Qwen3-4B-Instruct-2507",
+      "model_revision": null,
+      "model_resolved_path": "/home/zshaoaj/hf_models/Qwen3-4B-Instruct-2507",
+      "model_content_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+      "benchmark_sha256": "95fe900a969a7fd8f435441249bcbc19dd34515f62818434ab7ac5a0c47326b3",
+      "benchmark_schema_versions": [
+        "2"
+      ],
+      "selected_case_count": 120,
+      "selected_case_ids_sha256": "1c7247162b621344d9d7a2e3e339e489c7aae82ff97807331b16374c409b586f",
+      "evaluator_version": "2.3",
+      "runtime_sha256": "33b93914a3337342951213ccbbdab8ebd42ad9c1d309a593ec356a267a78149b",
+      "runtime_versions": {
+        "python": "3.11.16",
+        "torch": "2.9.1",
+        "transformers": "5.16.1"
+      },
+      "generation": {
+        "do_sample": false,
+        "max_new_tokens": 512,
+        "max_steps_override": null,
+        "default_max_steps": 16
+      },
+      "adapter_path": "/home/zshaoaj/agent-post-training-lab/checkpoints/pilot_v1_lora/adapter",
+      "adapter_sha256": "54d09ba7ca62db64cba27299a1ff586181f92bfd65028336013234856667e85a",
+      "fingerprint": "73db296ce151323d569276d8267067d69a60dac142a14e12d7951cb662a3ad92"
+    },
+    "replayed_calls": 1268,
+    "groups": {
+      "expression_4400f2f0e416": {
+        "cases": 10,
+        "passed": 5
+      },
+      "expression_a2069dee34a0": {
+        "cases": 10,
+        "passed": 5
+      },
+      "expression_be76a284dfac": {
+        "cases": 10,
+        "passed": 5
+      },
+      "expression_8cf2694d64a2": {
+        "cases": 10,
+        "passed": 5
+      },
+      "structure_length1_home": {
+        "cases": 5,
+        "passed": 4
+      },
+      "structure_length1_battle": {
+        "cases": 5,
+        "passed": 4
+      },
+      "structure_length2_home": {
+        "cases": 5,
+        "passed": 4
+      },
+      "structure_length2_battle": {
+        "cases": 5,
+        "passed": 4
+      },
+      "structure_length4_home": {
+        "cases": 5,
+        "passed": 5
+      },
+      "structure_length4_battle": {
+        "cases": 5,
+        "passed": 4
+      },
+      "structure_length5_home": {
+        "cases": 5,
+        "passed": 2
+      },
+      "structure_length5_battle": {
+        "cases": 5,
+        "passed": 2
+      },
+      "constraints_read_only": {
+        "cases": 10,
+        "passed": 10
+      },
+      "constraints_no_set_graphics": {
+        "cases": 10,
+        "passed": 10
+      },
+      "recovery_navigate_graphics": {
+        "cases": 5,
+        "passed": 4
+      },
+      "recovery_navigate_multiplayer_dungeon": {
+        "cases": 5,
+        "passed": 3
+      },
+      "recovery_action_back_home": {
+        "cases": 5,
+        "passed": 3
+      },
+      "recovery_action_start_multiplayer_dungeon": {
+        "cases": 5,
+        "passed": 3
+      }
+    },
+    "expression_pairs": {
+      "1->0": 20
+    },
+    "rewrite_evidence": {
+      "final_state_pass": 19,
+      "process_pass": 20,
+      "contract_pass": 18,
+      "logs_requirements_pass": 0
+    }
+  },
+  "paired_transitions": {
+    "0->1": 64,
+    "0->0": 38,
+    "1->1": 18
+  },
+  "regression_ids": [],
+  "limitations": [
+    "Execution only; all successful answers await semantic review",
+    "Post-training diagnostic, not independently sampled business tasks; expression controls reuse pilot",
+    "18 composition groups; no IID significance or general overfitting diagnosis",
+    "Wording-order perturbation conflates instruction-order sensitivity and logging-evidence timing",
+    "Replay validates simulator consistency, not independent generation authenticity"
+  ]
+}
