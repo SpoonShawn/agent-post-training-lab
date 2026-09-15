@@ -37,5 +37,6 @@
 | 025 | [保护实测结果](025_guard_pilot_results.md) | 32题核验；副作用减少，严格任务率未改善 |
 | 026 | [证据子能力训练准备](026_evidence_subskill_readiness.md) | 288条数据及运行入口准备，待GPU预检/小规模新LoRA |
 | 027 | [报告子能力实测](027_evidence_subskill_results.md) | 24步新LoRA两split48/48；旧LoRA报告形式退化 |
+| 028 | [报告压力测试准备](028_evidence_stress_readiness.md) | 96题/24上下文，三种扰动；待GPU，不训练 |
 
-当前待办：报告子能力训练评测已完成，无需重跑。下一步设计新表述/历史结构压力测试或执行与报告双模块迁移，不直接用新adapter替换旧Agent。完整Agent提升尚未验证，1条Base未决仍待独立复审。
+当前待办：报告压力包本地准备完成，需要用户申请SuperPOD做两模型各96次推理；不训练、不直接替换执行Agent。完整Agent提升尚未验证，1条Base未决仍待独立复审。

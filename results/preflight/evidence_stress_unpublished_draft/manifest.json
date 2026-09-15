@@ -1,0 +1,25 @@
+{
+  "study": "evidence_stress_v1",
+  "cases": 96,
+  "contexts": 24,
+  "parent_manifest_sha256": "d205d0105a73867f734779378ff89c89bbc9c028fa2d26f186a78446874ac73e",
+  "cases_sha256": "09676a2aeaf7e89ef50bb4651d6acff97416a1d08a234870c7bad1ad3b4cd1bb",
+  "code_sha256": {
+    "scripts/evidence_stress_v1.py": "9bc997b9cef7b777d3c045bfd1e65e209422789706e6dd003b2d290bcc9b2d18",
+    "scripts/superpod_evidence_stress.sh": "36fbe702593239e03dc941c6cc0ae144c8b8ecdb8ad89555b27f094872e03b7d"
+  },
+  "training_run_sha256": "2a8335329b08b1ad59e1304e33ba5d47a16cc022254879da63200a9040ca02d3",
+  "model_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+  "adapter_sha256": "e942e0ad2d9d9b1649e78cea73d2dfe8b6cb2a22829b2d4fd3ec6a112658eda3",
+  "generation": {
+    "max_new_tokens": 512,
+    "max_length": 4096,
+    "do_sample": false
+  },
+  "roles": [
+    "base",
+    "new_sft"
+  ],
+  "primary": "per-arm paired exact_report against original; field errors separately",
+  "scope": "24 reused contexts; diagnostic, not independent confirmation; no training"
+}
