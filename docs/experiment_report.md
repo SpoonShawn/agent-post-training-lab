@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+当前进度（阶段024）：只读执行保护与工具事实摘要已独立实现；原模型回答、违规尝试和历史指标不覆盖。152条离线事实一致性及4条首次违规拦截验证通过，不代表新模型成功。已冻结16题×两模型的32次保护反馈推理，需要用户申请GPU观察真实后续行为；不重训。见[实现与局限](experiment_logs/024_readonly_guard_and_facts.md)、[SuperPOD指令](guard_pilot.md)。
+
 最新进度（2026-09-15，阶段022/023）：控制实验Base/SFT各76条已上传并核验，1558次工具返回及152终态重放一致。五条件执行分别Base 7/20、2/20、6/20、2/8、6/8；SFT 20/20、19/20、20/20、8/8、4/8。清单让SFT只读4条退化，不能当通用修复。94条作者AI复核后，SFT任务62/76（81.58%）；Base9通过、66失败、1未决，任务率待定。非独立盲审、非新训练、非独立held-out。详见[执行对照](experiment_logs/022_control_v1_results.md)与[答案/问题复盘](experiment_logs/023_control_answer_review.md)。以下状态均为历史快照。
 
 当前进度（阶段021）：新协议2.4与76题控制实验已完成本地准备，旧2.3及两套冻结包不变；76条oracle通过。真实Base/SFT各76次推理尚未运行，现在等待用户决定是否申请SuperPOD。新实验不训练、不发布模型成绩；[操作与对照解释](control_v1.md) · [阶段日志](experiment_logs/021_protocol24_control_readiness.md)。下文均保留历史快照。
@@ -57,6 +59,7 @@
 | 021 新协议与控制实验 | 前瞻观测/日志条件、提示清单对照 | 2.4独立入口、76题已准备；等待GPU决策，无新训练 | [日志](experiment_logs/021_protocol24_control_readiness.md) |
 | 022 控制实验实测 | 固定模型的三组配对比较 | 152题核验；清单改善部分任务，却导致SFT只读4条退化 | [日志](experiment_logs/022_control_v1_results.md) |
 | 023 控制答案复核 | 检查完整性与证据来源 | 作者AI审94条；SFT62/76任务通过，Base9通过1未决 | [日志](experiment_logs/023_control_answer_review.md) |
+| 024 工程保护 | 只读工具门禁、证据摘要 | 本地验证完成；32次新反馈推理待GPU，不改模型成绩 | [日志](experiment_logs/024_readonly_guard_and_facts.md) |
 
 代码/产物节点：`287ffee` v2 实现、`c6a8005` 真实 baseline、`0fecffa` 初版审计、`4a2bf12` 正式接线。阶段 001 产物节点 `2ff581a`。
 
