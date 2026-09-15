@@ -36,5 +36,6 @@
 | 024 | [只读保护与事实摘要](024_readonly_guard_and_facts.md) | 本地验证完成，32条新推理待GPU |
 | 025 | [保护实测结果](025_guard_pilot_results.md) | 32题核验；副作用减少，严格任务率未改善 |
 | 026 | [证据子能力训练准备](026_evidence_subskill_readiness.md) | 288条数据及运行入口准备，待GPU预检/小规模新LoRA |
+| 027 | [报告子能力实测](027_evidence_subskill_results.md) | 24步新LoRA两split48/48；旧LoRA报告形式退化 |
 
-当前待办：需要用户申请SuperPOD运行新报告子能力预检、三模型固定比较及新LoRA训练；不是完整Agent迁移，不改旧题分数。1条Base未决仍保留给独立复审。历史阶段表述按当时状态保留。
+当前待办：报告子能力训练评测已完成，无需重跑。下一步设计新表述/历史结构压力测试或执行与报告双模块迁移，不直接用新adapter替换旧Agent。完整Agent提升尚未验证，1条Base未决仍待独立复审。
