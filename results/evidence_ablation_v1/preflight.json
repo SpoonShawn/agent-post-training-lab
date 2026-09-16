@@ -1,0 +1,61 @@
+{
+  "manifest_sha256": "566a56d59d6b0510932c4ac9266df83053e6376fd4a150b67a10de367808c7b4",
+  "model_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+  "versions": {
+    "torch": "2.9.1",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "accelerate": "1.14.0"
+  },
+  "training": {
+    "epochs": 1,
+    "examples_per_arm": 192,
+    "expected_steps": 24,
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "lr": 0.0001,
+    "batch": 1,
+    "accumulation": 8,
+    "seed": 20260916,
+    "initialization": "fresh_base",
+    "selection": "last_epoch_no_confirmation_selection"
+  },
+  "generation": {
+    "max_length": 4096,
+    "max_new_tokens": 512,
+    "do_sample": false
+  },
+  "token_statistics": {
+    "fixed": {
+      "train": {
+        "examples": 192,
+        "input_tokens": 358554,
+        "supervised_tokens": 15960,
+        "max_tokens": 2217
+      },
+      "validation": {
+        "examples": 48,
+        "input_tokens": 88542,
+        "supervised_tokens": 3912,
+        "max_tokens": 2178
+      }
+    },
+    "mixed": {
+      "train": {
+        "examples": 192,
+        "input_tokens": 359504,
+        "supervised_tokens": 15960,
+        "max_tokens": 2246
+      },
+      "validation": {
+        "examples": 48,
+        "input_tokens": 88770,
+        "supervised_tokens": 3912,
+        "max_tokens": 2207
+      }
+    }
+  },
+  "max_eval_prompt_tokens": 2129,
+  "chat_template_sha256": "64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326"
+}
