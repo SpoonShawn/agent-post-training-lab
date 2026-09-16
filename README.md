@@ -4,7 +4,13 @@
 
 持续更新：[实验总报告](docs/experiment_report.md) · [阶段日志](docs/experiment_logs/README.md)。每个阶段保留目标、配置、数据、指标、结果、bad case、问题、原因、解决方案和下一步，包括失败实验与设计修订。
 
-## 当前入口：LoRA pilot v1
+## 当前入口：完整Agent实验重启（2026-09-16）
+
+用户已确认继续完整SFT／DPO／GRPO及独立工具后端迁移路线；阶段001–032保留为pilot，不代表整个项目完成。见[完整计划与验收门槛](docs/full_experiment_plan.md)、[阶段033](docs/experiment_logs/033_full_agent_restart.md)。当前新增隔离事务环境与50条开发oracle重放，无新模型成绩，尚不需要SuperPOD。
+
+本地检查：`python3 -m scripts.check_transaction_dev`。这是程序/规则策略检查，不加载模型。正式新数据、训练与模型接口尚在准备，不应运行下方历史GPU入口代替新实验。
+
+## 历史入口：LoRA pilot v1
 
 当前资源决策：[Control v1指南](docs/control_v1.md)。新2.4与76条对照题已准备，拟固定Base/SFT各推理76次；不训练，尚待用户决定申请GPU。旧结果/协议保持不变。
 

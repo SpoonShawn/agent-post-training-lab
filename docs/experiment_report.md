@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+项目重新立项（2026-09-16，阶段033）：用户明确要求完成完整后训练路线，阶段031/032收尾仅属于pilot，不再表示整个项目结束。[新路线](full_experiment_plan.md)包括完整Agent SFT、DPO、在线GRPO、统一多seed对照和独立工具后端迁移。已新增隔离事务环境，支持幂等、提交后超时、revision冲突、异步检查、回滚和撤权；50开发oracle重放通过，非模型成绩。正式数据/训练尚未准备完，不需GPU；[过程与问题](experiment_logs/033_full_agent_restart.md)。旧成果和未决项原样保留。
+
 学习交接（2026-09-16，阶段032）：新增[初学者学习路线/讲述/追问](project_learning_guide.md)及[完整证据退化案例](learning_case_walkthrough.md)，对应原始工具定义、完整输入和三个模型回答。本阶段仅本地文档，不新增训练、推理或成绩，不需要SuperPOD；[记录](experiment_logs/032_learning_handoff.md)。
 
 收尾状态（2026-09-16，阶段031）：本轮预定范围已完成模型运行与审计，不再申请GPU。最终确认集48上下文×3布局：Base21/144，fixed56/144（38.89%），mixed83/144（57.64%）；同192训练样本、24步、15960监督tokens，mixed提高18.75个百分点，但配对7条退化，主要收益集中表格。全部864条输出合法JSON，524条完整报告失败保留；评分未改。见[实测与失败](experiment_logs/031_evidence_ablation_results.md)、[收尾/复现/面试事实清单](experiment_closeout.md)。这是单seed合成报告子任务，不是完整Agent泛化或生产成绩。DPO/GRPO、独立复审及真实设备列为未来工作，不算本次已完成。以下均为历史快照。

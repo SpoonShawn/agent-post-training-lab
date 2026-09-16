@@ -42,5 +42,6 @@
 | 030 | [呈现多样性对照准备](030_evidence_ablation_readiness.md) | 新数据与两臂等样本/步数对照已冻结；待GPU，预计2–3工作日收尾 |
 | 031 | [呈现对照实测与收尾](031_evidence_ablation_results.md) | 确认56/144→83/144；7条配对退化保留，预定范围收尾 |
 | 032 | [学习与项目讲述交接](032_learning_handoff.md) | 完整真实案例、学习路线与12类追问；不新增模型实验 |
+| 033 | [完整实验重启与隔离环境](033_full_agent_restart.md) | 新事务原型和50开发oracle；正式多轮训练未开始 |
 
-当前状态：本轮预定实验完成运行与审计，无需GPU；见[收尾清单](../experiment_closeout.md)。保留局限：完整Agent泛化未解决，1条Base未决仍待独立复审，DPO/GRPO未运行。未来工作单独立项，不无限追分。
+当前状态：用户已要求继续完整实验；按[新路线](../full_experiment_plan.md)推进，旧收尾仅指pilot。正在本地准备新基准与完整Agent训练，不需GPU。完整Agent泛化未解决，1条旧Base未决仍待独立复审，DPO/GRPO未运行。
