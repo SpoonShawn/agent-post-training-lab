@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+学习交接（2026-09-16，阶段032）：新增[初学者学习路线/讲述/追问](project_learning_guide.md)及[完整证据退化案例](learning_case_walkthrough.md)，对应原始工具定义、完整输入和三个模型回答。本阶段仅本地文档，不新增训练、推理或成绩，不需要SuperPOD；[记录](experiment_logs/032_learning_handoff.md)。
+
 收尾状态（2026-09-16，阶段031）：本轮预定范围已完成模型运行与审计，不再申请GPU。最终确认集48上下文×3布局：Base21/144，fixed56/144（38.89%），mixed83/144（57.64%）；同192训练样本、24步、15960监督tokens，mixed提高18.75个百分点，但配对7条退化，主要收益集中表格。全部864条输出合法JSON，524条完整报告失败保留；评分未改。见[实测与失败](experiment_logs/031_evidence_ablation_results.md)、[收尾/复现/面试事实清单](experiment_closeout.md)。这是单seed合成报告子任务，不是完整Agent泛化或生产成绩。DPO/GRPO、独立复审及真实设备列为未来工作，不算本次已完成。以下均为历史快照。
 
 最新进度（2026-09-16，阶段030）：固定呈现/混合呈现的成对LoRA实验包已冻结：相同192训练上下文、答案与24优化步，验证/确认各48上下文×3布局。新结构组不跨split，旧题不回灌。Base及两个新adapter各288次推理尚待SuperPOD；没有新成绩。需用户申请GPU，见[具体指令](evidence_ablation_v1.md)、[阶段记录](experiment_logs/030_evidence_ablation_readiness.md)。本轮正负结果均可收尾，预计剩余2–3工作日（排队/操作延迟顺延），不包含DPO/GRPO，不保证涨分。
