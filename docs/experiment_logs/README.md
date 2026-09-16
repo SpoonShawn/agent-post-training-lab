@@ -39,5 +39,6 @@
 | 027 | [报告子能力实测](027_evidence_subskill_results.md) | 24步新LoRA两split48/48；旧LoRA报告形式退化 |
 | 028 | [报告压力测试准备](028_evidence_stress_readiness.md) | 96题/24上下文，三种扰动；待GPU，不训练 |
 | 029 | [报告压力实测](029_evidence_stress_results.md) | 192条核验；模板满分未泛化，121条失败完整保留，评分不改 |
+| 030 | [呈现多样性对照准备](030_evidence_ablation_readiness.md) | 新数据与两臂等样本/步数对照已冻结；待GPU，预计2–3工作日收尾 |
 
-当前待办：压力分析完成，不需GPU。下一阶段先本地准备独立生成的数据及等预算多样化消融方案；尚未生成新训练包。完整Agent提升尚未验证，1条Base未决仍待独立复审。
+当前待办：需要用户申请SuperPOD完成Base及fixed/mixed对照，然后上传results/evidence_ablation_v1/。按预定范围复核并收尾，不按涨分与否无限追加实验。完整Agent提升尚未验证，1条Base未决仍待独立复审。

@@ -1,0 +1,152 @@
+{
+  "study": "evidence_ablation_v1",
+  "seed": 20260916,
+  "counts": {
+    "train": {
+      "contexts": 192,
+      "groups": 32,
+      "families": {
+        "clean": 48,
+        "transient": 48,
+        "arguments": 48,
+        "policy": 48
+      }
+    },
+    "validation": {
+      "contexts": 48,
+      "groups": 8,
+      "families": {
+        "clean": 12,
+        "transient": 12,
+        "arguments": 12,
+        "policy": 12
+      }
+    },
+    "confirmation": {
+      "contexts": 48,
+      "groups": 8,
+      "families": {
+        "clean": 12,
+        "transient": 12,
+        "arguments": 12,
+        "policy": 12
+      }
+    }
+  },
+  "groups": {
+    "train": [
+      "arguments_r1_t1",
+      "arguments_r1_t2",
+      "arguments_r2_t0",
+      "arguments_r2_t2",
+      "arguments_r2_t3",
+      "arguments_r3_t0",
+      "arguments_r3_t2",
+      "arguments_r3_t3",
+      "clean_r1_t0",
+      "clean_r1_t1",
+      "clean_r1_t3",
+      "clean_r2_t0",
+      "clean_r2_t2",
+      "clean_r2_t3",
+      "clean_r3_t1",
+      "clean_r3_t3",
+      "policy_r1_t2",
+      "policy_r1_t3",
+      "policy_r2_t0",
+      "policy_r2_t2",
+      "policy_r3_t0",
+      "policy_r3_t1",
+      "policy_r3_t2",
+      "policy_r3_t3",
+      "transient_r1_t0",
+      "transient_r1_t2",
+      "transient_r2_t0",
+      "transient_r2_t1",
+      "transient_r2_t3",
+      "transient_r3_t0",
+      "transient_r3_t1",
+      "transient_r3_t2"
+    ],
+    "validation": [
+      "arguments_r1_t3",
+      "arguments_r3_t1",
+      "clean_r1_t2",
+      "clean_r2_t1",
+      "policy_r2_t1",
+      "policy_r2_t3",
+      "transient_r2_t2",
+      "transient_r3_t3"
+    ],
+    "confirmation": [
+      "arguments_r1_t0",
+      "arguments_r2_t1",
+      "clean_r3_t0",
+      "clean_r3_t2",
+      "policy_r1_t0",
+      "policy_r1_t1",
+      "transient_r1_t1",
+      "transient_r1_t3"
+    ]
+  },
+  "code": {
+    "training/evidence_ablation.py": "870f4051ec89de59de8f25a7b2d170fb027428d1355aec7b24c3819c51ba7c26",
+    "scripts/prepare_evidence_ablation.py": "38ba8a28d6217cb88d3ef298c33a4994cb480c9e82e573e9a7d9536dffe75bc3",
+    "scripts/evidence_ablation_gpu.py": "b4ac1e8a939d9d25da8e2358bd043a054c339aab9eb56b4bccd582cb4dfc127f",
+    "scripts/superpod_evidence_ablation.sh": "1763ef2644b9a9f5b7f1f995cf4c5001a234b08f6e7b01d791b6a316511ae132",
+    "training/evidence_pilot.py": "2ec201dbca3d275edf3a6f88dcdefa2a77f109adfc4415712329edf74d9c3938",
+    "training/sft.py": "0799b9929fa5a1dd09a7aa0c1c4c826c4e88121ad006832f7f549bd9008e12d4",
+    "agent/baseline_runner.py": "6bc48382234e396a0852ad43b49b19aa65765ba4821d4660dba9618d3c5e31d9",
+    "agent/guarded_runtime.py": "a2e445fe542029d194bfe576764bbe61b2df66ebecc7e365651a7d26d990e667",
+    "agent/environment.py": "448338339fcee39764a04f8e71660e46b8e869c1df1b8122055ea7a7465a363c",
+    "tools/environment_tools.py": "25564b74c2a0bc8ab37e8250a168dc91dbe0ed3e0b5948694b1da0b753d4238b",
+    "tools/executor.py": "e08af0307cae2a2993283e732979ee3dcba9a738f94aa36181d513642fde2881",
+    "tools/tool_schema.py": "4ddf0c0bb4f82d9a2a1ea8265b31f60c2a413837a6a65c22141b52a3593bbcb9"
+  },
+  "rejection_sources": {
+    "data/evidence_pilot_v1/train_cases.jsonl": "7dfb7724b888a3a5af628d5764b46d3de8e6946693025234371213d53067706b",
+    "data/evidence_pilot_v1/validation_cases.jsonl": "6871b3e46f845463d5196bea42be3202b0c1e286576fa034d0f087a238e6b602",
+    "data/evidence_pilot_v1/confirmation_cases.jsonl": "0c7428d03b948052a7ddb445e4411808c587479756a3ca3d63d83bf1cfc14e10",
+    "benchmarks/evidence_stress_v1/cases.jsonl": "b719102da5c6c37c7e942baff1e61de7892b44febbfae6b4dd9d947f396a9584"
+  },
+  "files": {
+    "train_contexts.jsonl": "271372b51dc8545646ac68ab28ca587a0cd084225765e9a5315ab84fbf4fc27e",
+    "fixed_train.jsonl": "3e502973cdf1f9a19656e4931167d74e101b001b606e364c5f44462e63b7449a",
+    "mixed_train.jsonl": "6431172a3a01e1f274720e4cc392a2f5ca75cbb9f4e9ecd8a7c0121f99457725",
+    "validation_contexts.jsonl": "5932bffa2bec87defbff47b5ef2065aafdaa22da6533fc9c657423ceee5d6b40",
+    "fixed_validation.jsonl": "208eb8fbc0efef7e2628f45b3ebce5e86f977a83822d8d026020ee1dfa9e6322",
+    "mixed_validation.jsonl": "dc821b93005a00c68ade709e632c1f1398a587f93f2c7436d7c5554a81138162",
+    "validation_cases.jsonl": "3e28d735b4ae262b9cc55b7588096f3bf4c6707764e502e00f27d379c736c29c",
+    "confirmation_contexts.jsonl": "b9936a8357f18a6481d6142b8cb28ae36815a99dc544c22e47ccb0c68afb6019",
+    "confirmation_cases.jsonl": "a264132c241edcb947bde0ccb0a9286eb31abc3d5f31d5fa0ce0959cab797fd6"
+  },
+  "model_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+  "versions": {
+    "torch": "2.9.1",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "accelerate": "1.14.0"
+  },
+  "training": {
+    "epochs": 1,
+    "examples_per_arm": 192,
+    "expected_steps": 24,
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "lr": 0.0001,
+    "batch": 1,
+    "accumulation": 8,
+    "seed": 20260916,
+    "initialization": "fresh_base",
+    "selection": "last_epoch_no_confirmation_selection"
+  },
+  "generation": {
+    "max_length": 4096,
+    "max_new_tokens": 512,
+    "do_sample": false
+  },
+  "comparison": "fixed vs mixed evidence layouts; identical histories and supervised answers; not equal input tokens or FLOPs",
+  "primary": "confirmation per-layout paired exact_report; 48 contexts/8 groups, 3 layouts; not 144 independent tasks",
+  "scope": "new event skeleton groups, shared simulator/primitives; not proof of real-world or semantic independence"
+}
