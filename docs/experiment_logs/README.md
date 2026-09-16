@@ -38,5 +38,6 @@
 | 026 | [证据子能力训练准备](026_evidence_subskill_readiness.md) | 288条数据及运行入口准备，待GPU预检/小规模新LoRA |
 | 027 | [报告子能力实测](027_evidence_subskill_results.md) | 24步新LoRA两split48/48；旧LoRA报告形式退化 |
 | 028 | [报告压力测试准备](028_evidence_stress_readiness.md) | 96题/24上下文，三种扰动；待GPU，不训练 |
+| 029 | [报告压力实测](029_evidence_stress_results.md) | 192条核验；模板满分未泛化，121条失败完整保留，评分不改 |
 
-当前待办：报告压力包本地准备完成，需要用户申请SuperPOD做两模型各96次推理；不训练、不直接替换执行Agent。完整Agent提升尚未验证，1条Base未决仍待独立复审。
+当前待办：压力分析完成，不需GPU。下一阶段先本地准备独立生成的数据及等预算多样化消融方案；尚未生成新训练包。完整Agent提升尚未验证，1条Base未决仍待独立复审。

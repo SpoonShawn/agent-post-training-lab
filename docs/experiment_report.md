@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+最新进度（2026-09-16，阶段029）：压力实测192条已核验。原文/换写/历史增长/权限翻转各24题，完整报告Base分别15/8/0/4，新报告LoRA24/13/0/7；所有输出合法JSON，121条失败保留。新LoRA历史组20条最新验证字段错误、15条总失败数错误，权限组17条决策错误，不能归因于评分太死板。原文各24条逐字复现旧回答；模板内满分未泛化，不修改旧评分。见[压力结果、失败与下一步](experiment_logs/029_evidence_stress_results.md)。当前不需GPU；下一阶段先准备独立数据与等预算消融，尚未训练。以下为历史快照。
+
 当前进度（阶段028）：报告压力测试96题/24上下文已本地准备，四组为原文、证据换写、增加历史、当前权限翻转；模型成绩尚未产生。需SuperPOD固定Base与报告LoRA各推理96次，不训练。旧满分仅作小模板任务结果，不外推。见[准备与工程问题](experiment_logs/028_evidence_stress_readiness.md)、[GPU指令](evidence_stress_v1.md)。
 
 最新进度（阶段027）：报告子能力真实LoRA完成192样本、1epoch/24步。验证完整报告Base32/48→新LoRA48/48，确认29/48→48/48；旧事务LoRA两组均0/48，全部输出工具调用而非JSON报告。不是完整Agent成绩，也不是继续旧adapter后的修复。数据/训练/三模型288条输出已核验，131条失败完整保留。见[实测与适用边界](experiment_logs/027_evidence_subskill_results.md)。
@@ -44,6 +46,7 @@
 
 | 阶段 | 目标 | 状态/结论 | 详细记录 |
 |---|---|---|---|
+| 029 报告压力实测 | 固定模型检验三类扰动 | 新LoRA24/13/0/7（各24）；暴露证据时序及权限判断问题 | [日志](experiment_logs/029_evidence_stress_results.md) |
 | 001 探索 baseline | 检查基础工具使用 | 7 条运行完成；14 次工具失败，匹配指标仅 6 条适用 | [日志](experiment_logs/001_exploratory_baseline.md) |
 | 002 v2 构建 | 可验证状态、可控故障、扩集 | 360 条 oracle 通过；后续发现设计盲点 | [日志](experiment_logs/002_benchmark_evaluator_v2.md) |
 | 003 模型 baseline | 测量现有能力 | v2 任务成功 142/360；存在真实错误与误判 | [日志](experiment_logs/003_qwen3_baseline_v2.md) |

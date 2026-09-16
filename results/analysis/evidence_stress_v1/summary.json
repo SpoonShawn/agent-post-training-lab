@@ -1,0 +1,229 @@
+{
+  "study": "post_training_diagnostic_not_heldout",
+  "manifest_sha256": "a737ca50d35a73ff304b7ae2738ea2aae17713b09fd18d793f5551fa818fe7c7",
+  "contexts": 24,
+  "base": {
+    "source_sha256": "ceb3aec5927363e7f26e3b82b1312c684c27523b30e979023da35271111220b8",
+    "metadata": {
+      "manifest_sha256": "d205d0105a73867f734779378ff89c89bbc9c028fa2d26f186a78446874ac73e",
+      "model_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+      "versions": {
+        "torch": "2.9.1",
+        "transformers": "5.16.1",
+        "peft": "0.20.0",
+        "accelerate": "1.14.0"
+      },
+      "seed": 20260915,
+      "max_length": 4096,
+      "max_new_tokens": 512,
+      "train_examples": 192,
+      "validation_examples": 48,
+      "max_train_validation_tokens": 1321,
+      "supervised_tokens": 16218,
+      "max_eval_prompt_tokens": 1231,
+      "chat_template_sha256": "64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326",
+      "study": "evidence_stress_v1",
+      "stress_manifest_sha256": "a737ca50d35a73ff304b7ae2738ea2aae17713b09fd18d793f5551fa818fe7c7",
+      "max_stress_prompt_tokens": 1587,
+      "role": "base",
+      "adapter_sha256": null,
+      "fingerprint": "029c7e7fc2ec2a606e466927ee55244946cce3b0e56b90b6ddc611018cdccf12"
+    },
+    "gpu": [
+      "NVIDIA H800"
+    ],
+    "arms": {
+      "original": {
+        "cases": 24,
+        "valid_json": 24,
+        "exact_report": 15,
+        "decision_correct": 24,
+        "field_errors": {
+          "policy_blocks": 6,
+          "last_verification_matches": 6,
+          "total_failures": 3
+        }
+      },
+      "surface": {
+        "cases": 24,
+        "valid_json": 24,
+        "exact_report": 8,
+        "decision_correct": 21,
+        "field_errors": {
+          "policy_blocks": 13,
+          "decision": 3,
+          "tool_errors": 3,
+          "total_failures": 3,
+          "last_verification_matches": 3
+        }
+      },
+      "extended_history": {
+        "cases": 24,
+        "valid_json": 24,
+        "exact_report": 0,
+        "decision_correct": 21,
+        "field_errors": {
+          "last_verification_matches": 21,
+          "log_count": 6,
+          "total_failures": 6,
+          "policy_blocks": 7,
+          "tool_errors": 5,
+          "verification_failures": 8,
+          "decision": 3
+        }
+      },
+      "current_policy_flip": {
+        "cases": 24,
+        "valid_json": 24,
+        "exact_report": 4,
+        "decision_correct": 10,
+        "field_errors": {
+          "policy_blocks": 3,
+          "decision": 14,
+          "last_verification_matches": 6
+        }
+      }
+    },
+    "first_started": "2026-09-16T02:31:29.023911+00:00",
+    "last_completed": "2026-09-16T02:35:10.417699+00:00",
+    "case_window_seconds": 221.393788,
+    "original_to_arm_paired": {
+      "surface": {
+        "0->0": 9,
+        "1->0": 7,
+        "1->1": 8
+      },
+      "extended_history": {
+        "0->0": 9,
+        "1->0": 15
+      },
+      "current_policy_flip": {
+        "0->0": 9,
+        "1->0": 11,
+        "1->1": 4
+      }
+    },
+    "original_answer_byte_reproduction": 24,
+    "flip_wrong_decisions_equal_original_answer": 5
+  },
+  "new_sft": {
+    "source_sha256": "7372d0b0ad3570bc37e77dee05a3f56529f09e16c88cd3908c3ff52e9c564fbe",
+    "metadata": {
+      "manifest_sha256": "d205d0105a73867f734779378ff89c89bbc9c028fa2d26f186a78446874ac73e",
+      "model_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+      "versions": {
+        "torch": "2.9.1",
+        "transformers": "5.16.1",
+        "peft": "0.20.0",
+        "accelerate": "1.14.0"
+      },
+      "seed": 20260915,
+      "max_length": 4096,
+      "max_new_tokens": 512,
+      "train_examples": 192,
+      "validation_examples": 48,
+      "max_train_validation_tokens": 1321,
+      "supervised_tokens": 16218,
+      "max_eval_prompt_tokens": 1231,
+      "chat_template_sha256": "64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326",
+      "study": "evidence_stress_v1",
+      "stress_manifest_sha256": "a737ca50d35a73ff304b7ae2738ea2aae17713b09fd18d793f5551fa818fe7c7",
+      "max_stress_prompt_tokens": 1587,
+      "role": "new_sft",
+      "adapter_sha256": "e942e0ad2d9d9b1649e78cea73d2dfe8b6cb2a22829b2d4fd3ec6a112658eda3",
+      "fingerprint": "297f9dcb9f680e4eeadebee1632a9d3d75e9050213399e723fc211f6b06a9158"
+    },
+    "gpu": [
+      "NVIDIA H800"
+    ],
+    "arms": {
+      "original": {
+        "cases": 24,
+        "valid_json": 24,
+        "exact_report": 24,
+        "decision_correct": 24,
+        "field_errors": {}
+      },
+      "surface": {
+        "cases": 24,
+        "valid_json": 24,
+        "exact_report": 13,
+        "decision_correct": 21,
+        "field_errors": {
+          "state": 2,
+          "total_failures": 8,
+          "last_verification_matches": 6,
+          "decision": 3,
+          "tool_errors": 3
+        }
+      },
+      "extended_history": {
+        "cases": 24,
+        "valid_json": 24,
+        "exact_report": 0,
+        "decision_correct": 21,
+        "field_errors": {
+          "last_verification_matches": 20,
+          "log_count": 2,
+          "total_failures": 15,
+          "decision": 3,
+          "verification_failures": 3
+        }
+      },
+      "current_policy_flip": {
+        "cases": 24,
+        "valid_json": 24,
+        "exact_report": 7,
+        "decision_correct": 7,
+        "field_errors": {
+          "decision": 17
+        }
+      }
+    },
+    "first_started": "2026-09-16T02:35:30.809794+00:00",
+    "last_completed": "2026-09-16T02:39:59.468081+00:00",
+    "case_window_seconds": 268.658287,
+    "original_to_arm_paired": {
+      "surface": {
+        "1->1": 13,
+        "1->0": 11
+      },
+      "extended_history": {
+        "1->0": 24
+      },
+      "current_policy_flip": {
+        "1->0": 17,
+        "1->1": 7
+      }
+    },
+    "original_answer_byte_reproduction": 24,
+    "flip_wrong_decisions_equal_original_answer": 10
+  },
+  "base_to_new_paired": {
+    "original": {
+      "0->1": 9,
+      "1->1": 15
+    },
+    "surface": {
+      "0->1": 10,
+      "1->1": 3,
+      "1->0": 5,
+      "0->0": 6
+    },
+    "extended_history": {
+      "0->0": 24
+    },
+    "current_policy_flip": {
+      "0->0": 17,
+      "0->1": 3,
+      "1->1": 4
+    }
+  },
+  "limitations": [
+    "24 reused contexts, 8 groups, correlated variants; not 96 independent held-out tasks.",
+    "Structured report only, no model tool execution; exact_report is not Agent task success.",
+    "Surface arm changes both layout and instruction position; history arm changes several factors.",
+    "One model/adapter/seed; weak transfer does not alone establish classical overfitting.",
+    "Recorded metadata verified; local machine cannot independently rehash absent GPU weights or retokenize."
+  ]
+}
