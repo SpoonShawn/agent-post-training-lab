@@ -40,5 +40,6 @@
 | 028 | [报告压力测试准备](028_evidence_stress_readiness.md) | 96题/24上下文，三种扰动；待GPU，不训练 |
 | 029 | [报告压力实测](029_evidence_stress_results.md) | 192条核验；模板满分未泛化，121条失败完整保留，评分不改 |
 | 030 | [呈现多样性对照准备](030_evidence_ablation_readiness.md) | 新数据与两臂等样本/步数对照已冻结；待GPU，预计2–3工作日收尾 |
+| 031 | [呈现对照实测与收尾](031_evidence_ablation_results.md) | 确认56/144→83/144；7条配对退化保留，预定范围收尾 |
 
-当前待办：需要用户申请SuperPOD完成Base及fixed/mixed对照，然后上传results/evidence_ablation_v1/。按预定范围复核并收尾，不按涨分与否无限追加实验。完整Agent提升尚未验证，1条Base未决仍待独立复审。
+当前状态：本轮预定实验完成运行与审计，无需GPU；见[收尾清单](../experiment_closeout.md)。保留局限：完整Agent泛化未解决，1条Base未决仍待独立复审，DPO/GRPO未运行。未来工作单独立项，不无限追分。

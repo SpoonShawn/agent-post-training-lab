@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+收尾状态（2026-09-16，阶段031）：本轮预定范围已完成模型运行与审计，不再申请GPU。最终确认集48上下文×3布局：Base21/144，fixed56/144（38.89%），mixed83/144（57.64%）；同192训练样本、24步、15960监督tokens，mixed提高18.75个百分点，但配对7条退化，主要收益集中表格。全部864条输出合法JSON，524条完整报告失败保留；评分未改。见[实测与失败](experiment_logs/031_evidence_ablation_results.md)、[收尾/复现/面试事实清单](experiment_closeout.md)。这是单seed合成报告子任务，不是完整Agent泛化或生产成绩。DPO/GRPO、独立复审及真实设备列为未来工作，不算本次已完成。以下均为历史快照。
+
 最新进度（2026-09-16，阶段030）：固定呈现/混合呈现的成对LoRA实验包已冻结：相同192训练上下文、答案与24优化步，验证/确认各48上下文×3布局。新结构组不跨split，旧题不回灌。Base及两个新adapter各288次推理尚待SuperPOD；没有新成绩。需用户申请GPU，见[具体指令](evidence_ablation_v1.md)、[阶段记录](experiment_logs/030_evidence_ablation_readiness.md)。本轮正负结果均可收尾，预计剩余2–3工作日（排队/操作延迟顺延），不包含DPO/GRPO，不保证涨分。
 
 最新进度（2026-09-16，阶段029）：压力实测192条已核验。原文/换写/历史增长/权限翻转各24题，完整报告Base分别15/8/0/4，新报告LoRA24/13/0/7；所有输出合法JSON，121条失败保留。新LoRA历史组20条最新验证字段错误、15条总失败数错误，权限组17条决策错误，不能归因于评分太死板。原文各24条逐字复现旧回答；模板内满分未泛化，不修改旧评分。见[压力结果、失败与下一步](experiment_logs/029_evidence_stress_results.md)。当前不需GPU；下一阶段先准备独立数据与等预算消融，尚未训练。以下为历史快照。
@@ -48,6 +50,7 @@
 
 | 阶段 | 目标 | 状态/结论 | 详细记录 |
 |---|---|---|---|
+| 031 呈现对照实测与收尾 | 验证收益及退化，完成证据闭环 | 确认fixed56/144→mixed83/144；改善34、退化7；保留524失败 | [日志](experiment_logs/031_evidence_ablation_results.md) |
 | 030 呈现多样性对照准备 | 同历史同答案、等样本/步数比较 | 192训练/48验证/48确认上下文；待GPU，旧评分不改 | [日志](experiment_logs/030_evidence_ablation_readiness.md) |
 | 029 报告压力实测 | 固定模型检验三类扰动 | 新LoRA24/13/0/7（各24）；暴露证据时序及权限判断问题 | [日志](experiment_logs/029_evidence_stress_results.md) |
 | 001 探索 baseline | 检查基础工具使用 | 7 条运行完成；14 次工具失败，匹配指标仅 6 条适用 | [日志](experiment_logs/001_exploratory_baseline.md) |
