@@ -43,5 +43,6 @@
 | 031 | [呈现对照实测与收尾](031_evidence_ablation_results.md) | 确认56/144→83/144；7条配对退化保留，预定范围收尾 |
 | 032 | [学习与项目讲述交接](032_learning_handoff.md) | 完整真实案例、学习路线与12类追问；不新增模型实验 |
 | 033 | [完整实验重启与隔离环境](033_full_agent_restart.md) | 新事务原型和50开发oracle；正式多轮训练未开始 |
+| 034 | [多轮数据与GPU检查交接](034_transaction_dataset_gpu_gate.md) | 2058训练轨迹、528确认任务已冻结；需要首次新链路GPU smoke |
 
-当前状态：用户已要求继续完整实验；按[新路线](../full_experiment_plan.md)推进，旧收尾仅指pilot。正在本地准备新基准与完整Agent训练，不需GPU。完整Agent泛化未解决，1条旧Base未决仍待独立复审，DPO/GRPO未运行。
+当前状态：按[新路线](../full_experiment_plan.md)持续推进，旧收尾仅指pilot。新数据/接线本地完成，需要用户运行[GPU工程检查](../transaction_v1.md)并上传结果；非正式SFT。完整Agent泛化未解决，1条旧Base未决仍待独立复审，DPO/GRPO未运行。

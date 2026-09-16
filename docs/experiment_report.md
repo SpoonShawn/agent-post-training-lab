@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+最新进度（阶段034，2026-09-16）：新完整Agent事务数据与模型接线已冻结，2058训练/256开发/128确认ID/400确认OOD，98结构组；训练展开31542个下一轮预测例子。2842条oracle通过，非模型成绩。新确认模型推理未开始，现需[SuperPOD工程检查](transaction_v1.md)：真实分词、14题Base、两步LoRA、14题重载检查。拿到显存/token/吞吐后才冻结完整SFT预算；DPO/GRPO仍未运行。[数据边界与问题记录](experiment_logs/034_transaction_dataset_gpu_gate.md)。
+
 项目重新立项（2026-09-16，阶段033）：用户明确要求完成完整后训练路线，阶段031/032收尾仅属于pilot，不再表示整个项目结束。[新路线](full_experiment_plan.md)包括完整Agent SFT、DPO、在线GRPO、统一多seed对照和独立工具后端迁移。已新增隔离事务环境，支持幂等、提交后超时、revision冲突、异步检查、回滚和撤权；50开发oracle重放通过，非模型成绩。正式数据/训练尚未准备完，不需GPU；[过程与问题](experiment_logs/033_full_agent_restart.md)。旧成果和未决项原样保留。
 
 学习交接（2026-09-16，阶段032）：新增[初学者学习路线/讲述/追问](project_learning_guide.md)及[完整证据退化案例](learning_case_walkthrough.md)，对应原始工具定义、完整输入和三个模型回答。本阶段仅本地文档，不新增训练、推理或成绩，不需要SuperPOD；[记录](experiment_logs/032_learning_handoff.md)。

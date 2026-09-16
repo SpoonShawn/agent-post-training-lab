@@ -6,9 +6,11 @@
 
 ## 当前入口：完整Agent实验重启（2026-09-16）
 
+阶段034已冻结新事务数据：2058训练轨迹、256开发、128确认ID、400确认OOD；模型接线和本地验证完成，现在需要[首次SuperPOD工程检查](docs/transaction_v1.md)。此轮仅真实分词、14题Base、两步LoRA及14题重载检查，不是完整SFT或正式确认评测；[详细日志](docs/experiment_logs/034_transaction_dataset_gpu_gate.md)。
+
 用户已确认继续完整SFT／DPO／GRPO及独立工具后端迁移路线；阶段001–032保留为pilot，不代表整个项目完成。见[完整计划与验收门槛](docs/full_experiment_plan.md)、[阶段033](docs/experiment_logs/033_full_agent_restart.md)。当前新增隔离事务环境与50条开发oracle重放，无新模型成绩，尚不需要SuperPOD。
 
-本地检查：`python3 -m scripts.check_transaction_dev`。这是程序/规则策略检查，不加载模型。正式新数据、训练与模型接口尚在准备，不应运行下方历史GPU入口代替新实验。
+本地检查：`python3 -m scripts.prepare_transaction_v1`；开发fixture检查：`python3 -m scripts.check_transaction_dev`。二者均不加载模型。请用阶段034的新GPU入口，不应运行下方历史GPU入口代替新实验；下段033说明保留为历史状态。
 
 ## 历史入口：LoRA pilot v1
 

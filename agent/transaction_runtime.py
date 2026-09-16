@@ -29,6 +29,10 @@ TOOLS = [
 SYSTEM = CONTRACT + "\n每轮最多输出一个<tool_call>{\"name\":工具名,\"arguments\":参数对象}</tool_call>，或最终报告JSON。"
 
 
+class ContextBudgetExceeded(Exception):
+    """Stop a model episode without truncating evidence or hiding a runtime crash."""
+
+
 def strict_json(text):
     def unique(pairs):
         obj = {}
@@ -48,7 +52,11 @@ def run_episode(generate, query, scenario, *, max_turns=40, max_calls=36):
     turns, answer, reason, calls = [], None, "max_turns", 0
     for step in range(max_turns):
         # The backend sees only public prompt/history and public schemas, never scenario/audit/target.
-        response = generate(deepcopy(messages), deepcopy(TOOLS))
+        try:
+            response = generate(deepcopy(messages), deepcopy(TOOLS))
+        except ContextBudgetExceeded:
+            reason = "context_budget"
+            break
         if not isinstance(response,str):
             raise TypeError("Generation backend must return text")
         messages.append(dict(role="assistant",content=response))

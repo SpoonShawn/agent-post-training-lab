@@ -1,0 +1,103 @@
+{
+  "study": "transaction_v1",
+  "seed": 20260917,
+  "counts": {
+    "train": {
+      "cases": 2058,
+      "groups": 49,
+      "trace_shapes": 49,
+      "assistant_examples": 31542,
+      "min_calls": 2,
+      "max_calls": 23,
+      "outcomes": {
+        "applied": 1008,
+        "rolled_back": 1008,
+        "blocked": 42
+      }
+    },
+    "dev": {
+      "cases": 256,
+      "groups": 16,
+      "trace_shapes": 16,
+      "assistant_examples": 3936,
+      "min_calls": 9,
+      "max_calls": 21,
+      "outcomes": {
+        "rolled_back": 128,
+        "applied": 128
+      }
+    },
+    "confirmation_id": {
+      "cases": 128,
+      "groups": 8,
+      "trace_shapes": 8,
+      "assistant_examples": 2144,
+      "min_calls": 11,
+      "max_calls": 19,
+      "outcomes": {
+        "applied": 64,
+        "rolled_back": 64
+      }
+    },
+    "confirmation_ood": {
+      "cases": 400,
+      "groups": 25,
+      "trace_shapes": 25,
+      "assistant_examples": 7392,
+      "min_calls": 5,
+      "max_calls": 24,
+      "outcomes": {
+        "rolled_back": 192,
+        "applied": 192,
+        "blocked": 16
+      }
+    },
+    "public_query_reuse": {
+      "unique": 24,
+      "cases": 2842,
+      "interpretation": "same public goal under different hidden environments; group isolation is structural, not prompt-text isolation"
+    }
+  },
+  "code": {
+    "agent/transaction_env.py": "252bb1412081d78c855cad77e260d4a553ad5c4993081814f37a49d5db9a62ef",
+    "agent/transaction_tasks.py": "0dddb26e19a00ead18b00515872b6c1fc8ae4b380b97fa44045c8c816b1affd6",
+    "agent/transaction_runtime.py": "a217b5bbda7abd110e82d718773f6842f62514f15c2af1666f4e191b71355ced",
+    "agent/transaction_model.py": "2e0a8d350de81d2def01140226c944b3b0b6ed23972e4a08cad6a5f5f0828ba4",
+    "training/transaction_data.py": "2d804bbf48101985c969dd826449c80221c0e7e7bdd62c06179c055747173fd5",
+    "training/transaction_sft.py": "b55c7aa8f5784b4e0b6acd45378087ca95d07d329a1c21760da6f6f2d0b7c561",
+    "scripts/prepare_transaction_v1.py": "9506d79136f75aed75688b69f264aa68102b3a54930b9a743cfa82b79e6f7c98",
+    "scripts/transaction_gpu_smoke.py": "ea1c3068391e83fb689793aeb479a559c991b2bf325f719f8b4318bd9c4b5011",
+    "scripts/superpod_transaction_smoke.sh": "3551ad4765361e8a86a96afaa338c9f7cacc02ef4a8952af085ab59bd396f65e",
+    "training/sft.py": "0799b9929fa5a1dd09a7aa0c1c4c826c4e88121ad006832f7f549bd9008e12d4",
+    "scripts/run_baseline.py": "df91b06bf3d3d6919d9fedde10905ab3a4aa9d11960aed4c6246fbe999c27acf",
+    "scripts/evidence_pilot_gpu.py": "592ca4b1c7411548ef56f3ed7107dbe57f4be4c6af444a12748e3c233bd36770"
+  },
+  "files": {
+    "train_cases.jsonl": "f14a092a2fe8e01d4f10cb57dec1424753db3d2f522dee34e038f76d1e516f90",
+    "train_trajectories.jsonl": "10fc3cb87681e136e13267ebabf0e9b250b4fbfeeb3d6a06903f402eafd5aac9",
+    "dev_cases.jsonl": "4e294c58b76002f26c535a1c52d87d675dd7072aa90b95e6a4f37ebdbeb4b17b",
+    "dev_trajectories.jsonl": "b4cdaa1d4fd53d5383aeee93525e266162bf4dd7f7bd325fba71ddae1d599d58",
+    "confirmation_id_cases.jsonl": "e29073edc732a4be7d5d10b3a8a0efea465b59389f551fa1e1984d312bac936d",
+    "confirmation_ood_cases.jsonl": "33cf97e78515612f578ab4a7aa8bbdcc0cb78a9c4e40e5d53633402461255429",
+    "smoke_cases.jsonl": "77f2f62d4c6e3d97441460ea577b5fd46573d606907f980c285c32d3a3231def"
+  },
+  "model_sha256": "8a3508ed8739b8816bb69bc671370ade2bcd742abcd6be316d9af6036625f68c",
+  "versions": {
+    "torch": "2.9.1",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "accelerate": "1.14.0"
+  },
+  "generation": {
+    "max_length": 8192,
+    "max_new_tokens": 512,
+    "max_turns": 40,
+    "max_calls": 36,
+    "do_sample": false
+  },
+  "partition": "grouped fault/outcome/delay traces; timeout+concurrency and commit-time revocation reserved OOD",
+  "confirmation": "128 structural-holdout ID + 400 OOD; report separately; no confirmation examples in SFT or smoke",
+  "gpu_gate": "preflight, Base engineering smoke14, two-step LoRA on longest train prefixes, smoke-adapter14; not formal SFT",
+  "planned_training": "full 2058 trajectories; optimizer/epoch/throughput budget frozen after real-token GPU gate, before full model comparison",
+  "label_scope": "structured execution+evidence+report; oracle checks are not model results"
+}
