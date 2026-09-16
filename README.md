@@ -6,7 +6,7 @@
 
 ## 当前入口：完整Agent实验重启（2026-09-16）
 
-阶段034已冻结新事务数据：2058训练轨迹、256开发、128确认ID、400确认OOD；模型接线和本地验证完成，现在需要[首次SuperPOD工程检查](docs/transaction_v1.md)。此轮仅真实分词、14题Base、两步LoRA及14题重载检查，不是完整SFT或正式确认评测；[详细日志](docs/experiment_logs/034_transaction_dataset_gpu_gate.md)。
+阶段035已核验新事务GPU工程结果：链路正常，Base/两步adapter任务均0/14，失败保留且评分不变。现在需要[完整SFT首轮SuperPOD运行](docs/transaction_full_sft_v1.md)：2058训练轨迹、31542预测例子、1epoch/3943步；Base/SFT各评估开发256、确认ID128、确认OOD400。正式运行尚未开始，支持检查点恢复；[详细日志](docs/experiment_logs/035_transaction_smoke_and_full_sft.md)。DPO/GRPO和后续路线仍待推进。
 
 用户已确认继续完整SFT／DPO／GRPO及独立工具后端迁移路线；阶段001–032保留为pilot，不代表整个项目完成。见[完整计划与验收门槛](docs/full_experiment_plan.md)、[阶段033](docs/experiment_logs/033_full_agent_restart.md)。当前新增隔离事务环境与50条开发oracle重放，无新模型成绩，尚不需要SuperPOD。
 
