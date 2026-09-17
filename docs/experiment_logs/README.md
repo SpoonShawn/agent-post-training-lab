@@ -53,5 +53,7 @@
 | 041 | [DPO计算与GPU检查准备](041_dpo_engineering_gate.md) | assistant-only、固定参考、两步真实DPO待GPU；非正式训练成绩 |
 | 042 | [两步DPO实测核验](042_dpo_gate_results.md) | 数值/梯度通过，差距主要来自压低错误轨迹；无任务新成绩 |
 | 043 | [正式小规模DPO准备](043_full_dpo_readiness.md) | 从原SFT重启80对/80步并评784题，待GPU；支持中断续跑 |
+| 044 | [正式DPO负结果](044_full_dpo_results.md) | 80步完成，OOD258/400→256/400；两条退化，评分不改 |
+| 045 | [GRPO奖励方差采样准备](045_grpo_rollout_readiness.md) | 8个train任务×4次，需GPU；记录行为概率，无优化器更新 |
 
-当前状态：两步DPO工程结果已核验，下一步[正式小规模DPO及评测](043_full_dpo_readiness.md)需要GPU。正式DPO/GRPO尚未完成，完整Agent泛化未解决，1条旧Base未决仍待独立复审。
+当前状态：正式DPO首seed已核验，下一步[GRPO训练侧32次采样](045_grpo_rollout_readiness.md)需要GPU。GRPO、多seed、独立后端尚未完成，完整Agent泛化未解决，1条旧Base未决仍待独立复审。

@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+最新进度（阶段044/045，2026-09-17）：正式80步DPO及784题评测已完成，三臂2352条轨迹重放。开发256/256、ID128/128保持不变，OOD从SFT258/400降至DPO256/400，0改善、2退化；偏好开发loss约3.72e-9并未转化为任务收益，16条权限失败未解决。[完整负结果与限制](experiment_logs/044_full_dpo_results.md)。已冻结原SFT、仅train的8题×4次GRPO奖励方差/行为概率采样，需[SuperPOD操作](experiment_logs/045_grpo_rollout_readiness.md)。该采样没有优化器更新，不是GRPO训练；多seed、对照及独立后端仍未完成。以下均为历史快照。
+
 最新进度（阶段042/043，2026-09-17）：两步DPO实测已核验，98对固定参考完整；初始loss=log2，梯度范数36.49/29.73，数值/mask检查通过，H800总窗口236.67秒。四探针偏好差距改善主要来自压低rejected，两个chosen概率略降；没有闭环任务提升证据。[结果与局限](experiment_logs/042_dpo_gate_results.md)。已冻结从原SFT重启的80对/80步正式小规模DPO，随后同784题比较，支持checkpoint/逐题续跑；需要[后台GPU操作](experiment_logs/043_full_dpo_readiness.md)。正式DPO尚未运行，GRPO、多seed和独立后端未完成。以下为历史快照。
 
 最新进度（阶段040/041，2026-09-17）：98条Base训练侧候选已重放，Base完整任务0/98，对应SFT候选98/98，形成98对跨策略偏好、0弃权。按组冻结80训练/18偏好开发；后者在SFT阶段见过，不称独立确认。[配对与局限](experiment_logs/040_cross_policy_pairs.md)。已实现多轮assistant-only DPO、固定SFT参考缓存、两遍精确链式梯度及数值/mask检查；本地无torch，真实反向传播待[两步GPU工程检查](experiment_logs/041_dpo_engineering_gate.md)。正式DPO未训练、无新任务成绩；低负例概率不等于DPO初始梯度消失的说明已补充。以下为历史快照。
