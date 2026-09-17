@@ -6,6 +6,8 @@
 
 ## 当前入口：完整Agent实验重启（2026-09-16）
 
+阶段040/041：已核验98对真实跨策略偏好，冻结80训练/18偏好开发；多轮DPO概率/mask/固定参考接线已实现，需要[两步GPU工程检查](docs/experiment_logs/041_dpo_engineering_gate.md)。正式DPO尚未运行，不承诺小规模简单负例会提高OOD；[数据结果](docs/experiment_logs/040_cross_policy_pairs.md)。下面为历史阶段摘要。
+
 阶段038/039（2026-09-17）：训练侧392次候选全成功且同题输出相同，0可用偏好对，保留这一负结果。下一步仅采集同98个训练任务的Base真实轨迹做跨策略候选；[结果与原因](docs/experiment_logs/038_preference_probe_zero_pairs.md)、[短GPU操作](docs/experiment_logs/039_cross_policy_preferences_ready.md)。DPO尚未训练，不回灌确认失败。
 
 阶段036/037（2026-09-17）：完整SFT实际完成并重放1568条结果；SFT开发256/256、确认ID128/128、OOD258/400。142条SFT失败保留，含16条权限撤销后重复写请求，不能以执行终态正确宣称全面成功。[结果与中断复盘](docs/experiment_logs/036_full_sft_results.md)。下一步[训练侧偏好供给采样](docs/experiment_logs/037_preference_probe_readiness.md)，需后台GPU，不是DPO训练；完整路线继续。

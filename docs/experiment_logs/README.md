@@ -49,5 +49,7 @@
 | 037 | [训练侧偏好采样准备](037_preference_probe_readiness.md) | 98题×4真实候选待GPU，仅检查偏好供给，非DPO训练 |
 | 038 | [偏好供给零对实测](038_preference_probe_zero_pairs.md) | 392/392成功且每题4候选相同；98题全部弃权，负结果保留 |
 | 039 | [跨策略候选准备](039_cross_policy_preferences_ready.md) | 同98个train任务采集Base真实轨迹；短GPU待运行，非DPO训练 |
+| 040 | [98对跨策略偏好实测](040_cross_policy_pairs.md) | Base0/98、SFT98/98；80训练/18偏好开发，来源局限保留 |
+| 041 | [DPO计算与GPU检查准备](041_dpo_engineering_gate.md) | assistant-only、固定参考、两步真实DPO待GPU；非正式训练成绩 |
 
-当前状态：SFT训练侧同策略候选无偏好差异，0对结果保留；下一步[跨策略训练侧候选](039_cross_policy_preferences_ready.md)需要GPU。DPO/GRPO尚未训练，完整Agent泛化未解决，1条旧Base未决仍待独立复审。
+当前状态：跨策略98对已核验，DPO计算接线已实现；下一步[两步GPU检查](041_dpo_engineering_gate.md)。正式DPO和GRPO尚未训练，完整Agent泛化未解决，1条旧Base未决仍待独立复审。

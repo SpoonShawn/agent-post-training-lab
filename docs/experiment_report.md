@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+最新进度（阶段040/041，2026-09-17）：98条Base训练侧候选已重放，Base完整任务0/98，对应SFT候选98/98，形成98对跨策略偏好、0弃权。按组冻结80训练/18偏好开发；后者在SFT阶段见过，不称独立确认。[配对与局限](experiment_logs/040_cross_policy_pairs.md)。已实现多轮assistant-only DPO、固定SFT参考缓存、两遍精确链式梯度及数值/mask检查；本地无torch，真实反向传播待[两步GPU工程检查](experiment_logs/041_dpo_engineering_gate.md)。正式DPO未训练、无新任务成绩；低负例概率不等于DPO初始梯度消失的说明已补充。以下为历史快照。
+
 最新进度（阶段038/039，2026-09-17）：训练侧偏好probe392/392轨迹核验，全成功；98题各4候选完全相同，0偏好对、98题全部弃权。这是偏好供给负结果，不是新泛化成绩，也没有进行DPO。保留原结果，不伪造负例、不回灌确认题。[完整复盘](experiment_logs/038_preference_probe_zero_pairs.md)。下一步已冻结同98个train任务的Base真实轨迹采集，与固定SFT候选形成跨策略离线候选；需要[短GPU作业](experiment_logs/039_cross_policy_preferences_ready.md)。负例可能过易，配对后仍须检查DPO梯度信号，不能保证收益。以下为历史快照。
 
 最新进度（阶段036/037，2026-09-17）：完整SFT首seed已运行并核验1568条轨迹。完整任务Base均0；SFT开发256/256、确认ID128/128、OOD258/400（64.5%）。OOD126条只错错误计数，16条撤权后循环至预算耗尽，共244次违规请求；执行条件400/400不能当完整成功。训练3943步/10268秒；两次评测中断已续完，原始失败926条保留索引。[实测与故障复盘](experiment_logs/036_full_sft_results.md)。已准备仅train的98题×4候选采样检查，下一步需[后台GPU采样](experiment_logs/037_preference_probe_readiness.md)；不更新权重，不是DPO训练，若无好坏对会如实记录。DPO/GRPO、多seed与独立后端仍未完成。以下为历史快照。
