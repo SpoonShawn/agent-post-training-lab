@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+最新进度（阶段036/037，2026-09-17）：完整SFT首seed已运行并核验1568条轨迹。完整任务Base均0；SFT开发256/256、确认ID128/128、OOD258/400（64.5%）。OOD126条只错错误计数，16条撤权后循环至预算耗尽，共244次违规请求；执行条件400/400不能当完整成功。训练3943步/10268秒；两次评测中断已续完，原始失败926条保留索引。[实测与故障复盘](experiment_logs/036_full_sft_results.md)。已准备仅train的98题×4候选采样检查，下一步需[后台GPU采样](experiment_logs/037_preference_probe_readiness.md)；不更新权重，不是DPO训练，若无好坏对会如实记录。DPO/GRPO、多seed与独立后端仍未完成。以下为历史快照。
+
 最新进度（阶段035，2026-09-16）：上传工程结果28/28重放通过；Base/两步adapter各执行2/14、完整任务0/14，失败全部保留，未改评分。两步只监督最长报告前缀，不代表完整多轮SFT。H800峰值allocated13.26GiB；真实训练输入52593783tokens、监督663355tokens。已冻结fresh完整SFT：2058轨迹/31542预测例子、1epoch/3943步，Base/SFT各784题分开发/确认ID/OOD评价；正式训练尚未运行。需要[SuperPOD操作](transaction_full_sft_v1.md)，支持检查点续跑。[实测、具体失败与设计取舍](experiment_logs/035_transaction_smoke_and_full_sft.md)。DPO/GRPO、多seed、独立后端仍待完成。以下保留历史快照。
 
 最新进度（阶段034，2026-09-16）：新完整Agent事务数据与模型接线已冻结，2058训练/256开发/128确认ID/400确认OOD，98结构组；训练展开31542个下一轮预测例子。2842条oracle通过，非模型成绩。新确认模型推理未开始，现需[SuperPOD工程检查](transaction_v1.md)：真实分词、14题Base、两步LoRA、14题重载检查。拿到显存/token/吞吐后才冻结完整SFT预算；DPO/GRPO仍未运行。[数据边界与问题记录](experiment_logs/034_transaction_dataset_gpu_gate.md)。
