@@ -1,0 +1,69 @@
+{
+  "status": "complete",
+  "plan_sha256": "75e5ff188831bc2d6d5a5ae546b5823d3d519ee6104a245cb98a29cd9c90ff10",
+  "config": {
+    "beta": 0.1,
+    "learning_rate": 5e-06,
+    "weight_decay": 0.0,
+    "max_grad_norm": 1.0,
+    "steps": 2,
+    "seed": 20260917,
+    "dropout": 0.0,
+    "objective": "sum_assistant_token_logp_DPO_no_length_normalization",
+    "reference": "initial_SFT_cached_before_updates",
+    "scope": "engineering_gate_never_resume_as_formal_DPO"
+  },
+  "started_at": "2026-09-17T07:00:15.496310+00:00",
+  "gpu": "NVIDIA H800",
+  "steps": [
+    {
+      "step": 1,
+      "case_id": "txn1_6dfd1aeab0595a80_12",
+      "grad_norm_before_clip": 36.48772048950195,
+      "loss": 0.6931471805599453,
+      "coefficient": -0.05,
+      "reference_adjusted_margin": 0.0,
+      "chosen_logp": -0.0010534336761338636,
+      "rejected_logp": -178.9431503713131
+    },
+    {
+      "step": 2,
+      "case_id": "txn1_7282fde0dc2927b7_09",
+      "grad_norm_before_clip": 29.73367691040039,
+      "loss": 0.35359203900243763,
+      "coefficient": -0.02978386366175273,
+      "reference_adjusted_margin": 0.8576113879924379,
+      "chosen_logp": -0.001357888901111437,
+      "rejected_logp": -203.3467878997326
+    }
+  ],
+  "numeric_checks": {
+    "direct_vs_two_pass_gradient": true,
+    "non_action_logit_mask": true
+  },
+  "trainable_parameters": 33030144,
+  "probe_after": {
+    "txn1_6dfd1aeab0595a80_12": {
+      "chosen": -0.0010778702780953608,
+      "rejected": -198.2867027670145
+    },
+    "txn1_7282fde0dc2927b7_09": {
+      "chosen": -0.0013503786904038861,
+      "rejected": -213.78017538785934
+    },
+    "txn1_4040da22e97a4b86_16": {
+      "chosen": -0.0009878700293484144,
+      "rejected": -163.1567606329918
+    },
+    "txn1_cbea2e91f7d016a8_09": {
+      "chosen": -0.0009176576932077296,
+      "rejected": -160.94171726703644
+    }
+  },
+  "adapter_sha256": "3a265ec0c558ead0713231c05c7e7befb4bf5f53f549a16279801294d8a1e1dd",
+  "reference_sha256": "c238d8474aaa796cd08a89e990932cbc073ff502f768afc1024b7c3126565544",
+  "peak_cuda_allocated_bytes": 10537435136,
+  "peak_cuda_reserved_bytes": 27437039616,
+  "completed_at": "2026-09-17T07:04:12.163633+00:00",
+  "note": "Real two-step DPO only; no task-success or generalization claim, never resume as formal DPO"
+}
