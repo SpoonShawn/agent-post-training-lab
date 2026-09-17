@@ -51,5 +51,7 @@
 | 039 | [跨策略候选准备](039_cross_policy_preferences_ready.md) | 同98个train任务采集Base真实轨迹；短GPU待运行，非DPO训练 |
 | 040 | [98对跨策略偏好实测](040_cross_policy_pairs.md) | Base0/98、SFT98/98；80训练/18偏好开发，来源局限保留 |
 | 041 | [DPO计算与GPU检查准备](041_dpo_engineering_gate.md) | assistant-only、固定参考、两步真实DPO待GPU；非正式训练成绩 |
+| 042 | [两步DPO实测核验](042_dpo_gate_results.md) | 数值/梯度通过，差距主要来自压低错误轨迹；无任务新成绩 |
+| 043 | [正式小规模DPO准备](043_full_dpo_readiness.md) | 从原SFT重启80对/80步并评784题，待GPU；支持中断续跑 |
 
-当前状态：跨策略98对已核验，DPO计算接线已实现；下一步[两步GPU检查](041_dpo_engineering_gate.md)。正式DPO和GRPO尚未训练，完整Agent泛化未解决，1条旧Base未决仍待独立复审。
+当前状态：两步DPO工程结果已核验，下一步[正式小规模DPO及评测](043_full_dpo_readiness.md)需要GPU。正式DPO/GRPO尚未完成，完整Agent泛化未解决，1条旧Base未决仍待独立复审。
