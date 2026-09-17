@@ -6,6 +6,8 @@
 
 ## 当前入口：完整Agent实验重启（2026-09-16）
 
+阶段038/039（2026-09-17）：训练侧392次候选全成功且同题输出相同，0可用偏好对，保留这一负结果。下一步仅采集同98个训练任务的Base真实轨迹做跨策略候选；[结果与原因](docs/experiment_logs/038_preference_probe_zero_pairs.md)、[短GPU操作](docs/experiment_logs/039_cross_policy_preferences_ready.md)。DPO尚未训练，不回灌确认失败。
+
 阶段036/037（2026-09-17）：完整SFT实际完成并重放1568条结果；SFT开发256/256、确认ID128/128、OOD258/400。142条SFT失败保留，含16条权限撤销后重复写请求，不能以执行终态正确宣称全面成功。[结果与中断复盘](docs/experiment_logs/036_full_sft_results.md)。下一步[训练侧偏好供给采样](docs/experiment_logs/037_preference_probe_readiness.md)，需后台GPU，不是DPO训练；完整路线继续。
 
 阶段035已核验新事务GPU工程结果：链路正常，Base/两步adapter任务均0/14，失败保留且评分不变。现在需要[完整SFT首轮SuperPOD运行](docs/transaction_full_sft_v1.md)：2058训练轨迹、31542预测例子、1epoch/3943步；Base/SFT各评估开发256、确认ID128、确认OOD400。正式运行尚未开始，支持检查点恢复；[详细日志](docs/experiment_logs/035_transaction_smoke_and_full_sft.md)。DPO/GRPO和后续路线仍待推进。

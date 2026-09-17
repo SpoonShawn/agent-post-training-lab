@@ -47,5 +47,7 @@
 | 035 | [工程实测与完整SFT冻结](035_transaction_smoke_and_full_sft.md) | 工程通过但任务各0/14；完整3943步SFT与784题比较待GPU |
 | 036 | [完整SFT实测与断线复盘](036_full_sft_results.md) | ID128/128、OOD258/400；计数错误与撤权循环保留 |
 | 037 | [训练侧偏好采样准备](037_preference_probe_readiness.md) | 98题×4真实候选待GPU，仅检查偏好供给，非DPO训练 |
+| 038 | [偏好供给零对实测](038_preference_probe_zero_pairs.md) | 392/392成功且每题4候选相同；98题全部弃权，负结果保留 |
+| 039 | [跨策略候选准备](039_cross_policy_preferences_ready.md) | 同98个train任务采集Base真实轨迹；短GPU待运行，非DPO训练 |
 
-当前状态：完整SFT首seed已审计，下一步[训练侧候选采样](037_preference_probe_readiness.md)需要GPU；DPO/GRPO尚未训练。完整Agent泛化未解决，1条旧Base未决仍待独立复审，旧收尾仅指pilot。
+当前状态：SFT训练侧同策略候选无偏好差异，0对结果保留；下一步[跨策略训练侧候选](039_cross_policy_preferences_ready.md)需要GPU。DPO/GRPO尚未训练，完整Agent泛化未解决，1条旧Base未决仍待独立复审。
