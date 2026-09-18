@@ -11,7 +11,7 @@ from training.transaction_grpo import advantages, clipped_objective, aggregate_u
 from agent.transaction_runtime import run_episode
 from agent.transaction_model import TransactionAgent
 
-BASE=ROOT/"data/transaction_grpo_pilot_v1.json"; PLAN=ROOT/"data/transaction_grpo_pilot_v1_protocol.json"
+BASE=ROOT/"data/transaction_grpo_pilot_v1.json"; PLAN=ROOT/"data/transaction_grpo_pilot_v2_protocol.json"
 OUT=ROOT/"results/transaction_grpo_pilot_v1"; CKPT=ROOT/"checkpoints/transaction_grpo_pilot_v1"; SFT=ROOT/"checkpoints/transaction_v1_full_sft/adapter"
 
 def protocol(freeze=False):

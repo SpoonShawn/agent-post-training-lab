@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+阶段048：作业595203在模型加载前因LoRA修复后的代码SHA与旧pilot协议不一致而停止；无训练结果。已保留旧协议并升级为v2协议重新冻结，数据、reward和实验边界不变。[故障记录](experiment_logs/048_grpo_pilot_protocol_drift.md)。
+
 阶段047：GRPO pilot 作业595095在加载双模型后因LoRA adapter默认冻结，优化器收到空参数而失败；无模型更新、无checkpoint、无成绩。已修复policy/reference的冻结状态并增加启动检查，原始失败日志保留。[故障记录](experiment_logs/047_grpo_pilot_launcher_failure.md)。
 
 阶段046已冻结正式GRPO pilot设计：原SFT初始化，24个train结构组、group size 4、temperature 1.2/1.5/1.8，各2次更新，共192条训练episodes；ID/OOD只做独立更新后评测，32条variance probe不回灌。当前仅完成代码与协议验证，GRPO尚未训练，等待SuperPOD运行。[设计与边界](experiment_logs/046_grpo_pilot_design.md)。

@@ -57,5 +57,6 @@
 | 045 | [GRPO奖励方差采样准备](045_grpo_rollout_readiness.md) | 8个train任务×4次，需GPU；记录行为概率，无优化器更新 |
 | 046 | [GRPO正式pilot设计](046_grpo_pilot_design.md) | 24个train结构组、3档temperature、真实更新代码；待GPU |
 | 047 | [GRPO pilot启动失败](047_grpo_pilot_launcher_failure.md) | LoRA默认冻结导致优化器空参数；已定位修复，未产生训练结果 |
+| 048 | [GRPO pilot协议指纹失败](048_grpo_pilot_protocol_drift.md) | 修复后代码SHA未重新冻结；切换v2协议，未产生训练结果 |
 
 当前状态：正式DPO首seed已核验，下一步[GRPO训练侧32次采样](045_grpo_rollout_readiness.md)需要GPU。GRPO、多seed、独立后端尚未完成，完整Agent泛化未解决，1条旧Base未决仍待独立复审。
