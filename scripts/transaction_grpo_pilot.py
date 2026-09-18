@@ -57,7 +57,19 @@ def main():
     import torch
     if not torch.cuda.is_available() or not torch.cuda.is_bf16_supported(): raise RuntimeError('one bf16 GPU required')
     OUT.mkdir(parents=True,exist_ok=True); CKPT.mkdir(parents=True,exist_ok=True); checked_tokenizer(a.model_path,bundle())
-    policy=RolloutAgent(a.model_path,adapter_path=SFT); reference=RolloutAgent(a.model_path,adapter_path=SFT); reference.model.eval(); opt=torch.optim.AdamW([p for p in policy.model.parameters() if p.requires_grad],lr=spec['lr'])
+    policy=RolloutAgent(a.model_path,adapter_path=SFT)
+    # PeftModel.from_pretrained is inference-frozen by default. The policy arm
+    # must explicitly re-enable only LoRA weights; the reference remains frozen.
+    for name,param in policy.model.named_parameters():
+        if "lora_" in name:
+            param.requires_grad_(True)
+    trainable=[p for p in policy.model.parameters() if p.requires_grad]
+    if not trainable:
+        raise RuntimeError("GRPO policy has no trainable LoRA parameters")
+    reference=RolloutAgent(a.model_path,adapter_path=SFT); reference.model.eval()
+    for param in reference.model.parameters():
+        param.requires_grad_(False)
+    opt=torch.optim.AdamW(trainable,lr=spec['lr'])
     for temp in spec['temperatures']:
         policy.configure(temp)
         for update in range(1,spec['updates_per_temperature']+1):

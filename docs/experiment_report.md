@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+阶段047：GRPO pilot 作业595095在加载双模型后因LoRA adapter默认冻结，优化器收到空参数而失败；无模型更新、无checkpoint、无成绩。已修复policy/reference的冻结状态并增加启动检查，原始失败日志保留。[故障记录](experiment_logs/047_grpo_pilot_launcher_failure.md)。
+
 阶段046已冻结正式GRPO pilot设计：原SFT初始化，24个train结构组、group size 4、temperature 1.2/1.5/1.8，各2次更新，共192条训练episodes；ID/OOD只做独立更新后评测，32条variance probe不回灌。当前仅完成代码与协议验证，GRPO尚未训练，等待SuperPOD运行。[设计与边界](experiment_logs/046_grpo_pilot_design.md)。
 
 最新进度（阶段044/045，2026-09-17）：正式80步DPO及784题评测已完成，三臂2352条轨迹重放。开发256/256、ID128/128保持不变，OOD从SFT258/400降至DPO256/400，0改善、2退化；偏好开发loss约3.72e-9并未转化为任务收益，16条权限失败未解决。[完整负结果与限制](experiment_logs/044_full_dpo_results.md)。已冻结原SFT、仅train的8题×4次GRPO奖励方差/行为概率采样，需[SuperPOD操作](experiment_logs/045_grpo_rollout_readiness.md)。该采样没有优化器更新，不是GRPO训练；多seed、对照及独立后端仍未完成。以下均为历史快照。
