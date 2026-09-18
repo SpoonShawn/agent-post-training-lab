@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+阶段046已冻结正式GRPO pilot设计：原SFT初始化，24个train结构组、group size 4、temperature 1.2/1.5/1.8，各2次更新，共192条训练episodes；ID/OOD只做独立更新后评测，32条variance probe不回灌。当前仅完成代码与协议验证，GRPO尚未训练，等待SuperPOD运行。[设计与边界](experiment_logs/046_grpo_pilot_design.md)。
+
 最新进度（阶段044/045，2026-09-17）：正式80步DPO及784题评测已完成，三臂2352条轨迹重放。开发256/256、ID128/128保持不变，OOD从SFT258/400降至DPO256/400，0改善、2退化；偏好开发loss约3.72e-9并未转化为任务收益，16条权限失败未解决。[完整负结果与限制](experiment_logs/044_full_dpo_results.md)。已冻结原SFT、仅train的8题×4次GRPO奖励方差/行为概率采样，需[SuperPOD操作](experiment_logs/045_grpo_rollout_readiness.md)。该采样没有优化器更新，不是GRPO训练；多seed、对照及独立后端仍未完成。以下均为历史快照。
 
 最新进度（阶段042/043，2026-09-17）：两步DPO实测已核验，98对固定参考完整；初始loss=log2，梯度范数36.49/29.73，数值/mask检查通过，H800总窗口236.67秒。四探针偏好差距改善主要来自压低rejected，两个chosen概率略降；没有闭环任务提升证据。[结果与局限](experiment_logs/042_dpo_gate_results.md)。已冻结从原SFT重启的80对/80步正式小规模DPO，随后同784题比较，支持checkpoint/逐题续跑；需要[后台GPU操作](experiment_logs/043_full_dpo_readiness.md)。正式DPO尚未运行，GRPO、多seed和独立后端未完成。以下为历史快照。
