@@ -11,7 +11,7 @@ from training.transaction_grpo import advantages, clipped_objective, aggregate_u
 from agent.transaction_runtime import run_episode
 from agent.transaction_model import TransactionAgent
 
-BASE=ROOT/"data/transaction_grpo_pilot_v1.json"; PLAN=ROOT/"data/transaction_grpo_pilot_v2_protocol.json"
+BASE=ROOT/"data/transaction_grpo_pilot_v1.json"; PLAN=ROOT/"data/transaction_grpo_pilot_v3_protocol.json"
 OUT=ROOT/"results/transaction_grpo_pilot_v1"; CKPT=ROOT/"checkpoints/transaction_grpo_pilot_v1"; SFT=ROOT/"checkpoints/transaction_v1_full_sft/adapter"
 
 def protocol(freeze=False):
@@ -32,8 +32,12 @@ def protocol(freeze=False):
 
 def sequence_logp(model,ids,prompt_len):
     import torch
-    logits=model(input_ids=ids).logits[0].float(); target=ids[0,prompt_len:]; dist=logits[prompt_len-1:-1].log_softmax(-1)
+    # Disable KV cache during teacher-forced scoring. Keeping generation caches
+    # across 32x4 turns otherwise grows memory until the next full-vocab forward
+    # cannot allocate its logits tensor.
+    output=model(input_ids=ids,use_cache=False); logits=output.logits[0]; target=ids[0,prompt_len:]; dist=logits[prompt_len-1:-1].float().log_softmax(-1)
     lp=dist.gather(-1,target[:,None]).squeeze(-1); entropy=-(dist.exp()*dist).sum(-1)
+    del output, logits, dist
     return lp,entropy
 
 class RolloutAgent(TransactionAgent):
@@ -66,7 +70,11 @@ def main():
     trainable=[p for p in policy.model.parameters() if p.requires_grad]
     if not trainable:
         raise RuntimeError("GRPO policy has no trainable LoRA parameters")
+    policy.model.config.use_cache=False
+    if hasattr(policy.model, "gradient_checkpointing_enable"):
+        policy.model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant":False})
     reference=RolloutAgent(a.model_path,adapter_path=SFT); reference.model.eval()
+    reference.model.config.use_cache=False
     for param in reference.model.parameters():
         param.requires_grad_(False)
     opt=torch.optim.AdamW(trainable,lr=spec['lr'])
@@ -91,6 +99,8 @@ def main():
                         ids=torch.tensor([turn['prompt_ids']+turn['generated_ids']],device=policy.model.device); new,entropy=sequence_logp(policy.model,ids,len(turn['prompt_ids']))
                         with torch.no_grad(): ref,_=sequence_logp(reference.model,ids,len(turn['prompt_ids']))
                         old=torch.tensor(turn['old_logprobs'],device=policy.model.device,dtype=new.dtype); term,ratio,kl=clipped_objective(new,old,ref,amap[cid][i],spec['clip_range'],spec['beta']); (-term.mean()/len(xs)).backward(); ratios.extend(ratio.tolist()); kls.extend(kl.tolist()); entropies.extend(entropy.tolist()); lengths.append(len(turn['generated_ids']))
+                        del ids,new,ref,old,term,ratio,kl,entropy
+                        torch.cuda.empty_cache()
             torch.nn.utils.clip_grad_norm_([p for p in policy.model.parameters() if p.requires_grad],1.); opt.step()
             stats=aggregate_update_stats(rewards,advs,ratios,kls,entropies,lengths,[1.0]*len(rewards),rewards); stats.update(temperature=temp,update=update,completed_at=datetime.now(timezone.utc).isoformat())
             folder=CKPT/f"checkpoint-t{str(temp).replace('.','')}-{update}"; folder.mkdir(parents=True,exist_ok=True)

@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+阶段049：作业595207完成temperature 1.2的两个update（第一批reward饱和，第二批32条中30条成功并出现优势），随后在下一档temperature的完整词表teacher-forced forward因显存耗尽失败；没有完整GRPO成绩，也未进行ID/OOD评测。已加入use_cache关闭、gradient checkpointing和逐turn内存释放，保留原始OOM记录。[故障与中间结果](experiment_logs/049_grpo_pilot_oom.md)。
+
 阶段048：作业595203在模型加载前因LoRA修复后的代码SHA与旧pilot协议不一致而停止；无训练结果。已保留旧协议并升级为v2协议重新冻结，数据、reward和实验边界不变。[故障记录](experiment_logs/048_grpo_pilot_protocol_drift.md)。
 
 阶段047：GRPO pilot 作业595095在加载双模型后因LoRA adapter默认冻结，优化器收到空参数而失败；无模型更新、无checkpoint、无成绩。已修复policy/reference的冻结状态并增加启动检查，原始失败日志保留。[故障记录](experiment_logs/047_grpo_pilot_launcher_failure.md)。
