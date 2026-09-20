@@ -1,0 +1,1 @@
+{"context_tokens":8192,"gpu":"NVIDIA H800","gradient_norm":51.33998572237388,"lm_head_positions":32,"max_allocated_bytes":12359291904,"max_reserved_bytes":12960399360,"plan_sha256":"e0059564f0a256adfbd0cea2334d23f06ffe0ac2ebef8b63fb239d79e6a953af","scope":"synthetic_memory_and_gradient_gate_no_update"}
