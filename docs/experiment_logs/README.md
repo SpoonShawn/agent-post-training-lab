@@ -60,5 +60,6 @@
 | 048 | [GRPO pilot协议指纹失败](048_grpo_pilot_protocol_drift.md) | 修复后代码SHA未重新冻结；切换v2协议，未产生训练结果 |
 | 049 | [GRPO pilot显存失败](049_grpo_pilot_oom.md) | temperature 1.2两次更新完成，下一档teacher-forced forward OOM；已修复内存释放 |
 | 050 | [GRPO runner重设计](050_grpo_runner_redesign.md) | 分块logits、独立temperature arm、memory gate；需先通过GPU gate |
+| 051 | [GRPO pilot上传结果](051_grpo_pilot_uploaded_results.md) | 3档temperature、6个update、288条rollout；待独立ID/OOD评测 |
 
 当前状态：正式DPO首seed已核验，下一步[GRPO训练侧32次采样](045_grpo_rollout_readiness.md)需要GPU。GRPO、多seed、独立后端尚未完成，完整Agent泛化未解决，1条旧Base未决仍待独立复审。
