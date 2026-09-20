@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+阶段052已准备6个GRPO checkpoint的独立ID/OOD评测入口，固定128条ID与400条OOD，不回灌训练、不覆盖SFT结果。当前等待SuperPOD后台评测；训练reward不能替代泛化指标。[评测准备](experiment_logs/052_grpo_independent_eval_readiness.md)。
+
 阶段051已上传完整GRPO pilot：3个独立SFT初始化arm、temperature 1.2/1.5/1.8，各2个update，共288条训练rollout。t=1.2从0.9792升至1.0并饱和；t=1.5为0.6667→0.625；t=1.8为0.0208→0。所有arm参数均变化，但这仍是训练侧统计，尚无ID/OOD提升结论。下一步运行独立confirmation评测。[阶段日志](experiment_logs/051_grpo_pilot_uploaded_results.md)。
 
 阶段050：复查595207后发现v1不仅有显存峰值问题，还有temperature顺序混杂、behavior logprob一致性未验证和tool validity固定值等接线风险。已重写为v2 runner：分块目标logits、共享基座双adapter、三档temperature独立初始化、8192上下文memory/gradient gate。旧pilot不算完成，需先通过GPU gate。[重设计记录](experiment_logs/050_grpo_runner_redesign.md)。
