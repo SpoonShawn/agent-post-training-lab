@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+阶段056：repaired targeted SFT在32条ID和32条OOD上均任务成功，执行与答案均32/32、违规0；这是修复后模型的绝对结果，尚未与同一repaired benchmark上的原SFT配对，暂不宣称提升。下一步只补跑64条原SFT baseline即可完成配对比较。[阶段日志](experiment_logs/056_repaired_sft_first_results.md)。
+
 阶段055：发现旧数据train没有`revoke_before_commit`而OOD全部包含该机制，新增repaired benchmark并固定共享机制、独立group和五类知识面。计划从原SFT做128步targeted SFT，评估32条repaired ID与32条repaired OOD；这是新协议，旧结果不改写。尚未运行GPU。[设计与指令](experiment_logs/055_repaired_benchmark_and_targeted_sft.md)。
 
 阶段054：GRPO pilot的12个独立评测文件已完整上传并审计。SFT ID为128/128，6个GRPO checkpoint均128/128；SFT OOD为258/400，t1.2/t1.8均257/400，t1.5均256/400，0条改善、1–2条退化。执行成功率均400/400、违规调用均244，差异集中在tool_errors最终报告计数。当前证据不支持GRPO泛化提升。[阶段结果](experiment_logs/054_grpo_independent_eval_results.md)。

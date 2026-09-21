@@ -65,5 +65,6 @@
 | 053 | [独立评测续跑修复](053_grpo_eval_resume.md) | 作业约27.6%时预计超8小时；校验已有行后逐题追加 |
 | 054 | [GRPO独立ID/OOD结果](054_grpo_independent_eval_results.md) | 3168条评测完整；ID不变，OOD无提升并有退化 |
 | 055 | [repaired benchmark与targeted SFT](055_repaired_benchmark_and_targeted_sft.md) | 共享故障机制、五类知识面、96 train/32 ID/32 OOD；需GPU |
+| 056 | [repaired SFT首轮结果](056_repaired_sft_first_results.md) | targeted SFT在ID/OOD均32/32；等待原SFT配对baseline |
 
 当前状态：正式DPO首seed已核验，下一步[GRPO训练侧32次采样](045_grpo_rollout_readiness.md)需要GPU。GRPO、多seed、独立后端尚未完成，完整Agent泛化未解决，1条旧Base未决仍待独立复审。
