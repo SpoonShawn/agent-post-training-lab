@@ -258,6 +258,19 @@
 
 ## 8. 持续维护与纠错
 
+### 阶段 057：Repaired benchmark 配对基线与定向 SFT（2026-09-21）
+
+为避免把“新测试集容易”误判成模型提升，在同一份 frozen `transaction_repaired_v1` ID/OOD（各32条）上补跑原始 full-SFT baseline：
+
+| Adapter | ID task success | OOD task success | 平均调用 | policy violations |
+|---|---:|---:|---:|---:|
+| Original full SFT | 0/32 | 0/32 | 36.0 | 497 / 494 |
+| Repaired targeted SFT | 32/32 | 32/32 | 5.0 | 0 / 0 |
+
+两者 execution success 均为 32/32，因此差异不是工具执行器可用性，而是模型是否在 `permission_denied` 后停止、读取最终状态并报告证据。原始 SFT 会重复 `inspect_workspace`/`stage_config` 直到 36-call 上限；repaired targeted SFT 在 5 次调用内正确报告 `blocked`。这是目前第一组严格配对的明显正结果：ID/OOD 均提升 100 个百分点，平均调用减少31次。
+
+该结果的边界已冻结：只有64条 repaired 确认评测，且 targeted SFT 使用了 repaired train，因此不能外推为所有旧任务的泛化提升。后续必须检查旧 v1 confirmation 的回归，再扩展 repaired challenge set。完整证据见 [阶段057](experiment_logs/057_repaired_sft_paired_baseline.md)。
+
 仓库 [AGENTS.md](../AGENTS.md) 固化阶段日志与总报告同步要求；新阶段按 [模板](experiment_logs/_template.md) 记录，保持失败与设计变更理由。已有用户动机文档不改写。
 
 2026-09-10 补录：助手曾在本轮口头误报 v1 匹配为 4/6，已核对为 3/6；见 [阶段 001 勘误](experiment_logs/001_exploratory_baseline.md)。这属于记录过程错误，不更改原始模型数据。
