@@ -1,0 +1,31 @@
+{
+  "study": "transaction_repaired_v1",
+  "seed": 20260921,
+  "mechanism": "revoke_before_commit shared across train/id/ood",
+  "knowledge_areas": [
+    "state_revision",
+    "retry_idempotency",
+    "async_check",
+    "permission_recovery",
+    "evidence_report"
+  ],
+  "counts": {
+    "train": 96,
+    "id": 32,
+    "ood": 32
+  },
+  "groups": {
+    "train": 12,
+    "id": 4,
+    "ood": 4
+  },
+  "files": {
+    "train_cases.jsonl": "cd55c720f8eb3425b1533d8c9b4c6d8ac1f2c19b3ffa8a10ce386e539ef30512",
+    "id_cases.jsonl": "e1168ba190b7dd31d19d0a7ca7b6e209d5847d8fec1607025fcdf8dd0e9873d6",
+    "ood_cases.jsonl": "f7af23d822944dce2fb27c366a4c3b1960244d84eebebbfdacaec95679fcc24e",
+    "train_trajectories.jsonl": "1b163e88c5981248850a79b8348a1246d4c1ab8621253297b679ac1c53658f0f"
+  },
+  "source_code_sha256": "bcc8fd109405f43856f0b236fb26b8f13a14ccc82150cdbaa6424f74bca87f99",
+  "no_confirmation_training": true,
+  "probe_excluded": true
+}
