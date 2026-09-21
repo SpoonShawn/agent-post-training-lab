@@ -35,3 +35,7 @@
 ## 已完成的本地验证
 
 `data/transaction_mixed_sft_v1/` 已生成并冻结，行数核对为292（196 replay、96 repaired）；训练脚本通过 Python 编译检查。提交：`0953703 Prepare mixed replay and repaired SFT`。
+
+## 运行约束补录
+
+SuperPOD 账户最多允许一个并行任务。因此本阶段必须按“训练 → repaired ID → repaired OOD → 旧 v1 ID → 旧 v1 OOD”串行提交和等待，不能同时提交四个评测作业。此前给出的并行评测示例不适用于该账户，后续命令已改为逐个运行。

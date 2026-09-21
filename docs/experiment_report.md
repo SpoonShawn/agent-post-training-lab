@@ -281,6 +281,8 @@
 
 为修复旧 ID 的4条回归，已冻结混合训练集：从49个旧 train groups 各取4条，共196条 original replay，再加入全部96条 repaired train，总计292条。初始化仍为原始 full-SFT adapter，LoRA learning rate降至3e-5，训练160步。confirmation、probe和validation均排除。验收同时要求 repaired ID/OOD保持32/32、旧 v1 ID不低于128/128、旧 v1 OOD不低于265/400，且 policy violations为0。协议和数据见 [阶段059](experiment_logs/059_mixed_replay_sft_design.md)。
 
+运行约束：SuperPOD 账户最多允许一个并行任务，因此本阶段所有 GPU 任务必须串行提交；这是资源调度限制，不是实验设计变量。
+
 仓库 [AGENTS.md](../AGENTS.md) 固化阶段日志与总报告同步要求；新阶段按 [模板](experiment_logs/_template.md) 记录，保持失败与设计变更理由。已有用户动机文档不改写。
 
 2026-09-10 补录：助手曾在本轮口头误报 v1 匹配为 4/6，已核对为 3/6；见 [阶段 001 勘误](experiment_logs/001_exploratory_baseline.md)。这属于记录过程错误，不更改原始模型数据。
