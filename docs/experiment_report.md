@@ -1,5 +1,7 @@
 # Agent Post-Training Lab：实验总报告
 
+阶段054：GRPO pilot的12个独立评测文件已完整上传并审计。SFT ID为128/128，6个GRPO checkpoint均128/128；SFT OOD为258/400，t1.2/t1.8均257/400，t1.5均256/400，0条改善、1–2条退化。执行成功率均400/400、违规调用均244，差异集中在tool_errors最终报告计数。当前证据不支持GRPO泛化提升。[阶段结果](experiment_logs/054_grpo_independent_eval_results.md)。
+
 阶段053：GRPO独立评测作业598060运行3:43:51时完成873/3168条，按当前平均速度预计超过8小时上限。已修复评估器：按顺序/metadata/重放校验现有记录后续接，完整文件跳过，不覆盖部分结果。[续跑记录](experiment_logs/053_grpo_eval_resume.md)。尚无完整ID/OOD结论。
 
 阶段052已准备6个GRPO checkpoint的独立ID/OOD评测入口，固定128条ID与400条OOD，不回灌训练、不覆盖SFT结果。当前等待SuperPOD后台评测；训练reward不能替代泛化指标。[评测准备](experiment_logs/052_grpo_independent_eval_readiness.md)。

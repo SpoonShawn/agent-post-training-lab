@@ -1,0 +1,445 @@
+{
+  "scope": "paired_SFT_vs_GRPO_confirmation_audit",
+  "splits": {
+    "confirmation_id": {
+      "sft": {
+        "cases": 128,
+        "task_success": {
+          "count": 128,
+          "denominator": 128,
+          "rate": 1.0
+        },
+        "execution_success": {
+          "count": 128,
+          "denominator": 128,
+          "rate": 1.0
+        },
+        "answer_correct": {
+          "count": 128,
+          "denominator": 128,
+          "rate": 1.0
+        },
+        "policy_violating_calls": 0,
+        "mean_tool_calls": 15.75,
+        "mean_steps": 16.75
+      },
+      "arms": [
+        {
+          "arm": "t12/checkpoint-1",
+          "aggregate": {
+            "cases": 128,
+            "task_success": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "execution_success": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "answer_correct": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "policy_violating_calls": 0,
+            "mean_tool_calls": 15.75,
+            "mean_steps": 16.75
+          },
+          "paired": {
+            "improved": [],
+            "regressed": [],
+            "changed_results": 0
+          },
+          "source": "results/transaction_grpo_eval_v2/t12/checkpoint-1/confirmation_id.jsonl"
+        },
+        {
+          "arm": "t12/checkpoint-2",
+          "aggregate": {
+            "cases": 128,
+            "task_success": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "execution_success": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "answer_correct": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "policy_violating_calls": 0,
+            "mean_tool_calls": 15.75,
+            "mean_steps": 16.75
+          },
+          "paired": {
+            "improved": [],
+            "regressed": [],
+            "changed_results": 0
+          },
+          "source": "results/transaction_grpo_eval_v2/t12/checkpoint-2/confirmation_id.jsonl"
+        },
+        {
+          "arm": "t15/checkpoint-1",
+          "aggregate": {
+            "cases": 128,
+            "task_success": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "execution_success": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "answer_correct": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "policy_violating_calls": 0,
+            "mean_tool_calls": 15.75,
+            "mean_steps": 16.75
+          },
+          "paired": {
+            "improved": [],
+            "regressed": [],
+            "changed_results": 0
+          },
+          "source": "results/transaction_grpo_eval_v2/t15/checkpoint-1/confirmation_id.jsonl"
+        },
+        {
+          "arm": "t15/checkpoint-2",
+          "aggregate": {
+            "cases": 128,
+            "task_success": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "execution_success": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "answer_correct": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "policy_violating_calls": 0,
+            "mean_tool_calls": 15.75,
+            "mean_steps": 16.75
+          },
+          "paired": {
+            "improved": [],
+            "regressed": [],
+            "changed_results": 0
+          },
+          "source": "results/transaction_grpo_eval_v2/t15/checkpoint-2/confirmation_id.jsonl"
+        },
+        {
+          "arm": "t18/checkpoint-1",
+          "aggregate": {
+            "cases": 128,
+            "task_success": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "execution_success": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "answer_correct": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "policy_violating_calls": 0,
+            "mean_tool_calls": 15.75,
+            "mean_steps": 16.75
+          },
+          "paired": {
+            "improved": [],
+            "regressed": [],
+            "changed_results": 0
+          },
+          "source": "results/transaction_grpo_eval_v2/t18/checkpoint-1/confirmation_id.jsonl"
+        },
+        {
+          "arm": "t18/checkpoint-2",
+          "aggregate": {
+            "cases": 128,
+            "task_success": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "execution_success": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "answer_correct": {
+              "count": 128,
+              "denominator": 128,
+              "rate": 1.0
+            },
+            "policy_violating_calls": 0,
+            "mean_tool_calls": 15.75,
+            "mean_steps": 16.75
+          },
+          "paired": {
+            "improved": [],
+            "regressed": [],
+            "changed_results": 0
+          },
+          "source": "results/transaction_grpo_eval_v2/t18/checkpoint-2/confirmation_id.jsonl"
+        }
+      ]
+    },
+    "confirmation_ood": {
+      "sft": {
+        "cases": 400,
+        "task_success": {
+          "count": 258,
+          "denominator": 400,
+          "rate": 0.645
+        },
+        "execution_success": {
+          "count": 400,
+          "denominator": 400,
+          "rate": 1.0
+        },
+        "answer_correct": {
+          "count": 258,
+          "denominator": 400,
+          "rate": 0.645
+        },
+        "policy_violating_calls": 244,
+        "mean_tool_calls": 18.72,
+        "mean_steps": 19.72
+      },
+      "arms": [
+        {
+          "arm": "t12/checkpoint-1",
+          "aggregate": {
+            "cases": 400,
+            "task_success": {
+              "count": 257,
+              "denominator": 400,
+              "rate": 0.6425
+            },
+            "execution_success": {
+              "count": 400,
+              "denominator": 400,
+              "rate": 1.0
+            },
+            "answer_correct": {
+              "count": 257,
+              "denominator": 400,
+              "rate": 0.6425
+            },
+            "policy_violating_calls": 244,
+            "mean_tool_calls": 18.72,
+            "mean_steps": 19.72
+          },
+          "paired": {
+            "improved": [],
+            "regressed": [
+              "txn1_dc6ec464900ba41b_15"
+            ],
+            "changed_results": 1
+          },
+          "source": "results/transaction_grpo_eval_v2/t12/checkpoint-1/confirmation_ood.jsonl"
+        },
+        {
+          "arm": "t12/checkpoint-2",
+          "aggregate": {
+            "cases": 400,
+            "task_success": {
+              "count": 257,
+              "denominator": 400,
+              "rate": 0.6425
+            },
+            "execution_success": {
+              "count": 400,
+              "denominator": 400,
+              "rate": 1.0
+            },
+            "answer_correct": {
+              "count": 257,
+              "denominator": 400,
+              "rate": 0.6425
+            },
+            "policy_violating_calls": 244,
+            "mean_tool_calls": 18.72,
+            "mean_steps": 19.72
+          },
+          "paired": {
+            "improved": [],
+            "regressed": [
+              "txn1_dc6ec464900ba41b_15"
+            ],
+            "changed_results": 1
+          },
+          "source": "results/transaction_grpo_eval_v2/t12/checkpoint-2/confirmation_ood.jsonl"
+        },
+        {
+          "arm": "t15/checkpoint-1",
+          "aggregate": {
+            "cases": 400,
+            "task_success": {
+              "count": 256,
+              "denominator": 400,
+              "rate": 0.64
+            },
+            "execution_success": {
+              "count": 400,
+              "denominator": 400,
+              "rate": 1.0
+            },
+            "answer_correct": {
+              "count": 256,
+              "denominator": 400,
+              "rate": 0.64
+            },
+            "policy_violating_calls": 244,
+            "mean_tool_calls": 18.72,
+            "mean_steps": 19.72
+          },
+          "paired": {
+            "improved": [],
+            "regressed": [
+              "txn1_0d6f7b394538ce4c_07",
+              "txn1_dc6ec464900ba41b_15"
+            ],
+            "changed_results": 2
+          },
+          "source": "results/transaction_grpo_eval_v2/t15/checkpoint-1/confirmation_ood.jsonl"
+        },
+        {
+          "arm": "t15/checkpoint-2",
+          "aggregate": {
+            "cases": 400,
+            "task_success": {
+              "count": 256,
+              "denominator": 400,
+              "rate": 0.64
+            },
+            "execution_success": {
+              "count": 400,
+              "denominator": 400,
+              "rate": 1.0
+            },
+            "answer_correct": {
+              "count": 256,
+              "denominator": 400,
+              "rate": 0.64
+            },
+            "policy_violating_calls": 244,
+            "mean_tool_calls": 18.72,
+            "mean_steps": 19.72
+          },
+          "paired": {
+            "improved": [],
+            "regressed": [
+              "txn1_0d6f7b394538ce4c_07",
+              "txn1_dc6ec464900ba41b_15"
+            ],
+            "changed_results": 2
+          },
+          "source": "results/transaction_grpo_eval_v2/t15/checkpoint-2/confirmation_ood.jsonl"
+        },
+        {
+          "arm": "t18/checkpoint-1",
+          "aggregate": {
+            "cases": 400,
+            "task_success": {
+              "count": 257,
+              "denominator": 400,
+              "rate": 0.6425
+            },
+            "execution_success": {
+              "count": 400,
+              "denominator": 400,
+              "rate": 1.0
+            },
+            "answer_correct": {
+              "count": 257,
+              "denominator": 400,
+              "rate": 0.6425
+            },
+            "policy_violating_calls": 244,
+            "mean_tool_calls": 18.72,
+            "mean_steps": 19.72
+          },
+          "paired": {
+            "improved": [],
+            "regressed": [
+              "txn1_dc6ec464900ba41b_15"
+            ],
+            "changed_results": 1
+          },
+          "source": "results/transaction_grpo_eval_v2/t18/checkpoint-1/confirmation_ood.jsonl"
+        },
+        {
+          "arm": "t18/checkpoint-2",
+          "aggregate": {
+            "cases": 400,
+            "task_success": {
+              "count": 257,
+              "denominator": 400,
+              "rate": 0.6425
+            },
+            "execution_success": {
+              "count": 400,
+              "denominator": 400,
+              "rate": 1.0
+            },
+            "answer_correct": {
+              "count": 257,
+              "denominator": 400,
+              "rate": 0.6425
+            },
+            "policy_violating_calls": 244,
+            "mean_tool_calls": 18.72,
+            "mean_steps": 19.72
+          },
+          "paired": {
+            "improved": [],
+            "regressed": [
+              "txn1_dc6ec464900ba41b_15"
+            ],
+            "changed_results": 1
+          },
+          "source": "results/transaction_grpo_eval_v2/t18/checkpoint-2/confirmation_ood.jsonl"
+        }
+      ]
+    }
+  },
+  "sources": {
+    "sft_confirmation_id": "d0196714c5b10f3735ac474e9d86713ae814118982d57fdb9434c1ba25cc4f2c",
+    "t12/checkpoint-1/confirmation_id": "8abfbea78249ef3d2e282be8885a592cb39cd571fcc72966be4e5adbd9cfda41",
+    "t12/checkpoint-2/confirmation_id": "2436d3767c23d3ca16ed8fb82792034ce0a67497673786cbc093ee23dbcfddfa",
+    "t15/checkpoint-1/confirmation_id": "13d4e9088a6d304649af7b762a61cf87471d06fb6ed6a44e479ffdf83d19da20",
+    "t15/checkpoint-2/confirmation_id": "c2593488aa0c1c3bbe580cea0a03029b766cfc7dd5cbb68c0e38f9d5c20818d9",
+    "t18/checkpoint-1/confirmation_id": "6a0c86143d3a290f0a4cf46d199941e5509bc804e1375fffd81bc65c28d1f38a",
+    "t18/checkpoint-2/confirmation_id": "8d93ab6156eb0a0a4a3dbc525681f6bc7e6527a086b878a12213d8ff20a908c0",
+    "sft_confirmation_ood": "1bd2eed5d5a6ebb230ec7dd32f85c9174b7b74fae7b50a525060b7fa94a9e892",
+    "t12/checkpoint-1/confirmation_ood": "76c52a6115d0f021adde20e79b669abcb2bcf7e2099e89ad9332764b41070ae1",
+    "t12/checkpoint-2/confirmation_ood": "1104755493793f2fa724b8ee3dcb62bfe5b88d6265c2d1e7e0ad81a3413ffafd",
+    "t15/checkpoint-1/confirmation_ood": "4da699eff2c888e857f37baf093271781fa9c7123655ca727b67ccae3789186d",
+    "t15/checkpoint-2/confirmation_ood": "9a0fbb35ed3a48b3125af11d310ff0870f48e8e3e65ab025885d6ddb600378bd",
+    "t18/checkpoint-1/confirmation_ood": "04ac5403c04d1b87c173da0082664d34cfed60f935ef901ba90f8c0484b87555",
+    "t18/checkpoint-2/confirmation_ood": "9841289b6d44080d443929670adc6b1f42c7eb21134f37555243ed7cdd294289"
+  }
+}

@@ -63,5 +63,6 @@
 | 051 | [GRPO pilot上传结果](051_grpo_pilot_uploaded_results.md) | 3档temperature、6个update、288条rollout；待独立ID/OOD评测 |
 | 052 | [GRPO独立评测准备](052_grpo_independent_eval_readiness.md) | 6个checkpoint×ID/OOD，需SuperPOD；不修改训练结果 |
 | 053 | [独立评测续跑修复](053_grpo_eval_resume.md) | 作业约27.6%时预计超8小时；校验已有行后逐题追加 |
+| 054 | [GRPO独立ID/OOD结果](054_grpo_independent_eval_results.md) | 3168条评测完整；ID不变，OOD无提升并有退化 |
 
 当前状态：正式DPO首seed已核验，下一步[GRPO训练侧32次采样](045_grpo_rollout_readiness.md)需要GPU。GRPO、多seed、独立后端尚未完成，完整Agent泛化未解决，1条旧Base未决仍待独立复审。
