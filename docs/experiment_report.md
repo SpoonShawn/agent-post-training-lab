@@ -277,6 +277,10 @@
 
 因此当前结论是“修复方向正确、训练分布仍需平衡”。新增 repaired 数据确实改善了失败后停止和证据报告，并迁移到部分旧 OOD；只用 repaired train 又造成普通 apply 路径回归。下一轮将使用 repaired train + 原始成功事务 replay 的混合训练，并把旧 ID 128/128、旧 OOD至少265/400、repaired 32/32 作为同时验收条件。详见 [阶段058](experiment_logs/058_legacy_v1_regression.md)。
 
+### 阶段 059：混合 replay + repaired SFT 设计冻结（2026-09-21）
+
+为修复旧 ID 的4条回归，已冻结混合训练集：从49个旧 train groups 各取4条，共196条 original replay，再加入全部96条 repaired train，总计292条。初始化仍为原始 full-SFT adapter，LoRA learning rate降至3e-5，训练160步。confirmation、probe和validation均排除。验收同时要求 repaired ID/OOD保持32/32、旧 v1 ID不低于128/128、旧 v1 OOD不低于265/400，且 policy violations为0。协议和数据见 [阶段059](experiment_logs/059_mixed_replay_sft_design.md)。
+
 仓库 [AGENTS.md](../AGENTS.md) 固化阶段日志与总报告同步要求；新阶段按 [模板](experiment_logs/_template.md) 记录，保持失败与设计变更理由。已有用户动机文档不改写。
 
 2026-09-10 补录：助手曾在本轮口头误报 v1 匹配为 4/6，已核对为 3/6；见 [阶段 001 勘误](experiment_logs/001_exploratory_baseline.md)。这属于记录过程错误，不更改原始模型数据。
