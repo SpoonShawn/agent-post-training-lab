@@ -271,6 +271,12 @@
 
 该结果的边界已冻结：只有64条 repaired 确认评测，且 targeted SFT 使用了 repaired train，因此不能外推为所有旧任务的泛化提升。后续必须检查旧 v1 confirmation 的回归，再扩展 repaired challenge set。完整证据见 [阶段057](experiment_logs/057_repaired_sft_paired_baseline.md)。
 
+### 阶段 058：旧 v1 回归检查（2026-09-21）
+
+旧 confirmation 回归显示，repaired targeted SFT 不是无条件全面提升：ID 从128/128降到124/128，OOD 从258/400升到265/400；合计从386/528升到389/528，净增3条。OOD 有16条新增成功、9条回归，ID 有4条回归且全部为 `apply` 类事务。ID/OOD policy violation 均为0，但 OOD execution success 为393/400。
+
+因此当前结论是“修复方向正确、训练分布仍需平衡”。新增 repaired 数据确实改善了失败后停止和证据报告，并迁移到部分旧 OOD；只用 repaired train 又造成普通 apply 路径回归。下一轮将使用 repaired train + 原始成功事务 replay 的混合训练，并把旧 ID 128/128、旧 OOD至少265/400、repaired 32/32 作为同时验收条件。详见 [阶段058](experiment_logs/058_legacy_v1_regression.md)。
+
 仓库 [AGENTS.md](../AGENTS.md) 固化阶段日志与总报告同步要求；新阶段按 [模板](experiment_logs/_template.md) 记录，保持失败与设计变更理由。已有用户动机文档不改写。
 
 2026-09-10 补录：助手曾在本轮口头误报 v1 匹配为 4/6，已核对为 3/6；见 [阶段 001 勘误](experiment_logs/001_exploratory_baseline.md)。这属于记录过程错误，不更改原始模型数据。
