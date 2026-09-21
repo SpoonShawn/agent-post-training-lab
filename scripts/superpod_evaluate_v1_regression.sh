@@ -11,7 +11,7 @@ for split in confirmation_id confirmation_ood; do
     echo "SKIP existing $out"
     continue
   fi
-  python -u scripts/evaluate_transaction_v1_regression.py \
+  python -u -m scripts.evaluate_transaction_v1_regression \
     --model-path "$MODEL" --adapter-path "$ADAPTER" \
     --split "$split" --output-path "$out"
 done
