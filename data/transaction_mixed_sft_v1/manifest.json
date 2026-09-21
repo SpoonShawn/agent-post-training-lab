@@ -1,0 +1,21 @@
+{
+  "confirmation_excluded": true,
+  "counts": {
+    "original_replay": 196,
+    "repaired_train": 96,
+    "total": 292
+  },
+  "groups": {
+    "original_replay": 49,
+    "repaired_train": 12
+  },
+  "probe_excluded": true,
+  "protocol": "transaction_mixed_sft_v1",
+  "seed": 20260921,
+  "selection": "first four sorted trajectories per original train group",
+  "source_code_sha256": "1f1de636ff1308123aebbf246fc5483c3662e7ee780ca4af877af1877315c3cd",
+  "source_sha256": {
+    "original_train": "10fc3cb87681e136e13267ebabf0e9b250b4fbfeeb3d6a06903f402eafd5aac9",
+    "repaired_train": "1b163e88c5981248850a79b8348a1246d4c1ab8621253297b679ac1c53658f0f"
+  }
+}
