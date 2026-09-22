@@ -4,6 +4,12 @@
 
 持续更新：[实验总报告](docs/experiment_report.md) · [阶段日志](docs/experiment_logs/README.md)。每个阶段保留目标、配置、数据、指标、结果、bad case、问题、原因、解决方案和下一步，包括失败实验与设计修订。
 
+## 最终主结果（2026-09-22）
+
+混合 replay + repaired SFT 已完成最终评测。模型从原始 Full SFT 初始化，使用196条原始事务 replay与96条repaired事务混合训练。repaired ID/OOD均为32/32；旧 v1 ID为128/128；旧 v1 OOD从原始SFT的258/400提升到272/400；旧 v1合计从386/528（73.11%）提升到400/528（75.76%），四份评测的 policy violations 均为0。完整过程、失败的DPO/GRPO尝试和回归分析见[实验总报告](docs/experiment_report.md)及[阶段060](docs/experiment_logs/060_mixed_sft_final_results.md)。
+
+仓库只发布代码、合成数据、评测结果和实验记录，不包含基础模型或LoRA权重。训练权重保存在SuperPOD的 `checkpoints/transaction_mixed_sft_v1/adapter`，如需复现需先准备相同基础模型和依赖环境。
+
 ## 当前入口：完整Agent实验重启（2026-09-16）
 
 阶段044/045：正式DPO首seed已完成；OOD任务258/400→256/400，0改善、2退化，极低偏好loss未带来闭环收益。[负结果及审计](docs/experiment_logs/044_full_dpo_results.md)。下一步原SFT训练侧32次GRPO奖励方差采样，需[后台GPU操作](docs/experiment_logs/045_grpo_rollout_readiness.md)；不是GRPO训练完成。以下为历史摘要。
