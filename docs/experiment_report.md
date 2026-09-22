@@ -283,6 +283,12 @@
 
 运行约束：SuperPOD 账户最多允许一个并行任务，因此本阶段所有 GPU 任务必须串行提交；这是资源调度限制，不是实验设计变量。
 
+### 阶段 060：混合 SFT 最终结果（2026-09-22）
+
+混合训练达到全部验收门槛：repaired ID/OOD 均为32/32；旧 v1 ID恢复为128/128；旧 v1 OOD从原始 Full SFT的258/400提升到272/400；旧 v1合计从386/528提升到400/528（73.11%→75.76%，绝对+2.65个百分点）。相对上一轮 targeted SFT，旧 ID的4条回归消失，旧 OOD再净增7条。四份评测的 policy violations 均为0。
+
+这构成当前项目的主成功结果：repaired 数据解决了已观测的权限撤销/证据报告缺陷，original train replay 保留了原有普通事务能力，混合训练在 OOD 上取得净提升。GRPO pilot仍作为失败的诊断实验保留，不能写成成功原因。完整数字和逐条配对结果见 [阶段060](experiment_logs/060_mixed_sft_final_results.md)。后续不再申请 GPU，只整理可复现实验包和面试材料。
+
 仓库 [AGENTS.md](../AGENTS.md) 固化阶段日志与总报告同步要求；新阶段按 [模板](experiment_logs/_template.md) 记录，保持失败与设计变更理由。已有用户动机文档不改写。
 
 2026-09-10 补录：助手曾在本轮口头误报 v1 匹配为 4/6，已核对为 3/6；见 [阶段 001 勘误](experiment_logs/001_exploratory_baseline.md)。这属于记录过程错误，不更改原始模型数据。
